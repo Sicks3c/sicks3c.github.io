@@ -4,7 +4,33 @@
   margin: 2rem auto;
   padding: 2rem;
 }
+/* Research listing page */
+.research-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
 
+.research-item {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 3px solid var(--accent-color);
+  transition: transform 0.2s ease;
+}
+
+.research-item:hover {
+  transform: translateX(5px);
+}
+
+.research-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.research-item h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
 .tag {
   background: var(--accent-color);
   color: white;

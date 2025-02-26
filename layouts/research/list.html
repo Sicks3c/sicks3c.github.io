@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="research-list">
+  <h1>Security Research</h1>
+  <div class="articles">
+    {{ range .Pages }}
+      <article class="research-item">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

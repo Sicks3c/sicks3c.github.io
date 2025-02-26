@@ -11,6 +11,7 @@ publishDir = "docs"
 [permalinks]
   categories = "/:slug/"
   posts = "/:sections/:slug/"
+  research = "/research/:slug/"
 
 [build]
   publishDir = "docs"
