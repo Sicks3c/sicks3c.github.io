@@ -1,3 +1,3 @@
 ---
-#title: "Security Research"
+title: "Security Research"
 ---

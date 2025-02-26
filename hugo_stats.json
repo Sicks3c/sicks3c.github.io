@@ -23,6 +23,7 @@
       "nav",
       "ol",
       "p",
+      "pre",
       "script",
       "section",
       "span",
@@ -81,17 +82,27 @@
       "terms-title"
     ],
     "ids": [
+      "bugcrowd",
       "complexity-level",
+      "deep-dive-into-a-facebook-oauth-exploit-a-0-day-case-study",
+      "deep-dive-into-an-oauth-exploit-a-0-day-case-study",
       "discovery-process",
       "exploitation",
+      "facebooks-response",
+      "hackerone",
       "how-can-we-approach-this",
       "how-url-shortners-work",
       "key-takeaways",
       "lets-talk-about-url-shortners-and-their-types",
+      "oauth-basics-and-the-attack-surface",
+      "proof-of-concept",
+      "reporting-and-bounty-results",
       "results",
       "takeaways",
       "takeways",
-      "tools-used"
+      "the-exploit-mechanism",
+      "tools-used",
+      "understanding-the-vulnerability"
     ]
   }
 }
