@@ -23,10 +23,10 @@ jobs:
       - name: Build
         run: |
           hugo \
-            --minify \          # Minify output
-            --gc \             # Clean cache
-            --verbose \        # Show build details
-            -e production      # Production environment
+            --minify \
+            --gc \
+            --verbose \
+            -e production
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -34,3 +34,4 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           publish_dir: ./docs
           keep_files: false    # Clean previous builds
+
