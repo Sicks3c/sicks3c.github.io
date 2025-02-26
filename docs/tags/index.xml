@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Security Writeups</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://sicks3c.github.io/tags/</link>
     <description>Recent content in Tags on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bugbounty</title>
-      <link>http://localhost:1313/tags/bugbounty/</link>
+      <link>https://sicks3c.github.io/tags/bugbounty/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/tags/bugbounty/</guid>
+      <guid>https://sicks3c.github.io/tags/bugbounty/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>ATO</title>
-      <link>http://localhost:1313/tags/ato/</link>
+      <link>https://sicks3c.github.io/tags/ato/</link>
       <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/tags/ato/</guid>
+      <guid>https://sicks3c.github.io/tags/ato/</guid>
       <description></description>
       <content></content>
     </item>
     
     <item>
       <title>Rce</title>
-      <link>http://localhost:1313/tags/rce/</link>
+      <link>https://sicks3c.github.io/tags/rce/</link>
       <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/tags/rce/</guid>
+      <guid>https://sicks3c.github.io/tags/rce/</guid>
       <description></description>
       <content></content>
     </item>

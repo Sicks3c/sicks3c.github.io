@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security Writeups</title>
-    <link>http://localhost:1313/</link>
+    <link>https://sicks3c.github.io/</link>
     <description>Recent content on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>http://localhost:1313/research/abusing-url-shortners-for-fun-and-profit/</link>
+      <link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/research/abusing-url-shortners-for-fun-and-profit/</guid>
+      <guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
 Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
@@ -60,10 +60,10 @@ after that you will have a very good argument to convince the team that you were
     
     <item>
       <title>How I Scored 2K Bounty via an Easy IDOR</title>
-      <link>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
+      <link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
+      <guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
 So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
@@ -108,16 +108,18 @@ First thing I did is to remove the sign which is the signature and see if I can 
     </item>
     
     <item>
-      <title># Deep Dive into a Facebook OAuth Exploit: A 0-Day Case Study</title>
-      <link>http://localhost:1313/posts/%23-deep-dive-into-a-facebook-oauth-exploit-a-0-day-case-study/</link>
+      <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title>
+      <link>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
       <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/%23-deep-dive-into-a-facebook-oauth-exploit-a-0-day-case-study/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt;—one that has since been patched.&lt;/p&gt;
+      <guid>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid>
+      <description>&lt;h1 id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;
 &lt;p&gt;This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong&gt;Facebook’s “Login With Facebook”&lt;/strong&gt; feature. By manipulating the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter in the &lt;strong&gt;OAuth&lt;/strong&gt; flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p&gt;</description>
-      <content>&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt;—one that has since been patched.&lt;/p&gt;
+      <content>&lt;h1 id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;
 &lt;p&gt;This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong&gt;Facebook’s “Login With Facebook”&lt;/strong&gt; feature. By manipulating the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter in the &lt;strong&gt;OAuth&lt;/strong&gt; flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p&gt;
 &lt;p&gt;Below, I provide an expert breakdown of the exploit, our proof-of-concept, and the impact it generated.&lt;/p&gt;
 &lt;hr&gt;
@@ -129,7 +131,7 @@ First thing I did is to remove the sign which is the signature and see if I can 
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Initial Experimentation:&lt;/strong&gt;&lt;br&gt;
-We began by modifying the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; in the OAuth flow. Our initial test—attempting to change the &lt;strong&gt;clientID&lt;/strong&gt; directly (e.g., &lt;code&gt;fb://clientID&lt;/code&gt;)—produced a “mismatch” error, as expected.&lt;/p&gt;
+We began by modifying the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; in the OAuth flow. Our initial test—attempting to change the &lt;strong&gt;clientID&lt;/strong&gt; directly (e.g., &lt;code&gt;fb://anotherClientID&lt;/code&gt;) produced a “mismatch” error, as expected.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Refined Modification:&lt;/strong&gt;&lt;br&gt;
@@ -185,7 +187,7 @@ To rule out any anomalies, we repeated the process several times. The results we
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Innovation in Testing:&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;OAuth&lt;/strong&gt; implementations may harbor subtle vulnerabilities. Experimenting with unconventional modifications—like tweaking the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt;—can sometimes reveal significant security flaws.&lt;/p&gt;
+&lt;strong&gt;OAuth&lt;/strong&gt; implementations may harbor subtle vulnerabilities. Experimenting with unconventional modifications—like tweaking the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; it can sometimes reveal significant security flaws.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Real-World Implications:&lt;/strong&gt;&lt;br&gt;
@@ -196,7 +198,7 @@ Even minor oversights in &lt;strong&gt;OAuth validation&lt;/strong&gt; can have 
 The evolving landscape of &lt;strong&gt;authentication mechanisms&lt;/strong&gt; demands constant scrutiny. As attackers and defenders, embracing creativity in testing is essential to uncovering and mitigating emerging threats.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Stay curious, and never stop pushing the boundaries of security research.&lt;/p&gt;
+&lt;p&gt;Stay curious 🖤&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;By sharing this in-depth analysis, I hope to encourage fellow security professionals to explore every nuance of &lt;strong&gt;authentication protocols&lt;/strong&gt;. Remember, in the world of cybersecurity, even “stupid” ideas can lead to groundbreaking discoveries.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Happy Hunting!&lt;/strong&gt;&lt;/p&gt;
@@ -205,10 +207,10 @@ The evolving landscape of &lt;strong&gt;authentication mechanisms&lt;/strong&gt;
     
     <item>
       <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</link>
+      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
       <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</guid>
+      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
 Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
@@ -238,10 +240,10 @@ Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
     
     <item>
       <title>How I Scored 1K Bounty Using Waybackurls</title>
-      <link>http://localhost:1313/posts/how-i-scored-1k-bounty-using-waybackurls/</link>
+      <link>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link>
       <pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>http://localhost:1313/posts/how-i-scored-1k-bounty-using-waybackurls/</guid>
+      <guid>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;
 &lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;</description>
@@ -267,10 +269,10 @@ Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
     
     <item>
       <title>Tale of XSS in Angular</title>
-      <link>http://localhost:1313/posts/tale-of-xss-in-angular/</link>
+      <link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link>
       <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/tale-of-xss-in-angular/</guid>
+      <guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;

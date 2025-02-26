@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/research/abusing-url-shortners-for-fun-and-profit/</loc>
+    <loc>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://sicks3c.github.io/posts/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/bugbounty/</loc>
+    <loc>https://sicks3c.github.io/tags/bugbounty/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://sicks3c.github.io/categories/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</loc>
+    <loc>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/research/</loc>
+    <loc>https://sicks3c.github.io/research/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/research/</loc>
+    <loc>https://sicks3c.github.io/research/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://sicks3c.github.io/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://sicks3c.github.io/posts/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://sicks3c.github.io/tags/</loc>
     <lastmod>2025-02-26T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/%23-deep-dive-into-a-facebook-oauth-exploit-a-0-day-case-study/</loc>
+    <loc>https://sicks3c.github.io/tags/ato/</loc>
     <lastmod>2023-09-01T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ato/</loc>
+    <loc>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</loc>
     <lastmod>2023-09-01T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</loc>
+    <loc>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</loc>
     <lastmod>2021-08-19T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/rce/</loc>
+    <loc>https://sicks3c.github.io/tags/rce/</loc>
     <lastmod>2021-08-19T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/how-i-scored-1k-bounty-using-waybackurls/</loc>
+    <loc>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</loc>
     <lastmod>2021-08-03T07:32:53+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tale-of-xss-in-angular/</loc>
+    <loc>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</loc>
     <lastmod>2021-08-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>
