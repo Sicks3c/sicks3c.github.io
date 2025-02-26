@@ -114,7 +114,110 @@ The evolving landscape of &lt;strong>authentication mechanisms&lt;/strong> deman
 &lt;p>Stay curious 🖤&lt;/p>
 &lt;hr>
 &lt;p>By sharing this in-depth analysis, I hope to encourage fellow security professionals to explore every nuance of &lt;strong>authentication protocols&lt;/strong>. Remember, in the world of cybersecurity, even “stupid” ideas can lead to groundbreaking discoveries.&lt;/p>
-&lt;p>&lt;strong>Happy Hunting!&lt;/strong>&lt;/p></content></item><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid><description>Hello Security Researchers
+&lt;p>&lt;strong>Happy Hunting!&lt;/strong>&lt;/p>
+&lt;div id="mc_embed_shell">
+&lt;link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+&lt;style type="text/css">
+#mc_embed_signup {
+background: #1e1e1e;
+color: #f8f8f2;
+clear: left;
+font: 14px "Courier New", monospace;
+width: 600px;
+padding: 20px;
+border-radius: 5px;
+}
+#mc_embed_signup h2 {
+color: #50fa7b;
+margin-bottom: 10px;
+}
+#mc_embed_signup label {
+color: #f8f8f2;
+}
+#mc_embed_signup input[type="email"] {
+background: #282a36;
+color: #f8f8f2;
+border: 1px solid #44475a;
+padding: 5px;
+width: 100%;
+box-sizing: border-box;
+margin-top: 5px;
+margin-bottom: 15px;
+}
+#mc_embed_signup input[type="submit"] {
+background: #50fa7b;
+border: none;
+color: #282a36;
+padding: 8px 12px;
+cursor: pointer;
+font-weight: bold;
+}
+#mc_embed_signup a {
+color: #8be9fd;
+text-decoration: none;
+}
+#mce-error-response, #mce-success-response {
+background: #44475a;
+color: #f8f8f2;
+padding: 10px;
+margin-top: 10px;
+border-radius: 3px;
+}
+&lt;/style>
+&lt;div id="mc_embed_signup">
+&lt;form action="https://github.us15.list-manage.com/subscribe/post?u=70eef44d48f8b14be6128d61d&amp;amp;id=ae087575d8&amp;amp;f_id=00cba4e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+&lt;div id="mc_embed_signup_scroll">
+&lt;h2>Subscribe&lt;/h2>
+&lt;div class="indicates-required">&lt;span class="asterisk">*&lt;/span> indicates required&lt;/div>
+&lt;div class="mc-field-group">
+&lt;label for="mce-EMAIL">Email Address &lt;span class="asterisk">*&lt;/span>&lt;/label>
+&lt;input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required value="">
+&lt;/div>
+&lt;div id="mce-responses" class="clear foot">
+&lt;div class="response" id="mce-error-response" style="display: none;">&lt;/div>
+&lt;div class="response" id="mce-success-response" style="display: none;">&lt;/div>
+&lt;/div>
+&lt;div aria-hidden="true" style="position: absolute; left: -5000px;">
+&lt;input type="text" name="b_70eef44d48f8b14be6128d61d_ae087575d8" tabindex="-1" value="">
+&lt;/div>
+&lt;div class="optionalParent">
+&lt;div class="clear foot">
+&lt;input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+&lt;p style="margin: 0px auto;">
+&lt;a href="http://eepurl.com/i-QE8Q" title="Mailchimp - email marketing made easy and fun">
+&lt;span style="display: inline-block; background-color: transparent; border-radius: 4px;">
+&lt;img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;">
+&lt;/span>
+&lt;/a>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/form>
+&lt;/div>
+&lt;script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js">&lt;/script>
+&lt;script type="text/javascript">
+(function($) {
+window.fnames = new Array();
+window.ftypes = new Array();
+fnames[0] = 'EMAIL';
+ftypes[0] = 'email';
+fnames[1] = 'FNAME';
+ftypes[1] = 'text';
+fnames[2] = 'LNAME';
+ftypes[2] = 'text';
+fnames[3] = 'ADDRESS';
+ftypes[3] = 'address';
+fnames[4] = 'PHONE';
+ftypes[4] = 'phone';
+fnames[5] = 'BIRTHDAY';
+ftypes[5] = 'birthday';
+fnames[6] = 'COMPANY';
+ftypes[6] = 'text';
+}(jQuery));
+var $mcj = jQuery.noConflict(true);
+&lt;/script>
+&lt;/div></content></item><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid><description>Hello Security Researchers
 In this writeup I will explain how I was able to find RCE in Mail.ru which is considered the world largest internet company, Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find
 I started looking with the Favicon using this script Where I replace the link with the Mail.</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
 &lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
