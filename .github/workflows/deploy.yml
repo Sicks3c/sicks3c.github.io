@@ -1,0 +1,36 @@
+name: Deploy Hugo Site
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Required for Hugo themes
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.125.7'  # Match your local version
+          extended: true
+
+      - name: Build
+        run: |
+          hugo \
+            --minify \          # Minify output
+            --gc \             # Clean cache
+            --verbose \        # Show build details
+            -e production      # Production environment
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./docs
+          keep_files: false    # Clean previous builds
