@@ -10,7 +10,7 @@ publishDir = "docs"
 
 [permalinks]
   categories = "/:slug/"
-  posts = "/posts/:slug/"
+  posts = "/:sections/:slug/"
 
 [build]
   publishDir = "docs"

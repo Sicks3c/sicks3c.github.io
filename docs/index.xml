@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</link>
+      <link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</guid>
+      <guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
 Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
