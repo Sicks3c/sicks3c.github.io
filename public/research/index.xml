@@ -2,17 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security Research on Security Writeups</title>
-    <link>https://sicks3c.github.io/research/</link>
+    <link>http://localhost:1313/research/</link>
     <description>Recent content in Security Research on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/research/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://localhost:1313/research/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
+.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</link>
+      <link>http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</guid>
+      <guid>http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
 Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;

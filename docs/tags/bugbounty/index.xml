@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bugbounty on Security Writeups</title>
+    <link>https://sicks3c.github.io/tags/bugbounty/</link>
+    <description>Recent content in Bugbounty on Security Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/tags/bugbounty/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Abusing Url Shortners for Fun and Profit</title>
+      <link>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</link>
+      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
+      
+      <guid>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
+&lt;p&gt;Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
+&lt;p&gt;Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p&gt;
+&lt;h3 id=&#34;lets-talk-about-url-shortners-and-their-types&#34;&gt;Let’s talk about URL shortners and their types:&lt;/h3&gt;
+&lt;p&gt;URL shortners are mostly linked to 3rd party services like &lt;a href=&#34;https://bitly.com&#34;&gt;https://bitly.com&lt;/a&gt; &lt;a href=&#34;https://cutt.ly/&#34;&gt;https://cutt.ly/&lt;/a&gt; and others are made by company and they have custom built
+Like : &lt;a href=&#34;https://indd.jobs&#34;&gt;https://indd.jobs&lt;/a&gt; | &lt;a href=&#34;https://inst.cr&#34;&gt;https://inst.cr&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;how-can-we-approach-this&#34;&gt;How can we approach this:&lt;/h3&gt;
+&lt;p&gt;We can use multiple scenarios first we can test functionalities that triggers email and view the source of them if they contain a URL shortner check twitter account of company and extract all the links they share&lt;/p&gt;
+&lt;h3 id=&#34;how-url-shortners-work&#34;&gt;How URL Shortners Work:&lt;/h3&gt;
+&lt;p&gt;Most of the case we should look for something that has this kind of behavior
+&lt;code&gt;URLshortner.com/{HASH}&lt;/code&gt; -&amp;gt; &lt;code&gt;Website.com/?token={YOU-CANT-GUESS-THIS}&lt;/code&gt;
+and based on that we can enumerate more and see more&lt;/p&gt;
+&lt;h3 id=&#34;complexity-level&#34;&gt;Complexity Level:&lt;/h3&gt;
+&lt;p&gt;The complexity is based on the &lt;code&gt;HASH&lt;/code&gt; used after the URL so it’s either integer strings and or both &lt;code&gt;Uppercase / Lowercase&lt;/code&gt; length of the hash that starts from 5 characters plus
+Examples:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://url.com/12345&#34;&gt;https://url.com/12345&lt;/a&gt; | &lt;a href=&#34;https://url.com/A2B4C&#34;&gt;https://url.com/A2B4C&lt;/a&gt; | &lt;a href=&#34;https://url.com/A2B4CGFDFF33434&#34;&gt;https://url.com/A2B4CGFDFF33434&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;So if we are facing only integers it’s the easiest case here we can of course generate all the possible and it’s kinda difficult for other case OR IS IT ? 😈&lt;/p&gt;
+&lt;h3 id=&#34;exploitation&#34;&gt;Exploitation:&lt;/h3&gt;
+&lt;p&gt;For our write up we will focus on &lt;code&gt;inst.cr&lt;/code&gt; since it has a custom built and it’s so difficult to guess &lt;a href=&#34;http://inst.cr/t/UEJBUThINjYx&#34;&gt;http://inst.cr/t/UEJBUThINjYx&lt;/a&gt;
+So how can we guess the &lt;code&gt;hash&lt;/code&gt; ?&lt;/p&gt;
+&lt;p&gt;We don’t, we don’t need to we can basically throw the domain into &lt;code&gt;waybackurls&lt;/code&gt; or &lt;code&gt;gau&lt;/code&gt; and see the results&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:350/format:webp/1*ftwj3Zsk04oeCYyhpiHaRA.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we need to see where the links are redirecting and see if something useful is the paths that we can make a use of
+we simply do this&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;gau inst.cr | httpx -location -mc 301,302 | grep -Eo ‘\[(.*?)\]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In order to &lt;code&gt;grep&lt;/code&gt; the value of all the rediction and spit it out in your terminal&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:550/format:webp/1*wWGo3BhNsyuHUnAcFNb0Qg.png&#34; alt=&#34;image2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now based on the application logic, you can search for keywords that are interesting like &lt;code&gt;token&lt;/code&gt; &lt;code&gt;id&lt;/code&gt; &lt;code&gt;uuid&lt;/code&gt; nd things along those lines
+after that you will have a very good argument to convince the team that you were able to get the value of a certain parameter that they made difficult to guess&lt;/p&gt;
+&lt;h3 id=&#34;results&#34;&gt;Results?&lt;/h3&gt;
+&lt;p&gt;Blind ATO twice in a private program due to valide token on URLshortner
+&lt;code&gt;site.com/?basket=token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1160/format:webp/1*F6qL02Q0fJNiwcbIw4NOfg.png&#34; alt=&#34;image3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Multiple IDORS went from Invalid to valid&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png&#34; alt=&#34;indeed&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I hope you enjoyed reading this and I will catch you in the next one&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>How I Scored 2K Bounty via an Easy IDOR</title>
+      <link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
+      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
+      
+      <guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I fired up Burp&lt;/li&gt;
+&lt;li&gt;Created an account&lt;/li&gt;
+&lt;li&gt;Adding things in my cart&lt;/li&gt;
+&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creating a support ticket&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I fired up Burp&lt;/li&gt;
+&lt;li&gt;Created an account&lt;/li&gt;
+&lt;li&gt;Adding things in my cart&lt;/li&gt;
+&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creating a support ticket&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ErP1l5Al5QOK8_O5qfdP5w.png&#34; alt=&#34;ticket&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let’s breakdown what can go wrong here
+We have few parameters &lt;code&gt;project_id/user_id/sign&lt;/code&gt; and the ticket number
+First thing I did is to remove the sign which is the signature and see if I can access it from an unauthenticated browser&lt;/p&gt;
+&lt;p&gt;This looks easy no way that works right ?!!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:400/format:webp/0*jE5ml_v7U8wAzl9H&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Well you’re wrong it worked and I was able to see my ticket and the conversation with the agent and also any attached file, I could also speak in the conversation as anonymous user 😁&lt;/p&gt;
+&lt;p&gt;Further testing showed that changing the ticket number can allow viewing others ticket and changing the &lt;code&gt;user_id&lt;/code&gt; can allow viewing other ticket of that matched ID&lt;/p&gt;
+&lt;p&gt;went and wrapped up a good report with &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;my friend&lt;/a&gt; , and it was triaged within minutes an paid after few days&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:590/format:webp/1*WXV_nYEgIwyAQ0HnWSpizA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Don’t be afraid of diving the Main app it’s where all the juicy things exist&lt;/li&gt;
+&lt;li&gt;Never underestimate yourself from finding bugs everyone has a unique view for the target&lt;/li&gt;
+&lt;li&gt;Don’t be discouraged if you didn’t find a bug today tomorrow you will&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope you enjoyed reading this and I will catch you in the next one&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>How I RCE&#39;d the Largest RU Company</title>
+      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
+      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
+      
+      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png&#34; alt=&#34;img1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we search this hash on shodan.io with the &lt;code&gt;http.favicon.hash&lt;/code&gt; syntax&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page&lt;/p&gt;
+&lt;p&gt;Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code&gt;/static/shards/html&lt;/code&gt; Publicly accessible and it looked Juicy&lt;/p&gt;
+&lt;p&gt;From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href=&#34;https://nmap.org/&#34;&gt;Nmap&lt;/a&gt; all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png&#34; alt=&#34;nmap&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href=&#34;https://ioactive.com/hacking-java-debug-wire-protocol-or-how/&#34;&gt;article&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;With the help of this &lt;a href=&#34;https://github.com/IOActive/jdwp-shellifier&#34;&gt;jdwp-shellifier&lt;/a&gt; I was able to show the RCE and the team triaged and paid &lt;code&gt;$$$&lt;/code&gt; since the server belongs to their infrastructure not the main assets&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Hope you enjoyed reading this and catch you in the next adventure&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

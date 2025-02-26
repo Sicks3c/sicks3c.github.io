@@ -2,6 +2,7 @@ baseURL = "https://sicks3c.github.io/"
 languageCode = "en-us"
 title = "Security Writeups"
 theme = "terminal"
+publishDir = "docs"
 
 [taxonomies]
   category = "categories"

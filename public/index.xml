@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Security Writeups</title>
-    <link>https://sicks3c.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</link>
+      <link>http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/</guid>
+      <guid>http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
 Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
@@ -60,10 +60,10 @@ after that you will have a very good argument to convince the team that you were
     
     <item>
       <title>How I Scored 2K Bounty via an Easy IDOR</title>
-      <link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
+      <link>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
+      <guid>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
 So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
@@ -109,10 +109,10 @@ First thing I did is to remove the sign which is the signature and see if I can 
     
     <item>
       <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
+      <link>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</link>
       <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
+      <guid>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
 Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
@@ -142,10 +142,10 @@ Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
     
     <item>
       <title>Tale of XSS in Angular</title>
-      <link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link>
+      <link>http://localhost:1313/posts/tale-of-xss-in-angular/</link>
       <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid>
+      <guid>http://localhost:1313/posts/tale-of-xss-in-angular/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
