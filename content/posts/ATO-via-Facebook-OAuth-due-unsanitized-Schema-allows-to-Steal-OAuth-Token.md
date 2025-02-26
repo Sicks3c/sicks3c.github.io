@@ -109,5 +109,5 @@ By sharing this in-depth analysis, I hope to encourage fellow security professio
 
 **Happy Hunting!**
 
-
+{{< subscribe >}}
 
