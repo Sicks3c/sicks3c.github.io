@@ -87,4 +87,22 @@ Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p>
 &lt;p>With the help of this &lt;a href="https://github.com/IOActive/jdwp-shellifier">jdwp-shellifier&lt;/a> I was able to show the RCE and the team triaged and paid &lt;code>$$$&lt;/code> since the server belongs to their infrastructure not the main assets&lt;/p>
 &lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png" alt="bounty">&lt;/p>
 &lt;p>Hope you enjoyed reading this and catch you in the next adventure&lt;/p>
-&lt;p>Stay curious ❤&lt;/p></content></item></channel></rss>
+&lt;p>Stay curious ❤&lt;/p></content></item><item><title>How I Scored 1K Bounty Using Waybackurls</title><link>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link><pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid><description>Hello Security Researchers
+In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal
+I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p>
+&lt;p>I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p>
+&lt;p>The program exist in &lt;strong>Hackerone&lt;/strong> in more than a decade with big names on them, I was familiar with the services they offer since I was a user so I started to enumerate subdomain where I noticed a weird link that may actually hold sensitive data since they are parsing everything in URL path so my first approach was checking the &lt;a href="https://github.com/tomnomnom/waybackurls">waybackurls&lt;/a> since &lt;a href="https://x.com/TomNomNom">Tomnomnom&lt;/a>&lt;/p>
+&lt;p>has a very unique tools I used it as follows&lt;/p>
+&lt;p>&lt;code>waybackurls requests.redacted.com&lt;/code>&lt;/p>
+&lt;p>I was surprise with the amount of URLS that belongs to users with the tokens and I was like no way they’re valid right ?!&lt;/p>
+&lt;p>&lt;img src="https://europe1.discourse-cdn.com/flex005/uploads/ewelinkforum/original/2X/2/26f9b6464e5ae5981f1c2c02375c3f264e2b94ad.gif" alt="gif">&lt;/p>
+&lt;p>Guess I was wrong, I went to the API page and it looks like a simple POST request with the link leaked and a simple data via curl can do the Proof Of Concept using something like this&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*wfnBQlHJQu79hgOFYi_jyA.png" alt="poc">&lt;/p>
+&lt;p>I tested in my own env and sent the report right away, It got paid under few days and the team started the fix&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:960/format:webp/1*JkJJxM8lYzpGWDgxsvER3w.png" alt="poc2">&lt;/p>
+&lt;h3 id="takeways">Takeways&lt;/h3>
+&lt;ul>
+&lt;li>Never say that this program has a lot of know hackers and I won’t find a thing&lt;/li>
+&lt;li>everyone has it’s unique approach to a target and you may see something that other didn’t&lt;/li>
+&lt;/ul></content></item></channel></rss>
