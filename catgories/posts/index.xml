@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bug Findings on Security Writeups</title>
+    <link>http://localhost:50330/catgories/posts/</link>
+    <description>Recent content in Bug Findings on Security Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:50330/catgories/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I Scored 2K Bounty via an Easy IDOR</title>
+      <link>http://localhost:50330/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
+      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
+      
+      <guid>http://localhost:50330/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I fired up Burp&lt;/li&gt;
+&lt;li&gt;Created an account&lt;/li&gt;
+&lt;li&gt;Adding things in my cart&lt;/li&gt;
+&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creating a support ticket&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;I fired up Burp&lt;/li&gt;
+&lt;li&gt;Created an account&lt;/li&gt;
+&lt;li&gt;Adding things in my cart&lt;/li&gt;
+&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creating a support ticket&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ErP1l5Al5QOK8_O5qfdP5w.png&#34; alt=&#34;ticket&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let’s breakdown what can go wrong here
+We have few parameters &lt;code&gt;project_id/user_id/sign&lt;/code&gt; and the ticket number
+First thing I did is to remove the sign which is the signature and see if I can access it from an unauthenticated browser&lt;/p&gt;
+&lt;p&gt;This looks easy no way that works right ?!!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:400/format:webp/0*jE5ml_v7U8wAzl9H&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Well you’re wrong it worked and I was able to see my ticket and the conversation with the agent and also any attached file, I could also speak in the conversation as anonymous user 😁&lt;/p&gt;
+&lt;p&gt;Further testing showed that changing the ticket number can allow viewing others ticket and changing the &lt;code&gt;user_id&lt;/code&gt; can allow viewing other ticket of that matched ID&lt;/p&gt;
+&lt;p&gt;went and wrapped up a good report with &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;my friend&lt;/a&gt; , and it was triaged within minutes an paid after few days&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:590/format:webp/1*WXV_nYEgIwyAQ0HnWSpizA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Don’t be afraid of diving the Main app it’s where all the juicy things exist&lt;/li&gt;
+&lt;li&gt;Never underestimate yourself from finding bugs everyone has a unique view for the target&lt;/li&gt;
+&lt;li&gt;Don’t be discouraged if you didn’t find a bug today tomorrow you will&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope you enjoyed reading this and I will catch you in the next one&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>How I RCE&#39;d the Largest RU Company</title>
+      <link>http://localhost:50330/posts/how-i-rced-the-largest-ru-company/</link>
+      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
+      
+      <guid>http://localhost:50330/posts/how-i-rced-the-largest-ru-company/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png&#34; alt=&#34;img1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we search this hash on shodan.io with the &lt;code&gt;http.favicon.hash&lt;/code&gt; syntax&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page&lt;/p&gt;
+&lt;p&gt;Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code&gt;/static/shards/html&lt;/code&gt; Publicly accessible and it looked Juicy&lt;/p&gt;
+&lt;p&gt;From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href=&#34;https://nmap.org/&#34;&gt;Nmap&lt;/a&gt; all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png&#34; alt=&#34;nmap&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href=&#34;https://ioactive.com/hacking-java-debug-wire-protocol-or-how/&#34;&gt;article&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;With the help of this &lt;a href=&#34;https://github.com/IOActive/jdwp-shellifier&#34;&gt;jdwp-shellifier&lt;/a&gt; I was able to show the RCE and the team triaged and paid &lt;code&gt;$$$&lt;/code&gt; since the server belongs to their infrastructure not the main assets&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Hope you enjoyed reading this and catch you in the next adventure&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Tale of XSS in Angular</title>
+      <link>http://localhost:50330/posts/tale-of-xss-in-angular/</link>
+      <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:50330/posts/tale-of-xss-in-angular/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tools-used&#34;&gt;Tools Used&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://findomain.app/&#34;&gt;Findomain&lt;/a&gt; for subdomain monitoring&lt;/li&gt;
+&lt;li&gt;Wappalyzer for technology detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;discovery-process&#34;&gt;Discovery Process&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Received Telegram alert for new subdomains&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Identified Angular 1.6 using Wappalyzer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Found reflected error parameter:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;exploitation&#34;&gt;Exploitation&lt;/h2&gt;
+&lt;p&gt;Used payload from &lt;a href=&#34;https://github.com/swisskyrepo/PayloadsAllTheThings&#34;&gt;PayloadsAllTheThings&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*cj_dJMkwSfiThMOIRyOMMA.png&#34; alt=&#34;XSS Execution Proof&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Demonstrate concrete impact for better severity rating&lt;/li&gt;
+&lt;li&gt;Automate monitoring for fresh targets&lt;/li&gt;
+&lt;li&gt;Know framework-specific vulnerabilities&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <content>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tools-used&#34;&gt;Tools Used&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://findomain.app/&#34;&gt;Findomain&lt;/a&gt; for subdomain monitoring&lt;/li&gt;
+&lt;li&gt;Wappalyzer for technology detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;discovery-process&#34;&gt;Discovery Process&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Received Telegram alert for new subdomains&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Identified Angular 1.6 using Wappalyzer&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Found reflected error parameter:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;exploitation&#34;&gt;Exploitation&lt;/h2&gt;
+&lt;p&gt;Used payload from &lt;a href=&#34;https://github.com/swisskyrepo/PayloadsAllTheThings&#34;&gt;PayloadsAllTheThings&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*cj_dJMkwSfiThMOIRyOMMA.png&#34; alt=&#34;XSS Execution Proof&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Demonstrate concrete impact for better severity rating&lt;/li&gt;
+&lt;li&gt;Automate monitoring for fresh targets&lt;/li&gt;
+&lt;li&gt;Know framework-specific vulnerabilities&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

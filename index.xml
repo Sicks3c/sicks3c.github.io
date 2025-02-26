@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security Writeups</title><link>https://sicks3c.github.io/</link><description>Recent content on Security Writeups</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Abusing Url Shortners for Fun and Profit</title><link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid><description>Hello Security Researchers
+Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ? Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure
+Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p>
+&lt;p>Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p>
+&lt;h3 id="lets-talk-about-url-shortners-and-their-types">Let’s talk about URL shortners and their types:&lt;/h3>
+&lt;p>URL shortners are mostly linked to 3rd party services like &lt;a href="https://bitly.com">https://bitly.com&lt;/a> &lt;a href="https://cutt.ly/">https://cutt.ly/&lt;/a> and others are made by company and they have custom built
+Like : &lt;a href="https://indd.jobs">https://indd.jobs&lt;/a> | &lt;a href="https://inst.cr">https://inst.cr&lt;/a>&lt;/p>
+&lt;h3 id="how-can-we-approach-this">How can we approach this:&lt;/h3>
+&lt;p>We can use multiple scenarios first we can test functionalities that triggers email and view the source of them if they contain a URL shortner check twitter account of company and extract all the links they share&lt;/p>
+&lt;h3 id="how-url-shortners-work">How URL Shortners Work:&lt;/h3>
+&lt;p>Most of the case we should look for something that has this kind of behavior
+&lt;code>URLshortner.com/{HASH}&lt;/code> -&amp;gt; &lt;code>Website.com/?token={YOU-CANT-GUESS-THIS}&lt;/code>
+and based on that we can enumerate more and see more&lt;/p>
+&lt;h3 id="complexity-level">Complexity Level:&lt;/h3>
+&lt;p>The complexity is based on the &lt;code>HASH&lt;/code> used after the URL so it’s either integer strings and or both &lt;code>Uppercase / Lowercase&lt;/code> length of the hash that starts from 5 characters plus
+Examples:&lt;/p>
+&lt;p>&lt;a href="https://url.com/12345">https://url.com/12345&lt;/a> | &lt;a href="https://url.com/A2B4C">https://url.com/A2B4C&lt;/a> | &lt;a href="https://url.com/A2B4CGFDFF33434">https://url.com/A2B4CGFDFF33434&lt;/a>&lt;/p>
+&lt;p>So if we are facing only integers it’s the easiest case here we can of course generate all the possible and it’s kinda difficult for other case OR IS IT ? 😈&lt;/p>
+&lt;h3 id="exploitation">Exploitation:&lt;/h3>
+&lt;p>For our write up we will focus on &lt;code>inst.cr&lt;/code> since it has a custom built and it’s so difficult to guess &lt;a href="http://inst.cr/t/UEJBUThINjYx">http://inst.cr/t/UEJBUThINjYx&lt;/a>
+So how can we guess the &lt;code>hash&lt;/code> ?&lt;/p>
+&lt;p>We don’t, we don’t need to we can basically throw the domain into &lt;code>waybackurls&lt;/code> or &lt;code>gau&lt;/code> and see the results&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:350/format:webp/1*ftwj3Zsk04oeCYyhpiHaRA.png" alt="image">&lt;/p>
+&lt;p>Now we need to see where the links are redirecting and see if something useful is the paths that we can make a use of
+we simply do this&lt;/p>
+&lt;p>&lt;code>gau inst.cr | httpx -location -mc 301,302 | grep -Eo ‘\[(.*?)\]&lt;/code>&lt;/p>
+&lt;p>In order to &lt;code>grep&lt;/code> the value of all the rediction and spit it out in your terminal&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:550/format:webp/1*wWGo3BhNsyuHUnAcFNb0Qg.png" alt="image2">&lt;/p>
+&lt;p>Now based on the application logic, you can search for keywords that are interesting like &lt;code>token&lt;/code> &lt;code>id&lt;/code> &lt;code>uuid&lt;/code> nd things along those lines
+after that you will have a very good argument to convince the team that you were able to get the value of a certain parameter that they made difficult to guess&lt;/p>
+&lt;h3 id="results">Results?&lt;/h3>
+&lt;p>Blind ATO twice in a private program due to valide token on URLshortner
+&lt;code>site.com/?basket=token&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1160/format:webp/1*F6qL02Q0fJNiwcbIw4NOfg.png" alt="image3">&lt;/p>
+&lt;p>Multiple IDORS went from Invalid to valid&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png" alt="indeed">&lt;/p>
+&lt;p>I hope you enjoyed reading this and I will catch you in the next one&lt;/p>
+&lt;p>Stay curious ❤&lt;/p></content></item><item><title>How I Scored 2K Bounty via an Easy IDOR</title><link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid><description>Hello Security Researchers
+In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of Mail.ru Games
+I fired up Burp Created an account Adding things in my cart Viewing the blog Creating a support ticket Before testing anything the ticket link looked kind of suspicious since it had /ticket/INTEGER</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code>Mail.ru Games&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>I fired up Burp&lt;/li>
+&lt;li>Created an account&lt;/li>
+&lt;li>Adding things in my cart&lt;/li>
+&lt;li>Viewing the &lt;code>blog&lt;/code>&lt;/li>
+&lt;li>Creating a support ticket&lt;/li>
+&lt;/ol>
+&lt;p>Before testing anything the ticket link looked kind of suspicious since it had &lt;code>/ticket/INTEGER&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ErP1l5Al5QOK8_O5qfdP5w.png" alt="ticket">&lt;/p>
+&lt;p>Let’s breakdown what can go wrong here
+We have few parameters &lt;code>project_id/user_id/sign&lt;/code> and the ticket number
+First thing I did is to remove the sign which is the signature and see if I can access it from an unauthenticated browser&lt;/p>
+&lt;p>This looks easy no way that works right ?!!&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:400/format:webp/0*jE5ml_v7U8wAzl9H" alt="img2">&lt;/p>
+&lt;p>Well you’re wrong it worked and I was able to see my ticket and the conversation with the agent and also any attached file, I could also speak in the conversation as anonymous user 😁&lt;/p>
+&lt;p>Further testing showed that changing the ticket number can allow viewing others ticket and changing the &lt;code>user_id&lt;/code> can allow viewing other ticket of that matched ID&lt;/p>
+&lt;p>went and wrapped up a good report with &lt;a href="https://x.com/wld_basha">my friend&lt;/a> , and it was triaged within minutes an paid after few days&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:590/format:webp/1*WXV_nYEgIwyAQ0HnWSpizA.png" alt="bounty">&lt;/p>
+&lt;h3 id="takeaways">Takeaways&lt;/h3>
+&lt;ul>
+&lt;li>Don’t be afraid of diving the Main app it’s where all the juicy things exist&lt;/li>
+&lt;li>Never underestimate yourself from finding bugs everyone has a unique view for the target&lt;/li>
+&lt;li>Don’t be discouraged if you didn’t find a bug today tomorrow you will&lt;/li>
+&lt;/ul>
+&lt;p>I hope you enjoyed reading this and I will catch you in the next one&lt;/p>
+&lt;p>Stay curious ❤&lt;/p></content></item><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid><description>Hello Security Researchers
+In this writeup I will explain how I was able to find RCE in Mail.ru which is considered the world largest internet company, Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find
+I started looking with the Favicon using this script Where I replace the link with the Mail.</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png" alt="img1">&lt;/p>
+&lt;p>Now we search this hash on shodan.io with the &lt;code>http.favicon.hash&lt;/code> syntax&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png" alt="img2">&lt;/p>
+&lt;p>Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page&lt;/p>
+&lt;p>Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code>/static/shards/html&lt;/code> Publicly accessible and it looked Juicy&lt;/p>
+&lt;p>From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href="https://nmap.org/">Nmap&lt;/a> all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png" alt="nmap">&lt;/p>
+&lt;p>So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href="https://ioactive.com/hacking-java-debug-wire-protocol-or-how/">article&lt;/a>&lt;/p>
+&lt;p>With the help of this &lt;a href="https://github.com/IOActive/jdwp-shellifier">jdwp-shellifier&lt;/a> I was able to show the RCE and the team triaged and paid &lt;code>$$$&lt;/code> since the server belongs to their infrastructure not the main assets&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png" alt="bounty">&lt;/p>
+&lt;p>Hope you enjoyed reading this and catch you in the next adventure&lt;/p>
+&lt;p>Stay curious ❤&lt;/p></content></item><item><title>Tale of XSS in Angular</title><link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link><pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate><guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid><description>
+Hello Security Researchers and Hackers
+In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.
+Tools Used Findomain for subdomain monitoring Wappalyzer for technology detection Discovery Process Received Telegram alert for new subdomains
+Identified Angular 1.6 using Wappalyzer
+Found reflected error parameter:
+https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED
+Exploitation Used payload from PayloadsAllTheThings:
+Key Takeaways Demonstrate concrete impact for better severity rating Automate monitoring for fresh targets Know framework-specific vulnerabilities</description><content>&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk" alt="Angular XSS Featured Image">&lt;/p>
+&lt;p>&lt;strong>Hello Security Researchers and Hackers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p>
+&lt;hr>
+&lt;h2 id="tools-used">Tools Used&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://findomain.app/">Findomain&lt;/a> for subdomain monitoring&lt;/li>
+&lt;li>Wappalyzer for technology detection&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="discovery-process">Discovery Process&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Received Telegram alert for new subdomains&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Identified Angular 1.6 using Wappalyzer&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Found reflected error parameter:&lt;/p>
+&lt;p>&lt;code>https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="exploitation">Exploitation&lt;/h2>
+&lt;p>Used payload from &lt;a href="https://github.com/swisskyrepo/PayloadsAllTheThings">PayloadsAllTheThings&lt;/a>:&lt;/p>
+&lt;p>&lt;img src="https://cdn-images-1.medium.com/max/800/1*cj_dJMkwSfiThMOIRyOMMA.png" alt="XSS Execution Proof">&lt;/p>
+&lt;hr>
+&lt;h2 id="key-takeaways">Key Takeaways&lt;/h2>
+&lt;ul>
+&lt;li>Demonstrate concrete impact for better severity rating&lt;/li>
+&lt;li>Automate monitoring for fresh targets&lt;/li>
+&lt;li>Know framework-specific vulnerabilities&lt;/li>
+&lt;/ul></content></item></channel></rss>

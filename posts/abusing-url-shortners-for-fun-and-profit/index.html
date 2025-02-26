@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Abusing Url Shortners for Fun and Profit :: Security Writeups</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hello Security Researchers
+Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ? Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure
+Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.4b367d85d0d0061435650561285afed36c46a7cf8dc6d7ed5642d98e589fa622.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Abusing Url Shortners for Fun and Profit">
+<meta property="og:description" content="Hello Security Researchers
+Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ? Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure
+Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦
+" />
+<meta property="og:url" content="http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/" />
+<meta property="og:site_name" content="Security Writeups" />
+
+  
+  
+  <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*EfOdlUz3Y7H7EHn6">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+  <meta property="article:section" content="research" />
+
+
+  <meta property="article:published_time" content="2025-02-26 07:32:53 &#43;0800 &#43;08" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="http://localhost:1313/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/">About</a></li>
+        
+      
+        
+          <li><a href="/posts/">Writeups</a></li>
+        
+      
+        
+          <li><a href="/research/">Research</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/" >About</a></li>
+        
+      
+        
+          <li><a href="/posts/" >Writeups</a></li>
+        
+      
+        
+          <li><a href="/research/" >Research</a></li>
+        
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/abusing-url-shortners-for-fun-and-profit/">Abusing Url Shortners for Fun and Profit</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-02-26</time><span class="post-author">sicks3c</span><span class="post-reading-time">3 min read (478 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/bugbounty/">bugbounty</a>&nbsp;
+      
+    </span>
+  
+  
+  <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*EfOdlUz3Y7H7EHn6"
+    class="post-cover"
+    alt="Abusing Url Shortners for Fun and Profit"
+    title="Cover Image" />
+
+
+  
+
+  <div class="post-content"><div>
+        <p><strong>Hello Security Researchers</strong></p>
+<p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure</p>
+<p>Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦</p>
+<h3 id="lets-talk-about-url-shortners-and-their-types">Let’s talk about URL shortners and their types:<a href="#lets-talk-about-url-shortners-and-their-types" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>URL shortners are mostly linked to 3rd party services like <a href="https://bitly.com">https://bitly.com</a> <a href="https://cutt.ly/">https://cutt.ly/</a> and others are made by company and they have custom built
+Like : <a href="https://indd.jobs">https://indd.jobs</a> | <a href="https://inst.cr">https://inst.cr</a></p>
+<h3 id="how-can-we-approach-this">How can we approach this:<a href="#how-can-we-approach-this" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>We can use multiple scenarios first we can test functionalities that triggers email and view the source of them if they contain a URL shortner check twitter account of company and extract all the links they share</p>
+<h3 id="how-url-shortners-work">How URL Shortners Work:<a href="#how-url-shortners-work" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Most of the case we should look for something that has this kind of behavior
+<code>URLshortner.com/{HASH}</code> -&gt; <code>Website.com/?token={YOU-CANT-GUESS-THIS}</code>
+and based on that we can enumerate more and see more</p>
+<h3 id="complexity-level">Complexity Level:<a href="#complexity-level" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>The complexity is based on the <code>HASH</code> used after the URL so it’s either integer strings and or both <code>Uppercase / Lowercase</code> length of the hash that starts from 5 characters plus
+Examples:</p>
+<p><a href="https://url.com/12345">https://url.com/12345</a> | <a href="https://url.com/A2B4C">https://url.com/A2B4C</a> | <a href="https://url.com/A2B4CGFDFF33434">https://url.com/A2B4CGFDFF33434</a></p>
+<p>So if we are facing only integers it’s the easiest case here we can of course generate all the possible and it’s kinda difficult for other case OR IS IT ? 😈</p>
+<h3 id="exploitation">Exploitation:<a href="#exploitation" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>For our write up we will focus on <code>inst.cr</code> since it has a custom built and it’s so difficult to guess <a href="http://inst.cr/t/UEJBUThINjYx">http://inst.cr/t/UEJBUThINjYx</a>
+So how can we guess the <code>hash</code> ?</p>
+<p>We don’t, we don’t need to we can basically throw the domain into <code>waybackurls</code> or <code>gau</code> and see the results</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:350/format:webp/1*ftwj3Zsk04oeCYyhpiHaRA.png" alt="image"></p>
+<p>Now we need to see where the links are redirecting and see if something useful is the paths that we can make a use of
+we simply do this</p>
+<p><code>gau inst.cr | httpx -location -mc 301,302 | grep -Eo ‘\[(.*?)\]</code></p>
+<p>In order to <code>grep</code> the value of all the rediction and spit it out in your terminal</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:550/format:webp/1*wWGo3BhNsyuHUnAcFNb0Qg.png" alt="image2"></p>
+<p>Now based on the application logic, you can search for keywords that are interesting like <code>token</code> <code>id</code> <code>uuid</code> nd things along those lines
+after that you will have a very good argument to convince the team that you were able to get the value of a certain parameter that they made difficult to guess</p>
+<h3 id="results">Results?<a href="#results" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>Blind ATO twice in a private program due to valide token on URLshortner
+<code>site.com/?basket=token</code></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1160/format:webp/1*F6qL02Q0fJNiwcbIw4NOfg.png" alt="image3"></p>
+<p>Multiple IDORS went from Invalid to valid</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png" alt="indeed"></p>
+<p>I hope you enjoyed reading this and I will catch you in the next one</p>
+<p>Stay curious ❤</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

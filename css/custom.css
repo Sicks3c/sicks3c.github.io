@@ -1,0 +1,90 @@
+/* About section styles */
+.about-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+/* Research listing page */
+.research-list {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.research-item {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 3px solid var(--accent-color);
+  transition: transform 0.2s ease;
+}
+
+.research-item:hover {
+  transform: translateX(5px);
+}
+
+.research-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.research-item h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.profile-image-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.social-links {
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  display: block;
+  margin: 0.8rem 0;
+  padding: 0.8rem 1.2rem;
+  background: var(--accent-color);
+  color: white !important;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.social-links a:hover {
+  transform: translateX(5px);
+}
+
+.social-links i {
+  margin-right: 0.5rem;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .social-links a {
+    margin: 0.5rem 0;
+  }
+}

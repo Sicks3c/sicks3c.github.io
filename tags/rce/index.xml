@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rce on Security Writeups</title><link>https://sicks3c.github.io/tags/rce/</link><description>Recent content in Rce on Security Writeups</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/tags/rce/index.xml" rel="self" type="application/rss+xml"/><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid><description>Hello Security Researchers
+In this writeup I will explain how I was able to find RCE in Mail.ru which is considered the world largest internet company, Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find
+I started looking with the Favicon using this script Where I replace the link with the Mail.</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png" alt="img1">&lt;/p>
+&lt;p>Now we search this hash on shodan.io with the &lt;code>http.favicon.hash&lt;/code> syntax&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png" alt="img2">&lt;/p>
+&lt;p>Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page&lt;/p>
+&lt;p>Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code>/static/shards/html&lt;/code> Publicly accessible and it looked Juicy&lt;/p>
+&lt;p>From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href="https://nmap.org/">Nmap&lt;/a> all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png" alt="nmap">&lt;/p>
+&lt;p>So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href="https://ioactive.com/hacking-java-debug-wire-protocol-or-how/">article&lt;/a>&lt;/p>
+&lt;p>With the help of this &lt;a href="https://github.com/IOActive/jdwp-shellifier">jdwp-shellifier&lt;/a> I was able to show the RCE and the team triaged and paid &lt;code>$$$&lt;/code> since the server belongs to their infrastructure not the main assets&lt;/p>
+&lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png" alt="bounty">&lt;/p>
+&lt;p>Hope you enjoyed reading this and catch you in the next adventure&lt;/p>
+&lt;p>Stay curious ❤&lt;/p></content></item></channel></rss>
