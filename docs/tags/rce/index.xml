@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rce on Security Writeups</title>
-    <link>https://sicks3c.github.io/tags/rce/</link>
+    <link>http://localhost:1313/tags/rce/</link>
     <description>Recent content in Rce on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/tags/rce/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/rce/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
+      <link>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</link>
       <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
+      <guid>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
 Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;

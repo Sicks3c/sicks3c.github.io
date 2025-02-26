@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bug Findings on Security Writeups</title>
-    <link>https://sicks3c.github.io/posts/</link>
-    <description>Recent content in Bug Findings on Security Writeups</description>
+    <title>Security Writeups</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I Scored 2K Bounty via an Easy IDOR</title>
-      <link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
+      <link>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
       <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
+      <guid>http://localhost:1313/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
 So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
@@ -58,10 +58,10 @@ First thing I did is to remove the sign which is the signature and see if I can 
     
     <item>
       <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
+      <link>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</link>
       <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
+      <guid>http://localhost:1313/posts/how-i-rced-the-largest-ru-company/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
 Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
@@ -90,11 +90,40 @@ Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
     </item>
     
     <item>
+      <title>How I Scored 1K Bounty Using Waybackurls</title>
+      <link>http://localhost:1313/posts/how-i-scored-1k-bounty-using-waybackurls/</link>
+      <pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate>
+      
+      <guid>http://localhost:1313/posts/how-i-scored-1k-bounty-using-waybackurls/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;
+&lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;
+&lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;
+&lt;p&gt;The program exist in &lt;strong&gt;Hackerone&lt;/strong&gt; in more than a decade with big names on them, I was familiar with the services they offer since I was a user so I started to enumerate subdomain where I noticed a weird link that may actually hold sensitive data since they are parsing everything in URL path so my first approach was checking the &lt;a href=&#34;https://github.com/tomnomnom/waybackurls&#34;&gt;waybackurls&lt;/a&gt; since &lt;a href=&#34;https://x.com/TomNomNom&#34;&gt;Tomnomnom&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;has a very unique tools I used it as follows&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;waybackurls requests.redacted.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I was surprise with the amount of URLS that belongs to users with the tokens and I was like no way they’re valid right ?!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://europe1.discourse-cdn.com/flex005/uploads/ewelinkforum/original/2X/2/26f9b6464e5ae5981f1c2c02375c3f264e2b94ad.gif&#34; alt=&#34;gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Guess I was wrong, I went to the API page and it looks like a simple POST request with the link leaked and a simple data via curl can do the Proof Of Concept using something like this&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*wfnBQlHJQu79hgOFYi_jyA.png&#34; alt=&#34;poc&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I tested in my own env and sent the report right away, It got paid under few days and the team started the fix&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:960/format:webp/1*JkJJxM8lYzpGWDgxsvER3w.png&#34; alt=&#34;poc2&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;takeways&#34;&gt;Takeways&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Never say that this program has a lot of know hackers and I won’t find a thing&lt;/li&gt;
+&lt;li&gt;everyone has it’s unique approach to a target and you may see something that other didn’t&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    </item>
+    
+    <item>
       <title>Tale of XSS in Angular</title>
-      <link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link>
+      <link>http://localhost:1313/posts/tale-of-xss-in-angular/</link>
       <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid>
+      <guid>http://localhost:1313/posts/tale-of-xss-in-angular/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
