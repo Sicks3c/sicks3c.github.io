@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "Security Writeups"
 theme = "terminal"
 publishDir = "docs"
+googleAnalytics = "G-CWB2FYVSWJ"
 
 [taxonomies]
   category = "categories"
