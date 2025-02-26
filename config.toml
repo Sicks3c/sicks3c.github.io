@@ -1,0 +1,34 @@
+baseURL = "https://sicks3c.github.io/"
+languageCode = "en-us"
+title = "Security Writeups"
+theme = "terminal"
+
+[taxonomies]
+  category = "categories"
+	tags = "tags"
+
+[permalinks]
+  categories = "/:slug/"
+  posts = "/posts/:slug/"
+
+[build]
+  publishDir = "docs"
+  writeStats = true
+
+[params]
+  mainColor = "green"
+  fontSize = "16px"
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Writeups"
+    url = "/posts/"
+    weight = 2
+	[[menu.main]]
+    name = "Research"
+    url = "/research/"
+    weight = 3

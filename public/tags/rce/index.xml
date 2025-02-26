@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rce on Security Writeups</title>
+    <link>https://sicks3c.github.io/tags/rce/</link>
+    <description>Recent content in Rce on Security Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/tags/rce/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I RCE&#39;d the Largest RU Company</title>
+      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
+      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
+      
+      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
+      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
+&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png&#34; alt=&#34;img1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now we search this hash on shodan.io with the &lt;code&gt;http.favicon.hash&lt;/code&gt; syntax&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page&lt;/p&gt;
+&lt;p&gt;Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code&gt;/static/shards/html&lt;/code&gt; Publicly accessible and it looked Juicy&lt;/p&gt;
+&lt;p&gt;From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href=&#34;https://nmap.org/&#34;&gt;Nmap&lt;/a&gt; all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png&#34; alt=&#34;nmap&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href=&#34;https://ioactive.com/hacking-java-debug-wire-protocol-or-how/&#34;&gt;article&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;With the help of this &lt;a href=&#34;https://github.com/IOActive/jdwp-shellifier&#34;&gt;jdwp-shellifier&lt;/a&gt; I was able to show the RCE and the team triaged and paid &lt;code&gt;$$$&lt;/code&gt; since the server belongs to their infrastructure not the main assets&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Hope you enjoyed reading this and catch you in the next adventure&lt;/p&gt;
+&lt;p&gt;Stay curious ❤&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

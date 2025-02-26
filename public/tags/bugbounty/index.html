@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Bugbounty :: Security Writeups</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="https://sicks3c.github.io/tags/bugbounty/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/terminal.min.4b367d85d0d0061435650561285afed36c46a7cf8dc6d7ed5642d98e589fa622.css">
+
+  
+  <link rel="stylesheet" href="https://sicks3c.github.io/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="https://sicks3c.github.io/favicon.png">
+<link rel="apple-touch-icon" href="https://sicks3c.github.io/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Bugbounty">
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://sicks3c.github.io/tags/bugbounty/" />
+<meta property="og:site_name" content="Security Writeups" />
+
+  <meta property="og:image" content="https://sicks3c.github.io/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+
+
+
+  <link href="/tags/bugbounty/index.xml" rel="alternate" type="application/rss+xml" title="Security Writeups" />
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="https://sicks3c.github.io/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/">About</a></li>
+        
+      
+        
+          <li><a href="/posts/">Writeups</a></li>
+        
+      
+        
+          <li><a href="/research/">Research</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/" >About</a></li>
+        
+      
+        
+          <li><a href="/posts/" >Writeups</a></li>
+        
+      
+        
+          <li><a href="/research/" >Research</a></li>
+        
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+  <h1>Posts for: #Bugbounty</h1>
+  
+  <div class="posts">
+    
+      <article class="post on-list">
+        <h1 class="post-title">
+          <a href="https://sicks3c.github.io/posts/abusing-url-shortners-for-fun-and-profit/">Abusing Url Shortners for Fun and Profit</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-02-26</time><span class="post-author">sicks3c</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://sicks3c.github.io/tags/bugbounty/">bugbounty</a>&nbsp;
+            
+          </span>
+        
+
+        
+  <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*EfOdlUz3Y7H7EHn6"
+    class="post-cover"
+    alt="Abusing Url Shortners for Fun and Profit"
+    title="Cover Image" />
+
+
+        <div class="post-content">
+          
+            <p><strong>Hello Security Researchers</strong></p>
+<p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure</p>
+<p>Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦</p>
+<h3 id="lets-talk-about-url-shortners-and-their-types">Let’s talk about URL shortners and their types:</h3>
+<p>URL shortners are mostly linked to 3rd party services like <a href="https://bitly.com">https://bitly.com</a> <a href="https://cutt.ly/">https://cutt.ly/</a> and others are made by company and they have custom built
+Like : <a href="https://indd.jobs">https://indd.jobs</a> | <a href="https://inst.cr">https://inst.cr</a></p>
+<h3 id="how-can-we-approach-this">How can we approach this:</h3>
+<p>We can use multiple scenarios first we can test functionalities that triggers email and view the source of them if they contain a URL shortner check twitter account of company and extract all the links they share</p>
+<h3 id="how-url-shortners-work">How URL Shortners Work:</h3>
+<p>Most of the case we should look for something that has this kind of behavior
+<code>URLshortner.com/{HASH}</code> -&gt; <code>Website.com/?token={YOU-CANT-GUESS-THIS}</code>
+and based on that we can enumerate more and see more</p>
+<h3 id="complexity-level">Complexity Level:</h3>
+<p>The complexity is based on the <code>HASH</code> used after the URL so it’s either integer strings and or both <code>Uppercase / Lowercase</code> length of the hash that starts from 5 characters plus
+Examples:</p>
+<p><a href="https://url.com/12345">https://url.com/12345</a> | <a href="https://url.com/A2B4C">https://url.com/A2B4C</a> | <a href="https://url.com/A2B4CGFDFF33434">https://url.com/A2B4CGFDFF33434</a></p>
+<p>So if we are facing only integers it’s the easiest case here we can of course generate all the possible and it’s kinda difficult for other case OR IS IT ? 😈</p>
+<h3 id="exploitation">Exploitation:</h3>
+<p>For our write up we will focus on <code>inst.cr</code> since it has a custom built and it’s so difficult to guess <a href="http://inst.cr/t/UEJBUThINjYx">http://inst.cr/t/UEJBUThINjYx</a>
+So how can we guess the <code>hash</code> ?</p>
+<p>We don’t, we don’t need to we can basically throw the domain into <code>waybackurls</code> or <code>gau</code> and see the results</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:350/format:webp/1*ftwj3Zsk04oeCYyhpiHaRA.png" alt="image"></p>
+<p>Now we need to see where the links are redirecting and see if something useful is the paths that we can make a use of
+we simply do this</p>
+<p><code>gau inst.cr | httpx -location -mc 301,302 | grep -Eo ‘\[(.*?)\]</code></p>
+<p>In order to <code>grep</code> the value of all the rediction and spit it out in your terminal</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:550/format:webp/1*wWGo3BhNsyuHUnAcFNb0Qg.png" alt="image2"></p>
+<p>Now based on the application logic, you can search for keywords that are interesting like <code>token</code> <code>id</code> <code>uuid</code> nd things along those lines
+after that you will have a very good argument to convince the team that you were able to get the value of a certain parameter that they made difficult to guess</p>
+<h3 id="results">Results?</h3>
+<p>Blind ATO twice in a private program due to valide token on URLshortner
+<code>site.com/?basket=token</code></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1160/format:webp/1*F6qL02Q0fJNiwcbIw4NOfg.png" alt="image3"></p>
+<p>Multiple IDORS went from Invalid to valid</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png" alt="indeed"></p>
+<p>I hope you enjoyed reading this and I will catch you in the next one</p>
+<p>Stay curious ❤</p>
+
+          
+        </div>
+
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
+          <a href="https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/">How I Scored 2K Bounty via an Easy IDOR</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2025-02-26</time><span class="post-author">sicks3c</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://sicks3c.github.io/tags/bugbounty/">bugbounty</a>&nbsp;
+            
+          </span>
+        
+
+        
+  <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*UGPX9sjyXDzUQbq6"
+    class="post-cover"
+    alt="How I Scored 2K Bounty via an Easy IDOR"
+    title="Cover Image" />
+
+
+        <div class="post-content">
+          
+            <p><strong>Hello Security Researchers</strong></p>
+<p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of <code>Mail.ru Games</code></p>
+<ol>
+<li>I fired up Burp</li>
+<li>Created an account</li>
+<li>Adding things in my cart</li>
+<li>Viewing the <code>blog</code></li>
+<li>Creating a support ticket</li>
+</ol>
+<p>Before testing anything the ticket link looked kind of suspicious since it had <code>/ticket/INTEGER</code></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ErP1l5Al5QOK8_O5qfdP5w.png" alt="ticket"></p>
+<p>Let’s breakdown what can go wrong here
+We have few parameters <code>project_id/user_id/sign</code> and the ticket number
+First thing I did is to remove the sign which is the signature and see if I can access it from an unauthenticated browser</p>
+<p>This looks easy no way that works right ?!!</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:400/format:webp/0*jE5ml_v7U8wAzl9H" alt="img2"></p>
+<p>Well you’re wrong it worked and I was able to see my ticket and the conversation with the agent and also any attached file, I could also speak in the conversation as anonymous user 😁</p>
+<p>Further testing showed that changing the ticket number can allow viewing others ticket and changing the <code>user_id</code> can allow viewing other ticket of that matched ID</p>
+<p>went and wrapped up a good report with <a href="https://x.com/wld_basha">my friend</a> , and it was triaged within minutes an paid after few days</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:590/format:webp/1*WXV_nYEgIwyAQ0HnWSpizA.png" alt="bounty"></p>
+<h3 id="takeaways">Takeaways</h3>
+<ul>
+<li>Don’t be afraid of diving the Main app it’s where all the juicy things exist</li>
+<li>Never underestimate yourself from finding bugs everyone has a unique view for the target</li>
+<li>Don’t be discouraged if you didn’t find a bug today tomorrow you will</li>
+</ul>
+<p>I hope you enjoyed reading this and I will catch you in the next one</p>
+<p>Stay curious ❤</p>
+
+          
+        </div>
+
+        
+      </article>
+    
+      <article class="post on-list">
+        <h1 class="post-title">
+          <a href="https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/">How I RCE&rsquo;d the Largest RU Company</a>
+        </h1>
+        <div class="post-meta"><time class="post-date">2021-08-19</time><span class="post-author">sicks3c</span></div>
+
+        
+          <span class="post-tags">
+            
+            #<a href="https://sicks3c.github.io/tags/bugbounty/">bugbounty</a>&nbsp;
+            
+            #<a href="https://sicks3c.github.io/tags/rce/">rce</a>&nbsp;
+            
+          </span>
+        
+
+        
+  <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*6I1qONtwJ1kgELMI"
+    class="post-cover"
+    alt="How I RCE&#39;d the Largest RU Company"
+    title="Cover Image" />
+
+
+        <div class="post-content">
+          
+            <p><strong>Hello Security Researchers</strong></p>
+<p>In this writeup I will explain how I was able to find RCE in <code>Mail.ru</code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find</p>
+<p>I started looking with the Favicon using this <a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a">script</a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png" alt="img1"></p>
+<p>Now we search this hash on shodan.io with the <code>http.favicon.hash</code> syntax</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png" alt="img2"></p>
+<p>Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
+That has a Welcome to Nginx page</p>
+<p>Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found <code>/static/shards/html</code> Publicly accessible and it looked Juicy</p>
+<p>From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to <a href="https://nmap.org/">Nmap</a> all of them
+Found one that has a JDWP stands for (Java Debug Wire Protocol)</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png" alt="nmap"></p>
+<p>So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this <a href="https://ioactive.com/hacking-java-debug-wire-protocol-or-how/">article</a></p>
+<p>With the help of this <a href="https://github.com/IOActive/jdwp-shellifier">jdwp-shellifier</a> I was able to show the RCE and the team triaged and paid <code>$$$</code> since the server belongs to their infrastructure not the main assets</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png" alt="bounty"></p>
+<p>Hope you enjoyed reading this and catch you in the next adventure</p>
+<p>Stay curious ❤</p>
+
+          
+        </div>
+
+        
+      </article>
+    
+
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+    
+  </div>
+</div>
+
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
