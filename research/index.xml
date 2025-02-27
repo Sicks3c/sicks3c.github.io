@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security Research on Security Writeups</title><link>https://sicks3c.github.io/research/</link><description>Recent content in Security Research on Security Writeups</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/research/index.xml" rel="self" type="application/rss+xml"/><item><title>Abusing Url Shortners for Fun and Profit</title><link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid><description>Hello Security Researchers
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security Writeups</title><link>https://sicks3c.github.io/research/</link><description>Recent content on Security Writeups</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/research/index.xml" rel="self" type="application/rss+xml"/><item><title>Abusing Url Shortners for Fun and Profit</title><link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid><description>Hello Security Researchers
 Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ? Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure
 Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦</description><content>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
 &lt;p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
@@ -37,4 +37,193 @@ after that you will have a very good argument to convince the team that you were
 &lt;p>Multiple IDORS went from Invalid to valid&lt;/p>
 &lt;p>&lt;img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png" alt="indeed">&lt;/p>
 &lt;p>I hope you enjoyed reading this and I will catch you in the next one&lt;/p>
-&lt;p>Stay curious ❤&lt;/p></content></item></channel></rss>
+&lt;p>Stay curious ❤&lt;/p></content></item><item><title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title><link>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link><pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid><description>Deep Dive into an OAuth Exploit: A 0-Day Case Study Hello Everyone,
+In our continuous hunt for novel attack vectors and security challenges, mainteemoforfun and I embarked on an in-depth exploration of mobile authentication mechanisms. Our efforts culminated in the discovery of a striking 0-day vulnerability back in 2023 that has since been patched.
+This vulnerability enabled us to potentially hijack user sessions on websites utilizing Facebook’s “Login With Facebook” feature.</description><content>&lt;h1 id="deep-dive-into-an-oauth-exploit-a-0-day-case-study">Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1>
+&lt;p>&lt;strong>Hello Everyone,&lt;/strong>&lt;/p>
+&lt;p>In our continuous hunt for novel attack vectors and security challenges, &lt;a href="https://x.com/wld_basha">&lt;strong>mainteemoforfun&lt;/strong>&lt;/a> and I embarked on an in-depth exploration of &lt;strong>mobile authentication mechanisms&lt;/strong>. Our efforts culminated in the discovery of a striking &lt;strong>0-day vulnerability&lt;/strong> back in &lt;strong>2023&lt;/strong> that has since been patched.&lt;/p>
+&lt;p>This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong>Facebook’s “Login With Facebook”&lt;/strong> feature. By manipulating the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> parameter in the &lt;strong>OAuth&lt;/strong> flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p>
+&lt;p>Below, I provide an expert breakdown of the exploit, our proof-of-concept, and the impact it generated.&lt;/p>
+&lt;hr>
+&lt;h2 id="understanding-the-vulnerability">Understanding the Vulnerability&lt;/h2>
+&lt;h3 id="oauth-basics-and-the-attack-surface">OAuth Basics and the Attack Surface&lt;/h3>
+&lt;p>&lt;strong>OAuth&lt;/strong> is the de facto standard for delegated authorization. Typically, during an OAuth transaction, the client application registers a trusted &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> (often in a custom scheme format, such as &lt;code>fb://clientID&lt;/code>). This URI is used by the authorization server (&lt;strong>Facebook&lt;/strong>, in this case) to send back the authentication token after a user successfully logs in.&lt;/p>
+&lt;p>When testing OAuth implementations, it is common to experiment with modifying the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> parameter to see if the endpoint strictly enforces whitelist validations. In our research, we hypothesized that if we could subtly alter this parameter without triggering a verification error, the token might be redirected to an unintended destination.&lt;/p>
+&lt;h3 id="the-exploit-mechanism">The Exploit Mechanism&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Initial Experimentation:&lt;/strong>&lt;br>
+We began by modifying the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> in the OAuth flow. Our initial test—attempting to change the &lt;strong>clientID&lt;/strong> directly (e.g., &lt;code>fb://anotherClientID&lt;/code>) produced a “mismatch” error, as expected.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Refined Modification:&lt;/strong>&lt;br>
+By appending an extra character to the &lt;strong>clientID&lt;/strong> (e.g., &lt;code>fb://clientIDa&lt;/code>), we observed that the authentication token was redirected to the newly specified scheme. This minor change bypassed the strict check, allowing the token to be delivered to an endpoint not originally whitelisted by the service.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Verification:&lt;/strong>&lt;br>
+To rule out any anomalies, we repeated the process several times. The results were consistent, confirming that this behavior was not a fluke but a genuine vulnerability.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="proof-of-concept">Proof-of-Concept&lt;/h2>
+&lt;p>To demonstrate the impact of this vulnerability, I developed a small &lt;strong>Android&lt;/strong> application with a custom intent filter designed to capture the redirected token. Here’s an excerpt from the app’s manifest:&lt;/p>
+&lt;pre>&lt;code>&amp;lt;intent-filter&amp;gt;
+&amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt;
+&amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt;
+&amp;lt;action android:name=&amp;quot;android.intent.action.VIEW&amp;quot; /&amp;gt;
+&amp;lt;category android:name=&amp;quot;android.intent.category.DEFAULT&amp;quot; /&amp;gt;
+&amp;lt;category android:name=&amp;quot;android.intent.category.BROWSABLE&amp;quot; /&amp;gt;
+&amp;lt;data android:scheme=&amp;quot;fbClientIDa&amp;quot; /&amp;gt;
+&amp;lt;/intent-filter&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;p>When the OAuth flow was initiated, the token was unexpectedly sent to this malicious app instead of the legitimate one. This confirmed that the modified &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> could indeed be exploited to intercept sensitive &lt;strong>authentication tokens&lt;/strong>.&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/5HcVciv.png" alt="Proof of Concept">&lt;/p>
+&lt;hr>
+&lt;h2 id="reporting-and-bounty-results">Reporting and Bounty Results&lt;/h2>
+&lt;p>We responsibly disclosed this vulnerability to the &lt;strong>Facebook Bug Bounty Program&lt;/strong> and also submitted reports via &lt;strong>HackerOne&lt;/strong> and &lt;strong>Bugcrowd&lt;/strong>. Here’s a summary of our findings:&lt;/p>
+&lt;h3 id="hackerone">HackerOne&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Total Reports:&lt;/strong> 20
+&lt;ul>
+&lt;li>&lt;strong>Severity Breakdown:&lt;/strong> 5 reports categorized between &lt;strong>medium&lt;/strong> and &lt;strong>high&lt;/strong> severity, which resulted in bounties totaling approximately &lt;strong>15K USD&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Additional Insights:&lt;/strong> Some targets, although not immediately vulnerable, were noted for having partial &lt;strong>backend verifications&lt;/strong>, hinting at broader issues.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="bugcrowd">Bugcrowd&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Total Reports:&lt;/strong> 10
+&lt;ul>
+&lt;li>&lt;strong>Outcome:&lt;/strong> The majority of these were marked as requiring highly unlikely conditions in a real-world scenario, rendering them inapplicable for payouts.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Visual summaries of our bounty earnings are available below:&lt;/p>
+&lt;p>&lt;img src="https://i.imgur.com/kV8G3NY.png" alt="Bounties">&lt;br>
+&lt;img src="https://i.imgur.com/FVozCeK.png" alt="Bounties2">&lt;/p>
+&lt;hr>
+&lt;h2 id="facebooks-response">Facebook’s Response&lt;/h2>
+&lt;p>The &lt;strong>Facebook&lt;/strong> security team promptly acknowledged our disclosure. They confirmed that the issue was known, addressed, and has since been fixed. Our verification tests post-patch indicate that the fix is effective, reinforcing the importance of vigilant &lt;strong>OAuth validation&lt;/strong>.&lt;/p>
+&lt;hr>
+&lt;h2 id="key-takeaways">Key Takeaways&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Innovation in Testing:&lt;/strong>&lt;br>
+&lt;strong>OAuth&lt;/strong> implementations may harbor subtle vulnerabilities. Experimenting with unconventional modifications—like tweaking the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> it can sometimes reveal significant security flaws.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Real-World Implications:&lt;/strong>&lt;br>
+Even minor oversights in &lt;strong>OAuth validation&lt;/strong> can have severe repercussions, including the potential for &lt;strong>account hijacking&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Continuous Vigilance:&lt;/strong>&lt;br>
+The Evolving landscape of &lt;strong>authentication mechanisms&lt;/strong> demands constant scrutiny. As attackers and defenders, embracing creativity in testing is essential to uncovering and mitigating emerging threats.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Stay curious 🖤&lt;/p>
+&lt;hr>
+&lt;p>By sharing this in-depth analysis, I hope to encourage fellow security professionals to explore every nuance of &lt;strong>authentication protocols&lt;/strong>. Remember, in the world of cybersecurity, even “stupid” ideas can lead to groundbreaking discoveries.&lt;/p>
+&lt;p>&lt;strong>Happy Hunting!&lt;/strong>&lt;/p>
+&lt;div id="mc_embed_shell">
+&lt;link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+&lt;style type="text/css">
+#mc_embed_signup {
+background: #1e1e1e;
+color: #f8f8f2;
+clear: left;
+font: 14px "Courier New", monospace;
+width: 600px;
+padding: 20px;
+border-radius: 5px;
+}
+#mc_embed_signup h2 {
+color: #50fa7b;
+margin-bottom: 10px;
+}
+#mc_embed_signup label {
+color: #f8f8f2;
+}
+#mc_embed_signup input[type="email"] {
+background: #282a36;
+color: #f8f8f2;
+border: 1px solid #44475a;
+padding: 5px;
+width: 100%;
+box-sizing: border-box;
+margin-top: 5px;
+margin-bottom: 15px;
+}
+#mc_embed_signup input[type="submit"] {
+background: #50fa7b;
+border: none;
+color: #282a36;
+padding: 8px 12px;
+cursor: pointer;
+font-weight: bold;
+}
+#mc_embed_signup a {
+color: #8be9fd;
+text-decoration: none;
+}
+#mce-error-response, #mce-success-response {
+background: #44475a;
+color: #f8f8f2;
+padding: 10px;
+margin-top: 10px;
+border-radius: 3px;
+}
+&lt;/style>
+&lt;div id="mc_embed_signup">
+&lt;form action="https://github.us15.list-manage.com/subscribe/post?u=70eef44d48f8b14be6128d61d&amp;amp;id=ae087575d8&amp;amp;f_id=00cba4e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+&lt;div id="mc_embed_signup_scroll">
+&lt;h2>Subscribe&lt;/h2>
+&lt;div class="indicates-required">&lt;span class="asterisk">*&lt;/span> indicates required&lt;/div>
+&lt;div class="mc-field-group">
+&lt;label for="mce-EMAIL">Email Address &lt;span class="asterisk">*&lt;/span>&lt;/label>
+&lt;input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required value="">
+&lt;/div>
+&lt;div id="mce-responses" class="clear foot">
+&lt;div class="response" id="mce-error-response" style="display: none;">&lt;/div>
+&lt;div class="response" id="mce-success-response" style="display: none;">&lt;/div>
+&lt;/div>
+&lt;div aria-hidden="true" style="position: absolute; left: -5000px;">
+&lt;input type="text" name="b_70eef44d48f8b14be6128d61d_ae087575d8" tabindex="-1" value="">
+&lt;/div>
+&lt;div class="optionalParent">
+&lt;div class="clear foot">
+&lt;input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+&lt;p style="margin: 0px auto;">
+&lt;a href="http://eepurl.com/i-QE8Q" title="Mailchimp - email marketing made easy and fun">
+&lt;span style="display: inline-block; background-color: transparent; border-radius: 4px;">
+&lt;img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;">
+&lt;/span>
+&lt;/a>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/form>
+&lt;/div>
+&lt;script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js">&lt;/script>
+&lt;script type="text/javascript">
+(function($) {
+window.fnames = new Array();
+window.ftypes = new Array();
+fnames[0] = 'EMAIL';
+ftypes[0] = 'email';
+fnames[1] = 'FNAME';
+ftypes[1] = 'text';
+fnames[2] = 'LNAME';
+ftypes[2] = 'text';
+fnames[3] = 'ADDRESS';
+ftypes[3] = 'address';
+fnames[4] = 'PHONE';
+ftypes[4] = 'phone';
+fnames[5] = 'BIRTHDAY';
+ftypes[5] = 'birthday';
+fnames[6] = 'COMPANY';
+ftypes[6] = 'text';
+}(jQuery));
+var $mcj = jQuery.noConflict(true);
+&lt;/script>
+&lt;/div></content></item></channel></rss>
