@@ -99,7 +99,7 @@ The **Facebook** security team promptly acknowledged our disclosure. They confir
   Even minor oversights in **OAuth validation** can have severe repercussions, including the potential for **account hijacking**.
 
 - **Continuous Vigilance:**  
-  The evolving landscape of **authentication mechanisms** demands constant scrutiny. As attackers and defenders, embracing creativity in testing is essential to uncovering and mitigating emerging threats.
+  The Evolving landscape of **authentication mechanisms** demands constant scrutiny. As attackers and defenders, embracing creativity in testing is essential to uncovering and mitigating emerging threats.
 
 Stay curious 🖤
 
