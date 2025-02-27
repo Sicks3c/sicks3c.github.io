@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Security Writeups</title>
+    <title>Security Research on Security Writeups</title>
     <link>https://sicks3c.github.io/research/</link>
-    <description>Recent content on Security Writeups</description>
+    <description>Recent content in Security Research on Security Writeups</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/research/index.xml" rel="self" type="application/rss+xml" />
@@ -58,8 +58,9 @@ after that you will have a very good argument to convince the team that you were
 </content>
     </item>
     
-    <item>
-      <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title>
+  </channel>
+</rss>
+ Schema Allows to Steal OAuth Token</title>
       <link>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
       <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
       
