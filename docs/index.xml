@@ -109,10 +109,10 @@ First thing I did is to remove the sign which is the signature and see if I can 
     
     <item>
       <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title>
-      <link>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
+      <link>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
       <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
       
-      <guid>https://sicks3c.github.io/posts/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid>
+      <guid>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid>
       <description>&lt;h1 id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;

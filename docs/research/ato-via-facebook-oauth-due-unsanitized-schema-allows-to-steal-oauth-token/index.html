@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   
-    <title>ATO :: Security Writeups</title>
+    <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token :: Security Writeups</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
+<meta name="description" content="Exploiting OAuth flow to Takeover accounts via Login with FB" />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="https://sicks3c.github.io/tags/ato/" />
+<link rel="canonical" href="https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/" />
 
 
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-CWB2FYVSWJ"></script>
@@ -88,22 +88,26 @@
 
 
 <meta property="og:locale" content="en" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="ATO">
-<meta property="og:description" content="" />
-<meta property="og:url" content="https://sicks3c.github.io/tags/ato/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token">
+<meta property="og:description" content="Exploiting OAuth flow to Takeover accounts via Login with FB" />
+<meta property="og:url" content="https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/" />
 <meta property="og:site_name" content="Security Writeups" />
 
-  <meta property="og:image" content="https://sicks3c.github.io/og-image.png">
+  
+  
+  <meta property="og:image" content="https://neelbhatt.com/wp-content/uploads/2018/01/fb13.png">
 
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 
+  <meta property="article:section" content="research" />
+
+
+  <meta property="article:published_time" content="2023-09-01 07:32:53 &#43;0800 &#43;08" />
 
 
 
-
-  <link href="/tags/ato/index.xml" rel="alternate" type="application/rss+xml" title="Security Writeups" />
 
 
 
@@ -182,44 +186,40 @@
 
   <div class="content">
     
-  <h1>Posts for: #ATO</h1>
+<article class="post">
+  <h1 class="post-title">
+    <a href="https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/">ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2023-09-01</time><span class="post-author">sicks3c</span><span class="post-reading-time">4 min read (673 words)</span></div>
+
   
-  <div class="posts">
-    
-      <article class="post on-list">
-        <h1 class="post-title">
-          <a href="https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/">ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</a>
-        </h1>
-        <div class="post-meta"><time class="post-date">2023-09-01</time><span class="post-author">sicks3c</span></div>
-
-        
-          <span class="post-tags">
-            
-            #<a href="https://sicks3c.github.io/tags/ato/">ATO</a>&nbsp;
-            
-          </span>
-        
-
-        
+    <span class="post-tags">
+      
+      #<a href="https://sicks3c.github.io/tags/ato/">ATO</a>&nbsp;
+      
+    </span>
+  
+  
   <img src="https://neelbhatt.com/wp-content/uploads/2018/01/fb13.png"
     class="post-cover"
     alt="ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token"
     title="Cover Image" />
 
 
-        <div class="post-content">
-          
-            <h1 id="deep-dive-into-an-oauth-exploit-a-0-day-case-study">Deep Dive into an OAuth Exploit: A 0-Day Case Study</h1>
+  
+
+  <div class="post-content"><div>
+        <h1 id="deep-dive-into-an-oauth-exploit-a-0-day-case-study">Deep Dive into an OAuth Exploit: A 0-Day Case Study<a href="#deep-dive-into-an-oauth-exploit-a-0-day-case-study" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <p><strong>Hello Everyone,</strong></p>
 <p>In our continuous hunt for novel attack vectors and security challenges, <a href="https://x.com/wld_basha"><strong>mainteemoforfun</strong></a> and I embarked on an in-depth exploration of <strong>mobile authentication mechanisms</strong>. Our efforts culminated in the discovery of a striking <strong>0-day vulnerability</strong> back in <strong>2023</strong> that has since been patched.</p>
 <p>This vulnerability enabled us to potentially hijack user sessions on websites utilizing <strong>Facebook’s “Login With Facebook”</strong> feature. By manipulating the <strong><code>redirect_uri</code></strong> parameter in the <strong>OAuth</strong> flow, an attacker could redirect authentication tokens to a host under their control.</p>
 <p>Below, I provide an expert breakdown of the exploit, our proof-of-concept, and the impact it generated.</p>
 <hr>
-<h2 id="understanding-the-vulnerability">Understanding the Vulnerability</h2>
-<h3 id="oauth-basics-and-the-attack-surface">OAuth Basics and the Attack Surface</h3>
+<h2 id="understanding-the-vulnerability">Understanding the Vulnerability<a href="#understanding-the-vulnerability" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="oauth-basics-and-the-attack-surface">OAuth Basics and the Attack Surface<a href="#oauth-basics-and-the-attack-surface" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <p><strong>OAuth</strong> is the de facto standard for delegated authorization. Typically, during an OAuth transaction, the client application registers a trusted <strong><code>redirect_uri</code></strong> (often in a custom scheme format, such as <code>fb://clientID</code>). This URI is used by the authorization server (<strong>Facebook</strong>, in this case) to send back the authentication token after a user successfully logs in.</p>
 <p>When testing OAuth implementations, it is common to experiment with modifying the <strong><code>redirect_uri</code></strong> parameter to see if the endpoint strictly enforces whitelist validations. In our research, we hypothesized that if we could subtly alter this parameter without triggering a verification error, the token might be redirected to an unintended destination.</p>
-<h3 id="the-exploit-mechanism">The Exploit Mechanism</h3>
+<h3 id="the-exploit-mechanism">The Exploit Mechanism<a href="#the-exploit-mechanism" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ol>
 <li>
 <p><strong>Initial Experimentation:</strong><br>
@@ -235,7 +235,7 @@ To rule out any anomalies, we repeated the process several times. The results we
 </li>
 </ol>
 <hr>
-<h2 id="proof-of-concept">Proof-of-Concept</h2>
+<h2 id="proof-of-concept">Proof-of-Concept<a href="#proof-of-concept" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>To demonstrate the impact of this vulnerability, I developed a small <strong>Android</strong> application with a custom intent filter designed to capture the redirected token. Here’s an excerpt from the app’s manifest:</p>
 <pre><code>&lt;intent-filter&gt;
     &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
@@ -249,9 +249,9 @@ To rule out any anomalies, we repeated the process several times. The results we
 <p>When the OAuth flow was initiated, the token was unexpectedly sent to this malicious app instead of the legitimate one. This confirmed that the modified <strong><code>redirect_uri</code></strong> could indeed be exploited to intercept sensitive <strong>authentication tokens</strong>.</p>
 <p><img src="https://i.imgur.com/5HcVciv.png" alt="Proof of Concept"></p>
 <hr>
-<h2 id="reporting-and-bounty-results">Reporting and Bounty Results</h2>
+<h2 id="reporting-and-bounty-results">Reporting and Bounty Results<a href="#reporting-and-bounty-results" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>We responsibly disclosed this vulnerability to the <strong>Facebook Bug Bounty Program</strong> and also submitted reports via <strong>HackerOne</strong> and <strong>Bugcrowd</strong>. Here’s a summary of our findings:</p>
-<h3 id="hackerone">HackerOne</h3>
+<h3 id="hackerone">HackerOne<a href="#hackerone" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ul>
 <li><strong>Total Reports:</strong> 20
 <ul>
@@ -260,7 +260,7 @@ To rule out any anomalies, we repeated the process several times. The results we
 </ul>
 </li>
 </ul>
-<h3 id="bugcrowd">Bugcrowd</h3>
+<h3 id="bugcrowd">Bugcrowd<a href="#bugcrowd" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <ul>
 <li><strong>Total Reports:</strong> 10
 <ul>
@@ -272,10 +272,10 @@ To rule out any anomalies, we repeated the process several times. The results we
 <p><img src="https://i.imgur.com/kV8G3NY.png" alt="Bounties"><br>
 <img src="https://i.imgur.com/FVozCeK.png" alt="Bounties2"></p>
 <hr>
-<h2 id="facebooks-response">Facebook’s Response</h2>
+<h2 id="facebooks-response">Facebook’s Response<a href="#facebooks-response" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>The <strong>Facebook</strong> security team promptly acknowledged our disclosure. They confirmed that the issue was known, addressed, and has since been fixed. Our verification tests post-patch indicate that the fix is effective, reinforcing the importance of vigilant <strong>OAuth validation</strong>.</p>
 <hr>
-<h2 id="key-takeaways">Key Takeaways</h2>
+<h2 id="key-takeaways">Key Takeaways<a href="#key-takeaways" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <ul>
 <li>
 <p><strong>Innovation in Testing:</strong><br>
@@ -403,21 +403,15 @@ The Evolving landscape of <strong>authentication mechanisms</strong> demands con
 
 
 
-          
-        </div>
+      </div></div>
 
-        
-      </article>
+  
+
+  
     
 
-    <div class="pagination">
-  <div class="pagination__buttons">
-    
-    
-  </div>
-</div>
-
-  </div>
+  
+</article>
 
   </div>
 
