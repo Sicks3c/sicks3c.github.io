@@ -1,7 +1,7 @@
 ---
 title: Hunting Account Takeovers in the Wild West of MCP OAuth Servers"
 date: 2026-01-24
-draft: true
+draft: false
 description: "How misconfigured Dynamic Client Registration in MCP OAuth servers enables one-click account takeover attacks against AI-integrated platforms"
 tags: ["bugbounty", "oauth", "mcp", "account-takeover", "AI-security", "hackerone"]
 categories: ["research"]
