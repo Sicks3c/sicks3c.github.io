@@ -1,456 +1,70 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Security Writeups</title>
-    <link>https://sicks3c.github.io/</link>
-    <description>Recent content on Security Writeups</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link>
-      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
-      
-      <guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
-Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
-&lt;p&gt;Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p&gt;</description>
-      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
-Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;
-&lt;p&gt;Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p&gt;
-&lt;h3 id=&#34;lets-talk-about-url-shortners-and-their-types&#34;&gt;Let’s talk about URL shortners and their types:&lt;/h3&gt;
-&lt;p&gt;URL shortners are mostly linked to 3rd party services like &lt;a href=&#34;https://bitly.com&#34;&gt;https://bitly.com&lt;/a&gt; &lt;a href=&#34;https://cutt.ly/&#34;&gt;https://cutt.ly/&lt;/a&gt; and others are made by company and they have custom built
-Like : &lt;a href=&#34;https://indd.jobs&#34;&gt;https://indd.jobs&lt;/a&gt; | &lt;a href=&#34;https://inst.cr&#34;&gt;https://inst.cr&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;how-can-we-approach-this&#34;&gt;How can we approach this:&lt;/h3&gt;
-&lt;p&gt;We can use multiple scenarios first we can test functionalities that triggers email and view the source of them if they contain a URL shortner check twitter account of company and extract all the links they share&lt;/p&gt;
-&lt;h3 id=&#34;how-url-shortners-work&#34;&gt;How URL Shortners Work:&lt;/h3&gt;
-&lt;p&gt;Most of the case we should look for something that has this kind of behavior
-&lt;code&gt;URLshortner.com/{HASH}&lt;/code&gt; -&amp;gt; &lt;code&gt;Website.com/?token={YOU-CANT-GUESS-THIS}&lt;/code&gt;
-and based on that we can enumerate more and see more&lt;/p&gt;
-&lt;h3 id=&#34;complexity-level&#34;&gt;Complexity Level:&lt;/h3&gt;
-&lt;p&gt;The complexity is based on the &lt;code&gt;HASH&lt;/code&gt; used after the URL so it’s either integer strings and or both &lt;code&gt;Uppercase / Lowercase&lt;/code&gt; length of the hash that starts from 5 characters plus
-Examples:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://url.com/12345&#34;&gt;https://url.com/12345&lt;/a&gt; | &lt;a href=&#34;https://url.com/A2B4C&#34;&gt;https://url.com/A2B4C&lt;/a&gt; | &lt;a href=&#34;https://url.com/A2B4CGFDFF33434&#34;&gt;https://url.com/A2B4CGFDFF33434&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;So if we are facing only integers it’s the easiest case here we can of course generate all the possible and it’s kinda difficult for other case OR IS IT ? 😈&lt;/p&gt;
-&lt;h3 id=&#34;exploitation&#34;&gt;Exploitation:&lt;/h3&gt;
-&lt;p&gt;For our write up we will focus on &lt;code&gt;inst.cr&lt;/code&gt; since it has a custom built and it’s so difficult to guess &lt;a href=&#34;http://inst.cr/t/UEJBUThINjYx&#34;&gt;http://inst.cr/t/UEJBUThINjYx&lt;/a&gt;
-So how can we guess the &lt;code&gt;hash&lt;/code&gt; ?&lt;/p&gt;
-&lt;p&gt;We don’t, we don’t need to we can basically throw the domain into &lt;code&gt;waybackurls&lt;/code&gt; or &lt;code&gt;gau&lt;/code&gt; and see the results&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:350/format:webp/1*ftwj3Zsk04oeCYyhpiHaRA.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now we need to see where the links are redirecting and see if something useful is the paths that we can make a use of
-we simply do this&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;gau inst.cr | httpx -location -mc 301,302 | grep -Eo ‘\[(.*?)\]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;In order to &lt;code&gt;grep&lt;/code&gt; the value of all the rediction and spit it out in your terminal&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:550/format:webp/1*wWGo3BhNsyuHUnAcFNb0Qg.png&#34; alt=&#34;image2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now based on the application logic, you can search for keywords that are interesting like &lt;code&gt;token&lt;/code&gt; &lt;code&gt;id&lt;/code&gt; &lt;code&gt;uuid&lt;/code&gt; nd things along those lines
-after that you will have a very good argument to convince the team that you were able to get the value of a certain parameter that they made difficult to guess&lt;/p&gt;
-&lt;h3 id=&#34;results&#34;&gt;Results?&lt;/h3&gt;
-&lt;p&gt;Blind ATO twice in a private program due to valide token on URLshortner
-&lt;code&gt;site.com/?basket=token&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1160/format:webp/1*F6qL02Q0fJNiwcbIw4NOfg.png&#34; alt=&#34;image3&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Multiple IDORS went from Invalid to valid&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*-8KmXrZc6p0bTo6z3svwoA.png&#34; alt=&#34;indeed&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I hope you enjoyed reading this and I will catch you in the next one&lt;/p&gt;
-&lt;p&gt;Stay curious ❤&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>How I Scored 2K Bounty via an Easy IDOR</title>
-      <link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</link>
-      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
-      
-      <guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-easy-idor/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
-So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;I fired up Burp&lt;/li&gt;
-&lt;li&gt;Created an account&lt;/li&gt;
-&lt;li&gt;Adding things in my cart&lt;/li&gt;
-&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Creating a support ticket&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;</description>
-      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
-So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;I fired up Burp&lt;/li&gt;
-&lt;li&gt;Created an account&lt;/li&gt;
-&lt;li&gt;Adding things in my cart&lt;/li&gt;
-&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Creating a support ticket&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ErP1l5Al5QOK8_O5qfdP5w.png&#34; alt=&#34;ticket&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Let’s breakdown what can go wrong here
-We have few parameters &lt;code&gt;project_id/user_id/sign&lt;/code&gt; and the ticket number
-First thing I did is to remove the sign which is the signature and see if I can access it from an unauthenticated browser&lt;/p&gt;
-&lt;p&gt;This looks easy no way that works right ?!!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:400/format:webp/0*jE5ml_v7U8wAzl9H&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Well you’re wrong it worked and I was able to see my ticket and the conversation with the agent and also any attached file, I could also speak in the conversation as anonymous user 😁&lt;/p&gt;
-&lt;p&gt;Further testing showed that changing the ticket number can allow viewing others ticket and changing the &lt;code&gt;user_id&lt;/code&gt; can allow viewing other ticket of that matched ID&lt;/p&gt;
-&lt;p&gt;went and wrapped up a good report with &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;my friend&lt;/a&gt; , and it was triaged within minutes an paid after few days&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:590/format:webp/1*WXV_nYEgIwyAQ0HnWSpizA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Don’t be afraid of diving the Main app it’s where all the juicy things exist&lt;/li&gt;
-&lt;li&gt;Never underestimate yourself from finding bugs everyone has a unique view for the target&lt;/li&gt;
-&lt;li&gt;Don’t be discouraged if you didn’t find a bug today tomorrow you will&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I hope you enjoyed reading this and I will catch you in the next one&lt;/p&gt;
-&lt;p&gt;Stay curious ❤&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title>
-      <link>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
-      <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
-      
-      <guid>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid>
-      <description>&lt;h1 id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;
-&lt;p&gt;This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong&gt;Facebook’s “Login With Facebook”&lt;/strong&gt; feature. By manipulating the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter in the &lt;strong&gt;OAuth&lt;/strong&gt; flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p&gt;</description>
-      <content>&lt;h1 id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;
-&lt;p&gt;This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong&gt;Facebook’s “Login With Facebook”&lt;/strong&gt; feature. By manipulating the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter in the &lt;strong&gt;OAuth&lt;/strong&gt; flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p&gt;
-&lt;p&gt;Below, I provide an expert breakdown of the exploit, our proof-of-concept, and the impact it generated.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;understanding-the-vulnerability&#34;&gt;Understanding the Vulnerability&lt;/h2&gt;
-&lt;h3 id=&#34;oauth-basics-and-the-attack-surface&#34;&gt;OAuth Basics and the Attack Surface&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;OAuth&lt;/strong&gt; is the de facto standard for delegated authorization. Typically, during an OAuth transaction, the client application registers a trusted &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; (often in a custom scheme format, such as &lt;code&gt;fb://clientID&lt;/code&gt;). This URI is used by the authorization server (&lt;strong&gt;Facebook&lt;/strong&gt;, in this case) to send back the authentication token after a user successfully logs in.&lt;/p&gt;
-&lt;p&gt;When testing OAuth implementations, it is common to experiment with modifying the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter to see if the endpoint strictly enforces whitelist validations. In our research, we hypothesized that if we could subtly alter this parameter without triggering a verification error, the token might be redirected to an unintended destination.&lt;/p&gt;
-&lt;h3 id=&#34;the-exploit-mechanism&#34;&gt;The Exploit Mechanism&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Initial Experimentation:&lt;/strong&gt;&lt;br&gt;
-We began by modifying the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; in the OAuth flow. Our initial test—attempting to change the &lt;strong&gt;clientID&lt;/strong&gt; directly (e.g., &lt;code&gt;fb://anotherClientID&lt;/code&gt;) produced a “mismatch” error, as expected.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Refined Modification:&lt;/strong&gt;&lt;br&gt;
-By appending an extra character to the &lt;strong&gt;clientID&lt;/strong&gt; (e.g., &lt;code&gt;fb://clientIDa&lt;/code&gt;), we observed that the authentication token was redirected to the newly specified scheme. This minor change bypassed the strict check, allowing the token to be delivered to an endpoint not originally whitelisted by the service.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Verification:&lt;/strong&gt;&lt;br&gt;
-To rule out any anomalies, we repeated the process several times. The results were consistent, confirming that this behavior was not a fluke but a genuine vulnerability.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;proof-of-concept&#34;&gt;Proof-of-Concept&lt;/h2&gt;
-&lt;p&gt;To demonstrate the impact of this vulnerability, I developed a small &lt;strong&gt;Android&lt;/strong&gt; application with a custom intent filter designed to capture the redirected token. Here’s an excerpt from the app’s manifest:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;intent-filter&amp;gt;
-    &amp;lt;action android:name=&amp;quot;android.intent.action.MAIN&amp;quot; /&amp;gt;
-    &amp;lt;category android:name=&amp;quot;android.intent.category.LAUNCHER&amp;quot; /&amp;gt;
-    &amp;lt;action android:name=&amp;quot;android.intent.action.VIEW&amp;quot; /&amp;gt;
-    &amp;lt;category android:name=&amp;quot;android.intent.category.DEFAULT&amp;quot; /&amp;gt;
-    &amp;lt;category android:name=&amp;quot;android.intent.category.BROWSABLE&amp;quot; /&amp;gt;
-    &amp;lt;data android:scheme=&amp;quot;fbClientIDa&amp;quot; /&amp;gt;
-&amp;lt;/intent-filter&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When the OAuth flow was initiated, the token was unexpectedly sent to this malicious app instead of the legitimate one. This confirmed that the modified &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; could indeed be exploited to intercept sensitive &lt;strong&gt;authentication tokens&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/5HcVciv.png&#34; alt=&#34;Proof of Concept&#34;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;reporting-and-bounty-results&#34;&gt;Reporting and Bounty Results&lt;/h2&gt;
-&lt;p&gt;We responsibly disclosed this vulnerability to the &lt;strong&gt;Facebook Bug Bounty Program&lt;/strong&gt; and also submitted reports via &lt;strong&gt;HackerOne&lt;/strong&gt; and &lt;strong&gt;Bugcrowd&lt;/strong&gt;. Here’s a summary of our findings:&lt;/p&gt;
-&lt;h3 id=&#34;hackerone&#34;&gt;HackerOne&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Total Reports:&lt;/strong&gt; 20
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Severity Breakdown:&lt;/strong&gt; 5 reports categorized between &lt;strong&gt;medium&lt;/strong&gt; and &lt;strong&gt;high&lt;/strong&gt; severity, which resulted in bounties totaling approximately &lt;strong&gt;15K USD&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Additional Insights:&lt;/strong&gt; Some targets, although not immediately vulnerable, were noted for having partial &lt;strong&gt;backend verifications&lt;/strong&gt;, hinting at broader issues.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;bugcrowd&#34;&gt;Bugcrowd&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Total Reports:&lt;/strong&gt; 10
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Outcome:&lt;/strong&gt; The majority of these were marked as requiring highly unlikely conditions in a real-world scenario, rendering them inapplicable for payouts.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Visual summaries of our bounty earnings are available below:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/kV8G3NY.png&#34; alt=&#34;Bounties&#34;&gt;&lt;br&gt;
-&lt;img src=&#34;https://i.imgur.com/FVozCeK.png&#34; alt=&#34;Bounties2&#34;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;facebooks-response&#34;&gt;Facebook’s Response&lt;/h2&gt;
-&lt;p&gt;The &lt;strong&gt;Facebook&lt;/strong&gt; security team promptly acknowledged our disclosure. They confirmed that the issue was known, addressed, and has since been fixed. Our verification tests post-patch indicate that the fix is effective, reinforcing the importance of vigilant &lt;strong&gt;OAuth validation&lt;/strong&gt;.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Innovation in Testing:&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;OAuth&lt;/strong&gt; implementations may harbor subtle vulnerabilities. Experimenting with unconventional modifications—like tweaking the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; it can sometimes reveal significant security flaws.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Real-World Implications:&lt;/strong&gt;&lt;br&gt;
-Even minor oversights in &lt;strong&gt;OAuth validation&lt;/strong&gt; can have severe repercussions, including the potential for &lt;strong&gt;account hijacking&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Continuous Vigilance:&lt;/strong&gt;&lt;br&gt;
-The Evolving landscape of &lt;strong&gt;authentication mechanisms&lt;/strong&gt; demands constant scrutiny. As attackers and defenders, embracing creativity in testing is essential to uncovering and mitigating emerging threats.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Stay curious 🖤&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;By sharing this in-depth analysis, I hope to encourage fellow security professionals to explore every nuance of &lt;strong&gt;authentication protocols&lt;/strong&gt;. Remember, in the world of cybersecurity, even “stupid” ideas can lead to groundbreaking discoveries.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Happy Hunting!&lt;/strong&gt;&lt;/p&gt;
-&lt;div id=&#34;mc_embed_shell&#34;&gt;
-  &lt;link href=&#34;//cdn-images.mailchimp.com/embedcode/classic-061523.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
-  &lt;style type=&#34;text/css&#34;&gt;
-     
-    #mc_embed_signup {
-      background: #1e1e1e;         
-      color: #f8f8f2;              
-      clear: left;
-      font: 14px &#34;Courier New&#34;, monospace;
-      width: 600px;
-      padding: 20px;
-      border-radius: 5px;
-    }
-    #mc_embed_signup h2 {
-      color: #50fa7b;              
-      margin-bottom: 10px;
-    }
-    #mc_embed_signup label {
-      color: #f8f8f2;
-    }
-    #mc_embed_signup input[type=&#34;email&#34;] {
-      background: #282a36;
-      color: #f8f8f2;
-      border: 1px solid #44475a;
-      padding: 5px;
-      width: 100%;
-      box-sizing: border-box;
-      margin-top: 5px;
-      margin-bottom: 15px;
-    }
-    #mc_embed_signup input[type=&#34;submit&#34;] {
-      background: #50fa7b;
-      border: none;
-      color: #282a36;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #mc_embed_signup a {
-      color: #8be9fd;
-      text-decoration: none;
-    }
-     
-    #mce-error-response, #mce-success-response {
-      background: #44475a;
-      color: #f8f8f2;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 3px;
-    }
-  &lt;/style&gt;
-  &lt;div id=&#34;mc_embed_signup&#34;&gt;
-    &lt;form action=&#34;https://github.us15.list-manage.com/subscribe/post?u=70eef44d48f8b14be6128d61d&amp;amp;id=ae087575d8&amp;amp;f_id=00cba4e0f0&#34; method=&#34;post&#34; id=&#34;mc-embedded-subscribe-form&#34; name=&#34;mc-embedded-subscribe-form&#34; class=&#34;validate&#34; target=&#34;_blank&#34;&gt;
-      &lt;div id=&#34;mc_embed_signup_scroll&#34;&gt;
-        &lt;h2&gt;Subscribe&lt;/h2&gt;
-        &lt;div class=&#34;indicates-required&#34;&gt;&lt;span class=&#34;asterisk&#34;&gt;*&lt;/span&gt; indicates required&lt;/div&gt;
-        &lt;div class=&#34;mc-field-group&#34;&gt;
-          &lt;label for=&#34;mce-EMAIL&#34;&gt;Email Address &lt;span class=&#34;asterisk&#34;&gt;*&lt;/span&gt;&lt;/label&gt;
-          &lt;input type=&#34;email&#34; name=&#34;EMAIL&#34; class=&#34;required email&#34; id=&#34;mce-EMAIL&#34; required value=&#34;&#34;&gt;
-        &lt;/div&gt;
-        &lt;div id=&#34;mce-responses&#34; class=&#34;clear foot&#34;&gt;
-          &lt;div class=&#34;response&#34; id=&#34;mce-error-response&#34; style=&#34;display: none;&#34;&gt;&lt;/div&gt;
-          &lt;div class=&#34;response&#34; id=&#34;mce-success-response&#34; style=&#34;display: none;&#34;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div aria-hidden=&#34;true&#34; style=&#34;position: absolute; left: -5000px;&#34;&gt;
-          
-          &lt;input type=&#34;text&#34; name=&#34;b_70eef44d48f8b14be6128d61d_ae087575d8&#34; tabindex=&#34;-1&#34; value=&#34;&#34;&gt;
-        &lt;/div&gt;
-        &lt;div class=&#34;optionalParent&#34;&gt;
-          &lt;div class=&#34;clear foot&#34;&gt;
-            &lt;input type=&#34;submit&#34; name=&#34;subscribe&#34; id=&#34;mc-embedded-subscribe&#34; class=&#34;button&#34; value=&#34;Subscribe&#34;&gt;
-            &lt;p style=&#34;margin: 0px auto;&#34;&gt;
-              &lt;a href=&#34;http://eepurl.com/i-QE8Q&#34; title=&#34;Mailchimp - email marketing made easy and fun&#34;&gt;
-                &lt;span style=&#34;display: inline-block; background-color: transparent; border-radius: 4px;&#34;&gt;
-                  &lt;img class=&#34;refferal_badge&#34; src=&#34;https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg&#34; alt=&#34;Intuit Mailchimp&#34; style=&#34;width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;&#34;&gt;
-                &lt;/span&gt;
-              &lt;/a&gt;
-            &lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
-  &lt;/div&gt;
-  &lt;script type=&#34;text/javascript&#34; src=&#34;//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js&#34;&gt;&lt;/script&gt;
-  &lt;script type=&#34;text/javascript&#34;&gt;
-    (function($) {
-      window.fnames = new Array();
-      window.ftypes = new Array();
-      fnames[0] = &#39;EMAIL&#39;;
-      ftypes[0] = &#39;email&#39;;
-      fnames[1] = &#39;FNAME&#39;;
-      ftypes[1] = &#39;text&#39;;
-      fnames[2] = &#39;LNAME&#39;;
-      ftypes[2] = &#39;text&#39;;
-      fnames[3] = &#39;ADDRESS&#39;;
-      ftypes[3] = &#39;address&#39;;
-      fnames[4] = &#39;PHONE&#39;;
-      ftypes[4] = &#39;phone&#39;;
-      fnames[5] = &#39;BIRTHDAY&#39;;
-      ftypes[5] = &#39;birthday&#39;;
-      fnames[6] = &#39;COMPANY&#39;;
-      ftypes[6] = &#39;text&#39;;
-    }(jQuery));
-    var $mcj = jQuery.noConflict(true);
-  &lt;/script&gt;
-&lt;/div&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Home on Sicksec</title><link>https://sicks3c.github.io/</link><description>Recent content in Home on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Abusing Url Shortners for Fun and Profit</title><link>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/abusing-url-shortners-for-fun-and-profit/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p>
+&lt;p>Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p></description></item><item><title>How I Scored 2K Bounty via an Easy IDOR</title><link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-idor/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-idor/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code>Mail.ru Games&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>I fired up Burp&lt;/li>
+&lt;li>Created an account&lt;/li>
+&lt;li>Adding things in my cart&lt;/li>
+&lt;li>Viewing the &lt;code>blog&lt;/code>&lt;/li>
+&lt;li>Creating a support ticket&lt;/li>
+&lt;/ol>
+&lt;p>Before testing anything the ticket link looked kind of suspicious since it had &lt;code>/ticket/INTEGER&lt;/code>&lt;/p></description></item><item><title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title><link>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link><pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid><description>&lt;h1 class="relative group">Deep Dive into an OAuth Exploit: A 0-Day Case Study
+ &lt;div id="deep-dive-into-an-oauth-exploit-a-0-day-case-study" class="anchor">&lt;/div>
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#deep-dive-into-an-oauth-exploit-a-0-day-case-study" aria-label="Anchor">#&lt;/a>
+ &lt;/span>
+ 
+&lt;/h1>
+&lt;p>&lt;strong>Hello Everyone,&lt;/strong>&lt;/p>
+&lt;p>In our continuous hunt for novel attack vectors and security challenges, &lt;a href="https://x.com/wld_basha" target="_blank" rel="noreferrer">&lt;strong>mainteemoforfun&lt;/strong>&lt;/a> and I embarked on an in-depth exploration of &lt;strong>mobile authentication mechanisms&lt;/strong>. Our efforts culminated in the discovery of a striking &lt;strong>0-day vulnerability&lt;/strong> back in &lt;strong>2023&lt;/strong> that has since been patched.&lt;/p>
+&lt;p>This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong>Facebook’s “Login With Facebook”&lt;/strong> feature. By manipulating the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> parameter in the &lt;strong>OAuth&lt;/strong> flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p></description></item><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a" target="_blank" rel="noreferrer">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p></description></item><item><title>How I Scored 1K Bounty Using Waybackurls</title><link>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link><pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p>
+&lt;p>I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p></description></item><item><title>Tale of XSS in Angular</title><link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link><pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate><guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid><description>&lt;p>&lt;figure>&lt;img
+ class="my-0 rounded-md"
+ loading="lazy"
+ decoding="async"
+ fetchpriority="low"
+ alt="Angular XSS Featured Image"
+ src="https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk"
+ >&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>Hello Security Researchers and Hackers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p>
+&lt;hr>
 
+&lt;h2 class="relative group">Tools Used
+ &lt;div id="tools-used" class="anchor">&lt;/div>
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#tools-used" aria-label="Anchor">#&lt;/a>
+ &lt;/span>
+ 
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://findomain.app/" target="_blank" rel="noreferrer">Findomain&lt;/a> for subdomain monitoring&lt;/li>
+&lt;li>Wappalyzer for technology detection&lt;/li>
+&lt;/ul>
+&lt;hr>
 
-</content>
-    </item>
-    
-    <item>
-      <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</link>
-      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
-      
-      <guid>https://sicks3c.github.io/posts/how-i-rced-the-largest-ru-company/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
-Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
-&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
-Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
-      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,
-Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;
-&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;&gt;script&lt;/a&gt;
-Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*QaglJY1N4ZmUe7x65Wru3w.png&#34; alt=&#34;img1&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now we search this hash on shodan.io with the &lt;code&gt;http.favicon.hash&lt;/code&gt; syntax&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*pmEgkNtfn3FhxTLg4U8Uiw.png&#34; alt=&#34;img2&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Now I went to see page by page and look for something suspicious with an unusual port number so I kept going till I found a host with port 8080
-That has a Welcome to Nginx page&lt;/p&gt;
-&lt;p&gt;Once found I wanted to dig further on what’s going on, so I started to FUZZ directories and I found &lt;code&gt;/static/shards/html&lt;/code&gt; Publicly accessible and it looked Juicy&lt;/p&gt;
-&lt;p&gt;From here I guessed that most of these hosts are Internal host and it will be difficult to reach them and I decided to &lt;a href=&#34;https://nmap.org/&#34;&gt;Nmap&lt;/a&gt; all of them
-Found one that has a JDWP stands for (Java Debug Wire Protocol)&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*1SOscii9_Beb5q4xEn-8-A.png&#34; alt=&#34;nmap&#34;&gt;&lt;/p&gt;
-&lt;p&gt;So I started my research about this service / port and it turns out that it may be vulnerable to RCE by reading this &lt;a href=&#34;https://ioactive.com/hacking-java-debug-wire-protocol-or-how/&#34;&gt;article&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;With the help of this &lt;a href=&#34;https://github.com/IOActive/jdwp-shellifier&#34;&gt;jdwp-shellifier&lt;/a&gt; I was able to show the RCE and the team triaged and paid &lt;code&gt;$$$&lt;/code&gt; since the server belongs to their infrastructure not the main assets&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SRItvaGIGW_67n-mvXNBcA.png&#34; alt=&#34;bounty&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Hope you enjoyed reading this and catch you in the next adventure&lt;/p&gt;
-&lt;p&gt;Stay curious ❤&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>How I Scored 1K Bounty Using Waybackurls</title>
-      <link>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link>
-      <pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate>
-      
-      <guid>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;
-&lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;</description>
-      <content>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;
-&lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;
-&lt;p&gt;The program exist in &lt;strong&gt;Hackerone&lt;/strong&gt; in more than a decade with big names on them, I was familiar with the services they offer since I was a user so I started to enumerate subdomain where I noticed a weird link that may actually hold sensitive data since they are parsing everything in URL path so my first approach was checking the &lt;a href=&#34;https://github.com/tomnomnom/waybackurls&#34;&gt;waybackurls&lt;/a&gt; since &lt;a href=&#34;https://x.com/TomNomNom&#34;&gt;Tomnomnom&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;has a very unique tools I used it as follows&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;waybackurls requests.redacted.com&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;I was surprise with the amount of URLS that belongs to users with the tokens and I was like no way they’re valid right ?!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://europe1.discourse-cdn.com/flex005/uploads/ewelinkforum/original/2X/2/26f9b6464e5ae5981f1c2c02375c3f264e2b94ad.gif&#34; alt=&#34;gif&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Guess I was wrong, I went to the API page and it looks like a simple POST request with the link leaked and a simple data via curl can do the Proof Of Concept using something like this&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:1400/format:webp/1*wfnBQlHJQu79hgOFYi_jyA.png&#34; alt=&#34;poc&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I tested in my own env and sent the report right away, It got paid under few days and the team started the fix&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://miro.medium.com/v2/resize:fit:960/format:webp/1*JkJJxM8lYzpGWDgxsvER3w.png&#34; alt=&#34;poc2&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;takeways&#34;&gt;Takeways&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Never say that this program has a lot of know hackers and I won’t find a thing&lt;/li&gt;
-&lt;li&gt;everyone has it’s unique approach to a target and you may see something that other didn’t&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>Tale of XSS in Angular</title>
-      <link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link>
-      <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;tools-used&#34;&gt;Tools Used&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://findomain.app/&#34;&gt;Findomain&lt;/a&gt; for subdomain monitoring&lt;/li&gt;
-&lt;li&gt;Wappalyzer for technology detection&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;discovery-process&#34;&gt;Discovery Process&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Received Telegram alert for new subdomains&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Identified Angular 1.6 using Wappalyzer&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Found reflected error parameter:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;exploitation&#34;&gt;Exploitation&lt;/h2&gt;
-&lt;p&gt;Used payload from &lt;a href=&#34;https://github.com/swisskyrepo/PayloadsAllTheThings&#34;&gt;PayloadsAllTheThings&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*cj_dJMkwSfiThMOIRyOMMA.png&#34; alt=&#34;XSS Execution Proof&#34;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Demonstrate concrete impact for better severity rating&lt;/li&gt;
-&lt;li&gt;Automate monitoring for fresh targets&lt;/li&gt;
-&lt;li&gt;Know framework-specific vulnerabilities&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <content>&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34; alt=&#34;Angular XSS Featured Image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;tools-used&#34;&gt;Tools Used&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://findomain.app/&#34;&gt;Findomain&lt;/a&gt; for subdomain monitoring&lt;/li&gt;
-&lt;li&gt;Wappalyzer for technology detection&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;discovery-process&#34;&gt;Discovery Process&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;Received Telegram alert for new subdomains&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Identified Angular 1.6 using Wappalyzer&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Found reflected error parameter:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;exploitation&#34;&gt;Exploitation&lt;/h2&gt;
-&lt;p&gt;Used payload from &lt;a href=&#34;https://github.com/swisskyrepo/PayloadsAllTheThings&#34;&gt;PayloadsAllTheThings&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://cdn-images-1.medium.com/max/800/1*cj_dJMkwSfiThMOIRyOMMA.png&#34; alt=&#34;XSS Execution Proof&#34;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;key-takeaways&#34;&gt;Key Takeaways&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Demonstrate concrete impact for better severity rating&lt;/li&gt;
-&lt;li&gt;Automate monitoring for fresh targets&lt;/li&gt;
-&lt;li&gt;Know framework-specific vulnerabilities&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    </item>
-    
-  </channel>
-</rss>
+&lt;h2 class="relative group">Discovery Process
+ &lt;div id="discovery-process" class="anchor">&lt;/div>
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#discovery-process" aria-label="Anchor">#&lt;/a>
+ &lt;/span>
+ 
+&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Received Telegram alert for new subdomains&lt;/p></description></item></channel></rss>

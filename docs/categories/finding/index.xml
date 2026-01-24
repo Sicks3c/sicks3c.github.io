@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bug Findings on Sicksec</title><link>https://sicks3c.github.io/categories/finding/</link><description>Recent content in Bug Findings on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://sicks3c.github.io/categories/finding/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Scored 2K Bounty via an Easy IDOR</title><link>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-idor/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-2k-bounty-via-an-idor/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code>Mail.ru Games&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>I fired up Burp&lt;/li>
+&lt;li>Created an account&lt;/li>
+&lt;li>Adding things in my cart&lt;/li>
+&lt;li>Viewing the &lt;code>blog&lt;/code>&lt;/li>
+&lt;li>Creating a support ticket&lt;/li>
+&lt;/ol>
+&lt;p>Before testing anything the ticket link looked kind of suspicious since it had &lt;code>/ticket/INTEGER&lt;/code>&lt;/p></description></item><item><title>How I RCE'd the Largest RU Company</title><link>https://sicks3c.github.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a" target="_blank" rel="noreferrer">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p></description></item><item><title>How I Scored 1K Bounty Using Waybackurls</title><link>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link><pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate><guid>https://sicks3c.github.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p>
+&lt;p>I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p></description></item><item><title>Tale of XSS in Angular</title><link>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</link><pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate><guid>https://sicks3c.github.io/posts/tale-of-xss-in-angular/</guid><description>&lt;p>&lt;figure>&lt;img
+ class="my-0 rounded-md"
+ loading="lazy"
+ decoding="async"
+ fetchpriority="low"
+ alt="Angular XSS Featured Image"
+ src="https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk"
+ >&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>Hello Security Researchers and Hackers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p>
+&lt;hr>
+
+&lt;h2 class="relative group">Tools Used
+ &lt;div id="tools-used" class="anchor">&lt;/div>
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#tools-used" aria-label="Anchor">#&lt;/a>
+ &lt;/span>
+ 
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://findomain.app/" target="_blank" rel="noreferrer">Findomain&lt;/a> for subdomain monitoring&lt;/li>
+&lt;li>Wappalyzer for technology detection&lt;/li>
+&lt;/ul>
+&lt;hr>
+
+&lt;h2 class="relative group">Discovery Process
+ &lt;div id="discovery-process" class="anchor">&lt;/div>
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#discovery-process" aria-label="Anchor">#&lt;/a>
+ &lt;/span>
+ 
+&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Received Telegram alert for new subdomains&lt;/p></description></item></channel></rss>

@@ -1,0 +1,54 @@
+baseURL = "https://sicks3c.github.io/"
+languageCode = "en"
+title = "Sicksec"
+theme = "blowfish"
+publishDir = "docs"
+
+enableRobotsTXT = true
+[pagination]
+  pagerSize = 10
+summaryLength = 30
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  author = "authors"
+  series = "series"
+
+[sitemap]
+  changefreq = "daily"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = false
+    style = "dracula"
+    tabWidth = 4
+
+[related]
+  threshold = 0
+  toLower = false
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 100
+  [[related.indices]]
+    name = "series"
+    weight = 50
+  [[related.indices]]
+    name = "date"
+    weight = 10

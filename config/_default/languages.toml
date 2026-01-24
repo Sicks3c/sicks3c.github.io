@@ -1,0 +1,22 @@
+[en]
+  languageCode = "en"
+  languageName = "English"
+  weight = 1
+  title = "Sicksec"
+
+  [en.params]
+    displayName = "EN"
+    isoCode = "en"
+    rtl = false
+    dateFormat = "2 January 2006"
+
+  [en.params.author]
+    name = "Sicksec"
+    image = "images/profile.jpg"
+    headline = "Security Researcher & Bug Hunter"
+    bio = "Finding bugs in production. Breaking APIs for fun. Passionate about Web Security, API Testing, GraphQL, and REST APIs."
+    links = [
+      { github = "https://github.com/Sicks3c" },
+      { twitter = "https://twitter.com/OriginalSicksec" },
+      { email = "mailto:sicksec@wearehackerone.com" }
+    ]

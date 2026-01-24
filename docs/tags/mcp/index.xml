@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mcp on Sicksec</title>
+    <link>http://localhost:1313/tags/mcp/</link>
+    <description>Recent content in Mcp on Sicksec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 Sicksec</copyright>
+    <lastBuildDate>Sat, 24 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ATO via open DCR in MCP server</title>
+      <link>http://localhost:1313/research/ato-via-open-mcp-dcr/</link>
+      <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/research/ato-via-open-mcp-dcr/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hello Everyone&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;This writeup will be about how we managed to perform ATO&amp;rsquo;s on most remote MCP server using their open DCR method to allow the attacker to takeover any user account&lt;/p&gt;&#xA;&lt;p&gt;MCP DCR stands for Open Dynamic Registration which call allow any user to signup for an MCP server and use the MCP feature on their project using REST API or GraphQL based on the config of each MCP&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
