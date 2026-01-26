@@ -1,5 +1,5 @@
 ---
-title: Hunting Account Takeovers in the Wild West of MCP OAuth Servers"
+title: "Hunting Account Takeovers in the Wild West of MCP OAuth Servers"
 date: 2026-01-24
 draft: false
 description: "How misconfigured Dynamic Client Registration in MCP OAuth servers enables one-click account takeover attacks against AI-integrated platforms"
@@ -280,7 +280,7 @@ Once you have an access token from a compromised MCP server, the damage potentia
 
 **Translation:**
 - Access user profile and email
-- eploy arbitrary code to production
+- Deploy arbitrary code to production
 - Read/write environment variables (API keys, secrets)
 - Access team information
 - Delete or modify projects

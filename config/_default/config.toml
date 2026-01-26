@@ -1,8 +1,12 @@
-baseURL = "https://sicks3c.github.io/"
+baseURL = "https://blog.sicks3c.io/"
 languageCode = "en"
 title = "Sicksec"
 theme = "blowfish"
 publishDir = "docs"
+
+[services]
+  [services.googleAnalytics]
+    ID = "G-8FR2CVPQLQ"
 
 enableRobotsTXT = true
 [pagination]
