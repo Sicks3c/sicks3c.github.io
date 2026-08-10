@@ -1,23 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Rce on Sicksec</title>
-    <link>https://blog.sicks3c.io/tags/rce/</link>
-    <description>Recent content in Rce on Sicksec</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2026 Sicksec</copyright>
-    <lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/rce/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link>
-      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,&#xA;Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;&#xA;&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;  target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;script&lt;/a&gt;&#xA;Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
-      
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rce on Sicksec</title><link>https://blog.sicks3c.io/tags/rce/</link><description>Recent content in Rce on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Thu, 19 Aug 2021 07:32:53 +0800</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/rce/index.xml" rel="self" type="application/rss+xml"/><item><title>How I RCE'd the Largest RU Company</title><link>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a" target="_blank" rel="noreferrer">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p></description></item></channel></rss>

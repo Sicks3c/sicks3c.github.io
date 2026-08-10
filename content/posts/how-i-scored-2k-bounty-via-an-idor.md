@@ -1,12 +1,14 @@
 ---
-title: "How I Scored 2K Bounty via an Easy IDOR"
+title: "How I Scored $2K via an Easy IDOR"
 date: "2025-02-26T07:32:53+08:00"
 author: "sicks3c"
 authorTwitter: "OriginalSicksec" #do not include @
 cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*UGPX9sjyXDzUQbq6"
-tags: ["bugbounty"]
-description: "Easiest IDOR Ever"
+tags: ["idor", "access-control", "bugbounty"]
+description: "A predictable support-ticket reference exposed cross-account conversations, attachments, and replies."
 categories: ["finding"]
+caseId: "CASE_004"
+severity: "high"
 showFullContent: true
 readingTime: true
 hideComments: false
@@ -52,5 +54,3 @@ went and wrapped up a good report with [my friend](https://x.com/wld_basha) , an
 I hope you enjoyed reading this and I will catch you in the next one
 
 Stay curious ❤
-
-

@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="listing-hero compact-listing">
+  <div class="listing-path"><a href="{{ site.Home.RelPermalink }}">~</a><span>/</span><span>tags</span></div>
+  <div><span class="eyebrow">SIGNAL_DICTIONARY()</span><h1>Tag index</h1><p>Navigate the archive by vulnerability class, technology, attack surface, or impact.</p></div>
+  <div class="listing-stat"><span>SIGNALS</span><b>{{ printf "%03d" (len .Data.Terms) }}</b><small>INDEXED</small></div>
+</section>
+<section class="tag-section shell"><div class="tag-grid">{{ range .Data.Terms.Alphabetical }}<a href="{{ .Page.RelPermalink }}"><span>#{{ .Page.Title }}</span><b>{{ printf "%02d" .Count }}</b><i>QUERY ↗</i></a>{{ end }}</div></section>
+{{ end }}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">SickSec Research Operations</title>
+  <desc id="desc">Independent offensive security research on APIs, OAuth, access control, and production systems.</desc>
+  <defs>
+    <radialGradient id="glow" cx="72%" cy="43%" r="46%">
+      <stop offset="0" stop-color="#173d1e"/>
+      <stop offset=".48" stop-color="#0a140c"/>
+      <stop offset="1" stop-color="#050806"/>
+    </radialGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0V42" fill="none" stroke="#9dff80" stroke-opacity=".055"/>
+    </pattern>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="13" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="32" y="32" width="1136" height="566" fill="none" stroke="#263229"/>
+  <circle cx="925" cy="302" r="204" fill="none" stroke="#29432f"/>
+  <circle cx="925" cy="302" r="145" fill="none" stroke="#29432f"/>
+  <circle cx="925" cy="302" r="86" fill="none" stroke="#9dff80" stroke-opacity=".45"/>
+  <path d="M705 302h440M925 82v440" stroke="#29432f"/>
+  <circle cx="925" cy="302" r="36" fill="#9dff80" filter="url(#softGlow)"/>
+  <text x="925" y="308" text-anchor="middle" fill="#050806" font-family="monospace" font-size="18" font-weight="700">S3</text>
+  <circle cx="806" cy="190" r="6" fill="#9dff80" filter="url(#softGlow)"/>
+  <circle cx="1078" cy="340" r="6" fill="#9dff80" filter="url(#softGlow)"/>
+  <text x="74" y="90" fill="#9dff80" font-family="monospace" font-size="18">root@sicksec:~$</text>
+  <text x="74" y="210" fill="#dce7da" font-family="Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-4">Finding the bugs</text>
+  <text x="74" y="291" fill="#9dff80" font-family="Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-4">between the specs.</text>
+  <text x="74" y="374" fill="#748077" font-family="monospace" font-size="17">INDEPENDENT OFFENSIVE SECURITY RESEARCH</text>
+  <text x="74" y="412" fill="#748077" font-family="monospace" font-size="15">WEB  /  API  /  GRAPHQL  /  OAUTH  /  MCP</text>
+  <rect x="74" y="486" width="218" height="48" fill="#9dff80"/>
+  <text x="92" y="516" fill="#050806" font-family="monospace" font-size="13" font-weight="700">RESEARCH OPERATIONS ↗</text>
+  <text x="1092" y="562" text-anchor="end" fill="#4a564d" font-family="monospace" font-size="12">BLOG.SICKS3C.IO</text>
+</svg>

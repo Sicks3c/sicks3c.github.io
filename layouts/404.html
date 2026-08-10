@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="error-page">
+  <div class="error-terminal">
+    <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><b>request.log — 404</b><span>FAILED</span></div>
+    <div><span class="prompt">❯ curl {{ site.BaseURL }}unknown</span><h1>404</h1><h2>Signal not found.</h2><p>The requested coordinate does not exist in the research archive, or it moved before we could capture it.</p><nav><a href="{{ site.Home.RelPermalink }}">cd ~/home ↵</a><button type="button" data-open-search>grep archive ↵</button></nav></div>
+  </div>
+</section>
+{{ end }}

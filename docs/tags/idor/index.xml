@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Idor on Sicksec</title><link>https://blog.sicks3c.io/tags/idor/</link><description>Recent content in Idor on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/idor/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Scored $2K via an Easy IDOR</title><link>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code>Mail.ru Games&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>I fired up Burp&lt;/li>
+&lt;li>Created an account&lt;/li>
+&lt;li>Adding things in my cart&lt;/li>
+&lt;li>Viewing the &lt;code>blog&lt;/code>&lt;/li>
+&lt;li>Creating a support ticket&lt;/li>
+&lt;/ol>
+&lt;p>Before testing anything the ticket link looked kind of suspicious since it had &lt;code>/ticket/INTEGER&lt;/code>&lt;/p></description></item></channel></rss>

@@ -1,12 +1,14 @@
 ---
-title: "ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token"
+title: "Account Takeover via an Unsanitized Facebook OAuth Redirect Scheme"
 date: "2023-09-01T07:32:53+08:00"
 author: "sicks3c"
 authorTwitter: "OriginalSicksec" #do not include @
 cover: "https://neelbhatt.com/wp-content/uploads/2018/01/fb13.png"
-tags: ["ATO"]
-description: "Exploiting OAuth flow to Takeover accounts via Login with FB"
+tags: ["ato", "oauth", "mobile", "token-theft"]
+description: "How a one-character mutation in a mobile OAuth redirect scheme allowed authentication tokens to be intercepted by a malicious app."
 categories: ["research"]
+caseId: "CASE_006"
+severity: "critical"
 showFullContent: true
 readingTime: true
 hideComments: false
@@ -108,4 +110,3 @@ Stay curious 🖤
 By sharing this in-depth analysis, I hope to encourage fellow security professionals to explore every nuance of **authentication protocols**. Remember, in the world of cybersecurity, even “stupid” ideas can lead to groundbreaking discoveries.
 
 **Happy Hunting!**
-

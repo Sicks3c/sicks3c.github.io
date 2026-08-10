@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SickSec Atlas — explore independent offensive security research.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='20' fill='%237d5cff'/%3E%3Cellipse cx='32' cy='32' rx='30' ry='11' fill='none' stroke='%23c8ff62' stroke-width='3' transform='rotate(-25 32 32)'/%3E%3C/svg%3E">
+  <title>SickSec Atlas — Explore the Attack Surface</title>
+  <link rel="stylesheet" href="../shared.css"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <header>
+    <a class="logo" href="#top"><span class="logo-orbit"><i></i></span><b>SICKSEC</b><small>RESEARCH ATLAS</small></a>
+    <nav class="desktop-nav"><a href="#explore">Explore</a><a href="#signals">Signals</a><a href="#operator">Origin</a></nav>
+    <div class="header-right"><span><i></i> Atlas synchronized</span><a class="index-link" href="#signals">Open index <b>↗</b></a><button class="menu-toggle" data-target="#atlas-nav" aria-expanded="false">☰</button></div>
+    <nav id="atlas-nav" class="mobile-nav"><a href="#explore">Explore</a><a href="#signals">Signals</a><a href="#operator">Origin</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal"><span class="overline">Independent offensive security / Est. 2021</span><h1>Explore the<br>attack <em>surface.</em></h1><p>A living atlas of vulnerabilities, trust failures, and the strange edges of connected systems.</p><div class="hero-actions"><a href="#explore">Begin exploration <span>↓</span></a><button id="pulse-toggle">Pause field</button></div></div>
+      <div class="universe" aria-hidden="true">
+        <div class="planet"><div class="planet-core">S3</div><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><i class="moon m1"></i><i class="moon m2"></i><i class="moon m3"></i></div>
+        <div class="node n1"><i></i><span>OAUTH<br><b>AUTH LAYER</b></span></div><div class="node n2"><i></i><span>MCP<br><b>AI SURFACE</b></span></div><div class="node n3"><i></i><span>IDOR<br><b>ACCESS LAYER</b></span></div><div class="node n4"><i></i><span>RCE<br><b>EXECUTION</b></span></div>
+      </div>
+      <div class="coordinates"><span>25.2048° N / 55.2708° E</span><span>FIELD 04 — DEPTH 760PX</span></div>
+    </section>
+
+    <section class="signal-strip"><div><span>NEW SIGNAL DETECTED</span><b>●</b><strong>MCP OAUTH / ACCOUNT TAKEOVER</strong><i>24 JAN 2026</i><a href="#explore">TRACE SIGNAL ↗</a></div></section>
+
+    <section id="explore" class="explore shell">
+      <div class="section-heading reveal"><span>01 / FEATURED COORDINATE</span><h2>Latest<br><em>discovery.</em></h2><p>Follow the full attack chain through registration, consent, redirection, and token exchange.</p></div>
+      <a class="portal-card reveal" href="../article.html?theme=atlas&amp;slug=mcp" data-tilt>
+        <div class="portal-art"><span class="portal-ring pr1"></span><span class="portal-ring pr2"></span><span class="portal-ring pr3"></span><div class="portal-core"><span>OAUTH</span><b>→</b><span>ATO</span></div><i class="satellite s1"></i><i class="satellite s2"></i><small>LIVE TOPOLOGY / 8 NODES / 3 FAILURES</small></div>
+        <div class="portal-copy"><div class="portal-meta"><span>RESEARCH / 007</span><b>12 MIN READ</b></div><h3>Hunting account takeovers in the Wild West of MCP OAuth servers</h3><p>Misconfigured Dynamic Client Registration turns trusted AI integrations into a clean one-click account takeover path.</p><div class="attack-chain"><span>OPEN DCR</span><i>→</i><span>NO PKCE</span><i>→</i><span>TOKEN</span></div><div class="portal-footer"><span>ENTER CASE STUDY</span><b>↗</b></div></div>
+      </a>
+    </section>
+
+    <section id="signals" class="signals">
+      <div class="shell"><div class="section-heading reveal"><span>02 / SIGNAL CONSTELLATION</span><h2>Navigate by<br><em>curiosity.</em></h2><p>Each signal is a real field note, connected by technique, technology, and impact.</p></div>
+        <div class="constellation reveal">
+          <svg viewBox="0 0 1200 650" preserveAspectRatio="none" aria-hidden="true"><path d="M110 390 C260 180 370 440 520 260 S780 120 900 330 S1080 520 1140 215"/><path d="M110 390 C310 600 530 510 680 425 S960 360 1140 215"/><path d="M520 260 C550 90 820 80 900 330"/></svg>
+          <a class="signal-node node-a" href="../article.html?theme=atlas&amp;slug=facebook-oauth"><i><span>01</span></i><div><small>OAUTH · ATO</small><b>Facebook redirect<br>scheme mutation</b><em>2023 ↗</em></div></a>
+          <a class="signal-node node-b" href="../article.html?theme=atlas&amp;slug=url-shorteners"><i><span>02</span></i><div><small>RECON · TOKENS</small><b>URL shortener<br>enumeration</b><em>2025 ↗</em></div></a>
+          <a class="signal-node node-c" href="../article.html?theme=atlas&amp;slug=idor-2k"><i><span>03</span></i><div><small>IDOR · $2K</small><b>Support ticket<br>authorization</b><em>2025 ↗</em></div></a>
+          <a class="signal-node node-d" href="../article.html?theme=atlas&amp;slug=rce-mailru"><i><span>04</span></i><div><small>RCE · JDWP</small><b>From favicon<br>to shell</b><em>2021 ↗</em></div></a>
+          <a class="signal-node node-e" href="../article.html?theme=atlas&amp;slug=angular-xss"><i><span>05</span></i><div><small>XSS · ANGULAR</small><b>Framework-specific<br>injection</b><em>2021 ↗</em></div></a>
+          <div class="constellation-key"><span><i></i> Research</span><span><i></i> Writeup</span><span>Drag to explore</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="field-notes shell">
+      <div class="field-head reveal"><div><span>03 / RECENT TRANSMISSIONS</span><h2>Field notes</h2></div><a href="../article.html?theme=atlas&amp;slug=waybackurls">Continue into the archive ↗</a></div>
+      <div class="note-list">
+        <a href="../article.html?theme=atlas&amp;slug=facebook-oauth" class="note reveal"><div class="note-index"><span>006</span><i></i></div><div class="note-title"><small>RESEARCH / OAUTH</small><h3>ATO via Facebook OAuth due to an unsanitized scheme</h3></div><p>How a one-character mutation rerouted authentication tokens to a malicious mobile app.</p><span class="note-arrow">↗</span></a>
+        <a href="../article.html?theme=atlas&amp;slug=url-shorteners" class="note reveal"><div class="note-index"><span>005</span><i></i></div><div class="note-title"><small>RESEARCH / RECON</small><h3>Abusing URL shorteners for fun and profit</h3></div><p>Mining archived short links to recover private tokens and demonstrate real impact.</p><span class="note-arrow">↗</span></a>
+        <a href="../article.html?theme=atlas&amp;slug=idor-2k" class="note reveal"><div class="note-index"><span>004</span><i></i></div><div class="note-title"><small>WRITEUP / IDOR</small><h3>How I scored $2K via an easy IDOR</h3></div><p>An integer ticket reference exposed cross-account conversations and attachments.</p><span class="note-arrow">↗</span></a>
+      </div>
+    </section>
+
+    <section id="operator" class="origin">
+      <div class="origin-visual reveal"><div class="halo h1"></div><div class="halo h2"></div><img src="../../assets/images/profile.jpg" alt="SickSec"><span>ORIGIN NODE / DXB</span></div>
+      <div class="origin-copy reveal"><span>04 / ATLAS CARTOGRAPHER</span><h2>Mapped by<br><em>SickSec.</em></h2><p class="lead">Security researcher and bug hunter charting the undocumented edges of production systems.</p><p>Focused on web security, APIs, GraphQL, OAuth, mobile flows, and the trust assumptions that connect them. Every coordinate in this atlas comes from real testing and responsible disclosure.</p><div class="origin-links"><a href="https://github.com/Sicks3c">GitHub <span>↗</span></a><a href="https://twitter.com/OriginalSicksec">X / Twitter <span>↗</span></a><a href="mailto:sicksec@wearehackerone.com">Email <span>↗</span></a></div>
+        <form onsubmit="event.preventDefault();this.classList.add('submitted')"><label><small>Join the signal feed</small><input type="email" placeholder="explorer@domain.com" required></label><button>Transmit →</button></form>
+      </div>
+    </section>
+  </main>
+  <footer><a class="logo" href="#top"><span class="logo-orbit"><i></i></span><b>SICKSEC</b></a><p>Independent security research from<br>the edge of the attack surface.</p><div><span>© 2026 SICKSEC</span><a href="#top">Return to orbit ↑</a></div></footer>
+  <aside class="prototype-switcher"><span>Direction</span><a href="../01-signal/">1</a><a href="../02-editorial/">2</a><a href="../03-console/">3</a><a class="active" href="../04-atlas/">4</a></aside>
+  <script src="../shared.js"></script><script src="atlas.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SickSec — independent offensive security research and field intelligence.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23caff3e'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18'%3ES3%3C/text%3E%3C/svg%3E">
+  <title>SickSec — Field Intelligence</title>
+  <link rel="stylesheet" href="../shared.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="SickSec home"><span class="brand-mark">S/</span><span>SICKSEC</span></a>
+    <nav class="desktop-nav" aria-label="Primary"><a href="#dispatches">Dispatches</a><a href="#research">Research</a><a href="#about">Operator</a></nav>
+    <div class="header-end"><span class="clearance"><i></i> Research feed live</span><button class="search" aria-label="Search">⌕</button><button class="menu-toggle" data-target="#signal-nav" aria-label="Toggle menu" aria-expanded="false">MENU</button></div>
+    <nav id="signal-nav" class="mobile-nav"><a href="#dispatches">Dispatches</a><a href="#research">Research</a><a href="#about">Operator</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <div class="kicker"><span>Independent research unit</span><span>Dubai / Worldwide</span></div>
+        <h1>Break systems.<br><em>Share signal.</em></h1>
+        <p class="dek">Offensive security research from the edge of the attack surface. Real findings, reproducible techniques, zero filler.</p>
+        <div class="hero-actions"><a class="primary-button" href="#dispatches">Read latest intelligence <span>↘</span></a><a class="text-link" href="#about">Meet the operator →</a></div>
+      </div>
+      <div class="radar" aria-hidden="true">
+        <div class="radar-label label-one">OAUTH<br><b>AUTHORIZATION</b></div>
+        <div class="radar-label label-two">MCP<br><b>EMERGING SURFACE</b></div>
+        <div class="radar-label label-three">API<br><b>ACCESS CONTROL</b></div>
+        <span class="orbit orbit-a"></span><span class="orbit orbit-b"></span><span class="orbit orbit-c"></span>
+        <span class="sweep"></span><span class="blip b1"></span><span class="blip b2"></span><span class="blip b3"></span>
+        <div class="radar-center"><span>S3</span><small>ACTIVE NODE</small></div>
+      </div>
+      <div class="hero-index"><span>INDEX / 001</span><span>Scroll to decrypt ↓</span></div>
+    </section>
+
+    <section class="ticker" aria-label="Research topics"><div><span>ACCOUNT TAKEOVER</span><i>✦</i><span>OAUTH</span><i>✦</i><span>API SECURITY</span><i>✦</i><span>BUG BOUNTY</span><i>✦</i><span>WEB SECURITY</span><i>✦</i><span>ACCOUNT TAKEOVER</span><i>✦</i></div></section>
+
+    <section id="dispatches" class="dispatches section-shell">
+      <div class="section-heading reveal"><div><span class="section-index">01 / FIELD NOTES</span><h2>Latest intelligence</h2></div><p>Documented attack paths, exploit chains, and lessons from production systems.</p></div>
+      <a class="lead-story reveal" data-tilt href="../article.html?theme=signal&amp;slug=mcp">
+        <div class="lead-visual">
+          <div class="code-fragment"><span>POST /oauth-server/reg</span><span>{ redirect_uris: [ attacker ] }</span><span class="success">201 CLIENT REGISTERED</span></div>
+          <div class="crosshair"><i></i></div><span class="visual-stamp">CASE / MCP-01</span>
+        </div>
+        <div class="lead-content">
+          <div class="story-meta"><span class="classification">New research</span><span>12 min read</span></div>
+          <h3>Hunting account takeovers in the Wild West of MCP OAuth servers</h3>
+          <p>How open Dynamic Client Registration, missing redirect validation, and optional PKCE create a one-click path to account takeover.</p>
+          <div class="story-footer"><span>24 JAN 2026</span><span class="round-arrow">↗</span></div>
+        </div>
+      </a>
+
+      <div class="story-grid">
+        <a class="story-card reveal" href="../article.html?theme=signal&amp;slug=facebook-oauth" data-category="research">
+          <span class="card-number">02</span><div class="card-tags"><span>OAuth</span><span>ATO</span></div>
+          <h3>Facebook OAuth: stealing tokens through an unsanitized scheme</h3>
+          <p>A mobile deep-link validation flaw turned a one-character mutation into a token interception primitive.</p>
+          <div class="card-bottom"><span>01 SEP 2023 · 8 MIN</span><b>Read case ↗</b></div>
+        </a>
+        <a class="story-card reveal" href="../article.html?theme=signal&amp;slug=url-shorteners" data-category="research">
+          <span class="card-number">03</span><div class="card-tags"><span>Recon</span><span>ATO</span></div>
+          <h3>Abusing URL shorteners for fun and profit</h3>
+          <p>Turning public archives into a discovery engine for private invites, tokens, and forgotten application flows.</p>
+          <div class="card-bottom"><span>26 FEB 2025 · 6 MIN</span><b>Read case ↗</b></div>
+        </a>
+        <a class="story-card reveal" href="../article.html?theme=signal&amp;slug=idor-2k" data-category="writeup">
+          <span class="card-number">04</span><div class="card-tags"><span>IDOR</span><span>Bug bounty</span></div>
+          <h3>How I scored a $2K bounty via an easy IDOR</h3>
+          <p>A suspicious integer in a support ticket URL led to cross-account messages, files, and replies.</p>
+          <div class="card-bottom"><span>26 FEB 2025 · 5 MIN</span><b>Read case ↗</b></div>
+        </a>
+      </div>
+      <div class="all-dispatches"><a href="../article.html?theme=signal&amp;slug=rce-mailru">Continue into the archive <span>→</span></a></div>
+    </section>
+
+    <section id="research" class="manifesto">
+      <div class="manifesto-inner reveal">
+        <span class="section-index">02 / MISSION PROFILE</span>
+        <blockquote>“The interesting bugs live in the gap between <em>what a system promises</em> and what it actually enforces.”</blockquote>
+        <div class="manifesto-foot"><span>SICKSEC / OFFENSIVE SECURITY</span><p>Test assumptions. Trace trust. Make the invisible obvious.</p></div>
+      </div>
+    </section>
+
+    <section id="about" class="operator section-shell">
+      <div class="portrait-wrap reveal"><img src="../../assets/images/profile.jpg" alt="SickSec"><span class="portrait-code">OPERATOR / 0xS3</span></div>
+      <div class="operator-copy reveal"><span class="section-index">03 / THE OPERATOR</span><h2>Curiosity with<br>an adversarial edge.</h2><p>I’m SickSec—an independent security researcher and bug hunter focused on web security, APIs, GraphQL, OAuth, and whatever breaks when trust crosses a boundary.</p><div class="operator-stats"><div><b>07</b><span>Published cases</span></div><div><b>$</b><span>Real-world impact</span></div><div><b>∞</b><span>Attack surface</span></div></div><div class="socials"><a href="https://github.com/Sicks3c">GitHub ↗</a><a href="https://twitter.com/OriginalSicksec">X / Twitter ↗</a><a href="mailto:sicksec@wearehackerone.com">Email ↗</a></div></div>
+    </section>
+
+    <section class="briefing"><div><span class="section-index">PRIVATE FEED / NO SPAM</span><h2>Get the next finding<br>before the timeline does.</h2></div><form onsubmit="event.preventDefault(); this.classList.add('submitted')"><label><span>Email address</span><input type="email" placeholder="researcher@domain.com" required></label><button type="submit">Join intelligence feed <span>→</span></button><small>Only new research and field notes. Unsubscribe anytime.</small></form></section>
+  </main>
+
+  <footer><a class="brand" href="#top"><span class="brand-mark">S/</span><span>SICKSEC</span></a><span>© 2026 — Independent security research</span><a href="#top">Return to top ↑</a></footer>
+  <aside class="prototype-switcher"><span>Direction</span><a class="active" href="../01-signal/">1</a><a href="../02-editorial/">2</a><a href="../03-console/">3</a><a href="../04-atlas/">4</a></aside>
+  <script src="../shared.js"></script>
+</body>
+</html>

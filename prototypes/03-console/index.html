@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SickSec Research Operations — offensive security notes from the field.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23050806'/%3E%3Ctext x='32' y='39' text-anchor='middle' fill='%239dff80' font-family='monospace' font-weight='700' font-size='18'%3ES3%3C/text%3E%3C/svg%3E">
+  <title>SickSec // Research Operations</title>
+  <link rel="stylesheet" href="../shared.css"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <header>
+    <a class="logo" href="#top"><span>root@</span>sicksec<span>:</span>~<b>$</b></a>
+    <div class="system-status"><span><i></i> SYSTEM ONLINE</span><span>DXB / UTC+4</span><span id="clock">00:00:00</span></div>
+    <nav class="desktop-nav"><a href="#cases">/cases</a><a href="#intel">/intel</a><a href="#operator">/whoami</a></nav>
+    <button class="menu-toggle" data-target="#console-nav" aria-expanded="false">[ MENU ]</button>
+    <nav id="console-nav" class="mobile-nav"><a href="#cases">/cases</a><a href="#intel">/intel</a><a href="#operator">/whoami</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="terminal-window reveal">
+        <div class="window-bar"><span><i></i><i></i><i></i></span><b>research.sh — zsh — 132×42</b><span>PID 31337</span></div>
+        <div class="terminal-copy">
+          <div class="prompt"><span>❯</span> ./sicksec --profile offensive --output public</div>
+          <h1>Finding the bugs<br><em>between the specs.</em><span class="cursor">_</span></h1>
+          <p><span>INFO</span> Independent security research on APIs, authentication, OAuth, GraphQL, and the strange behavior nobody documented.</p>
+          <div class="commands"><a href="#cases"><span>01</span> cat latest-research.md <b>↵</b></a><a href="#operator"><span>02</span> whoami <b>↵</b></a></div>
+        </div>
+      </div>
+      <aside class="telemetry reveal">
+        <div class="telemetry-head"><span>LIVE TELEMETRY</span><i>● RECORDING</i></div>
+        <div class="radar"><span class="sweep"></span><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><b>ATTACK<br>SURFACE</b></div>
+        <div class="metrics"><div><span>CASES</span><b>007</b><small>▲ 16.6%</small></div><div><span>FOCUS</span><b>API</b><small>PRIMARY</small></div><div><span>STATUS</span><b>LIVE</b><small>NO SLEEP</small></div><div><span>SIGNAL</span><b>98%</b><small>HIGH</small></div></div>
+      </aside>
+      <div class="hero-log"><span>[2026-08-10 13:37:00] Research node initialized</span><span>Scroll for case files ↓</span></div>
+    </section>
+
+    <section class="command-bar"><span>QUICK_FILTER:</span><button class="active">all</button><button>oauth</button><button>idor</button><button>recon</button><button>rce</button><span class="result">7 OBJECTS FOUND</span></section>
+
+    <section id="cases" class="cases shell">
+      <div class="section-head reveal"><div><span>/VAR/LOG/SICKSEC</span><h2>Case files</h2></div><div class="view-controls"><button class="active">▦ GRID</button><button>☷ LIST</button></div></div>
+      <a class="featured-case reveal" href="../article.html?theme=console&amp;slug=mcp" data-tilt>
+        <div class="case-terminal">
+          <div class="code-lines"><span><i>01</i><b>POST</b> /oauth-server/reg HTTP/2</span><span><i>02</i>Host: mcp.example.app</span><span><i>03</i>Content-Type: application/json</span><span><i>04</i></span><span><i>05</i>{</span><span class="hot"><i>06</i> "redirect_uris": ["https://attacker.tld/cb"],</span><span><i>07</i> "token_endpoint_auth_method": "none"</span><span><i>08</i>}</span><span class="response"><i>09</i>HTTP/2 201 CREATED ✓</span></div>
+          <div class="exploit-map"><span>MALICIOUS CLIENT</span><i>→</i><span>TRUSTED OAUTH</span><i>→</i><span class="danger">ACCESS TOKEN</span></div>
+        </div>
+        <div class="case-copy"><div class="severity"><span>CRITICAL RESEARCH</span><b>CVSS 9.1</b></div><span class="path">CASE_007 / OAUTH / MCP</span><h3>Hunting ATO in the Wild West of MCP OAuth servers</h3><p>Open registration + arbitrary redirects + no PKCE = a clean path from one click to full account access.</p><div class="case-footer"><span>2026-01-24 · 12 MIN READ</span><b>OPEN CASE FILE ↗</b></div></div>
+      </a>
+      <div class="case-grid">
+        <a class="case-card reveal" href="../article.html?theme=console&amp;slug=facebook-oauth"><div class="case-top"><span>CASE_006</span><b class="high">HIGH</b></div><div class="ascii">┌──────────────────┐<br>│ fb://clientID<b>a</b> │<br>└────────┬─────────┘<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▼<br>&nbsp;&nbsp;&nbsp;&nbsp;[ TOKEN ]</div><div class="case-info"><span>OAUTH / MOBILE</span><h3>ATO via an unsanitized Facebook redirect scheme</h3><p>One character. One malicious app. Twenty valid reports.</p></div><div class="case-bottom">READ_REPORT()<span>↗</span></div></a>
+        <a class="case-card reveal" href="../article.html?theme=console&amp;slug=url-shorteners"><div class="case-top"><span>CASE_005</span><b class="medium">MEDIUM+</b></div><div class="ascii shortener">inst.cr/t/<b>UEJBUThINjYx</b><br><span>████████░░ 80% ENUMERATED</span><br>→ site.com/?token=<i>LEAKED</i></div><div class="case-info"><span>RECON / LOGIC</span><h3>Abusing URL shorteners for fun and profit</h3><p>Public archives make “unguessable” links surprisingly enumerable.</p></div><div class="case-bottom">READ_REPORT()<span>↗</span></div></a>
+        <a class="case-card reveal" href="../article.html?theme=console&amp;slug=idor-2k"><div class="case-top"><span>CASE_004</span><b class="high">HIGH</b></div><div class="ascii idor">GET /ticket/<b>1338</b><br><s>sign=REQUIRED</s><br><br><span>200 OK · $2,000</span></div><div class="case-info"><span>IDOR / ACCESS CONTROL</span><h3>The support ticket that paid $2K</h3><p>Cross-account messages, files, and replies through a predictable integer.</p></div><div class="case-bottom">READ_REPORT()<span>↗</span></div></a>
+      </div>
+    </section>
+
+    <section id="intel" class="intel">
+      <div class="shell"><div class="section-head reveal"><div><span>/PROC/METHODOLOGY</span><h2>Attack surface</h2></div><p>A living map of the technologies, failure modes, and trust boundaries under active research.</p></div>
+        <div class="matrix reveal"><div class="matrix-labels"><span>AUTHENTICATION</span><span>AUTHORIZATION</span><span>INPUT</span><span>INFRASTRUCTURE</span></div><div class="matrix-cells"><button style="--score:.95">OAUTH <b>95</b></button><button style="--score:.87">IDOR <b>87</b></button><button style="--score:.64">GRAPHQL <b>64</b></button><button style="--score:.58">RCE <b>58</b></button><button style="--score:.76">API <b>76</b></button><button style="--score:.69">ATO <b>69</b></button><button style="--score:.48">XSS <b>48</b></button><button style="--score:.33">RECON <b>33</b></button><button style="--score:.82">MCP <b>82</b></button><button style="--score:.52">MOBILE <b>52</b></button><button style="--score:.45">LOGIC <b>45</b></button><button style="--score:.71">TOKENS <b>71</b></button></div></div>
+      </div>
+    </section>
+
+    <section id="operator" class="operator shell">
+      <div class="profile-console reveal"><div class="window-bar"><span><i></i><i></i><i></i></span><b>whoami.txt</b><span>RW-R--R--</span></div><div class="profile-inner"><div class="profile-image"><img src="../../assets/images/profile.jpg" alt="SickSec"><div class="face-scan"></div></div><div class="profile-data"><span class="prompt">❯ whoami</span><h2>SICKSEC</h2><p><b>ROLE:</b> Security Researcher & Bug Hunter<br><b>FOCUS:</b> Web / API / GraphQL / OAuth<br><b>MODE:</b> Stay curious</p><p class="bio">Finding bugs in production, breaking APIs for fun, and publishing the chain of thought that turns odd behavior into real impact.</p><div class="links"><a href="https://github.com/Sicks3c">github --open ↗</a><a href="https://twitter.com/OriginalSicksec">twitter --follow ↗</a><a href="mailto:sicksec@wearehackerone.com">mail --compose ↗</a></div></div></div></div>
+      <div class="newsletter reveal"><span>SUBSCRIBE_TO_FEED()</span><h2>New research.<br>No noise.</h2><p>Pipe the next case file directly into your inbox.</p><form onsubmit="event.preventDefault();this.classList.add('submitted')"><label>EMAIL_ADDR=<input type="email" placeholder="you@domain.tld" required></label><button>EXECUTE ↵</button></form><small>Frequency: low · Signal: high · Unsubscribe: easy</small></div>
+    </section>
+  </main>
+  <footer><span>© 2026 SICKSEC</span><span>MADE WITH CURIOSITY + CAFFEINE</span><span>EOF<span class="cursor">_</span></span></footer>
+  <aside class="prototype-switcher"><span>Direction</span><a href="../01-signal/">1</a><a href="../02-editorial/">2</a><a class="active" href="../03-console/">3</a><a href="../04-atlas/">4</a></aside>
+  <script src="../shared.js"></script><script>const tick=()=>document.querySelector('#clock').textContent=new Date().toLocaleTimeString('en-GB',{hour12:false,timeZone:'Asia/Dubai'});tick();setInterval(tick,1000);</script>
+</body>
+</html>

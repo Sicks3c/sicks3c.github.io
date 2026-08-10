@@ -1,0 +1,21 @@
+<header class="site-header">
+  <a class="site-logo" href="{{ site.Home.RelPermalink }}" aria-label="SickSec home"><span>root@</span>sicksec<span>:</span>~<b>$</b></a>
+  <div class="system-status" aria-label="System status">
+    <span><i></i> SYSTEM ONLINE</span>
+    <span>DXB / UTC+4</span>
+    <time id="console-clock" datetime="">00:00:00</time>
+  </div>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <a href="{{ `/posts/` | relURL }}"{{ if eq .Section "posts" }} aria-current="page"{{ end }}>/writeups</a>
+    <a href="{{ `/research/` | relURL }}"{{ if eq .Section "research" }} aria-current="page"{{ end }}>/research</a>
+    <a href="{{ `/tags/` | relURL }}"{{ if eq .Kind "taxonomy" }} aria-current="page"{{ end }}>/tags</a>
+    <button class="header-search" type="button" data-open-search aria-label="Search the research archive">⌕</button>
+  </nav>
+  <button class="menu-toggle" type="button" aria-controls="mobile-navigation" aria-expanded="false">[ MENU ]</button>
+  <nav id="mobile-navigation" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="{{ `/posts/` | relURL }}">/writeups</a>
+    <a href="{{ `/research/` | relURL }}">/research</a>
+    <a href="{{ `/tags/` | relURL }}">/tags</a>
+    <button type="button" data-open-search>/search</button>
+  </nav>
+</header>

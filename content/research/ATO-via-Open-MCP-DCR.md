@@ -5,10 +5,9 @@ draft: false
 description: "How misconfigured Dynamic Client Registration in MCP OAuth servers enables one-click account takeover attacks against AI-integrated platforms"
 tags: ["bugbounty", "oauth", "mcp", "account-takeover", "AI-security", "hackerone"]
 categories: ["research"]
-cover: "https://example.com/cover-image.jpg"
+caseId: "CASE_007"
+severity: "critical"
 ---
-
-# Hunting Account Takeovers in the Wild West of MCP OAuth Servers
 
 **TL;DR:** We discovered that many MCP (Model Context Protocol) servers powering AI integrations like ChatGPT and Claude have critically misconfigured OAuth implementations. Open Dynamic Client Registration (DCR) combined with missing redirect URI validation and optional PKCE enforcement creates a perfect storm for one-click account takeover attacks.
 
@@ -67,16 +66,16 @@ sequenceDiagram
     MCP Server-->>Attacker: client_id issued
 
     Attacker->>Victim: 2. Send crafted auth link<br/>(looks legitimate)
-    
+
     Victim->>MCP Server: 3. Click link, see trusted domain
     MCP Server->>Victim: 4. Show consent page<br/>(generic "mcp.example.com")
     Victim->>MCP Server: 5. Approve access
-    
+
     MCP Server->>Attacker Server: 6. Redirect with auth code
-    
+
     Attacker Server->>MCP Server: 7. Exchange code for token<br/>(no PKCE, no client_secret)
     MCP Server-->>Attacker Server: 8. Access token + refresh token
-    
+
     Note over Attacker Server: Full account access achieved
 ```
 

@@ -1,53 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Bug Bounty Writeups on Sicksec</title>
-    <link>https://blog.sicks3c.io/posts/</link>
-    <description>Recent content in Bug Bounty Writeups on Sicksec</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2026 Sicksec</copyright>
-    <lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://blog.sicks3c.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>How I Scored 2K Bounty via an Easy IDOR</title>
-      <link>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</link>
-      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru&#xA;So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code&gt;Mail.ru Games&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;I fired up Burp&lt;/li&gt;&#xA;&lt;li&gt;Created an account&lt;/li&gt;&#xA;&lt;li&gt;Adding things in my cart&lt;/li&gt;&#xA;&lt;li&gt;Viewing the &lt;code&gt;blog&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Creating a support ticket&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Before testing anything the ticket link looked kind of suspicious since it had &lt;code&gt;/ticket/INTEGER&lt;/code&gt;&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>How I RCE&#39;d the Largest RU Company</title>
-      <link>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link>
-      <pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this writeup I will explain how I was able to find RCE in &lt;code&gt;Mail.ru&lt;/code&gt; which is considered the world largest internet company,&#xA;Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p&gt;&#xA;&lt;p&gt;I started looking with the Favicon using this &lt;a href=&#34;https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a&#34;  target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;script&lt;/a&gt;&#xA;Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>How I Scored 1K Bounty Using Waybackurls</title>
-      <link>https://blog.sicks3c.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link>
-      <pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p&gt;&#xA;&lt;p&gt;I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Tale of XSS in Angular</title>
-      <link>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</link>
-      <pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</guid>
-      <description>&lt;p&gt;&lt;figure&gt;&lt;img&#xA;    class=&#34;my-0 rounded-md&#34;&#xA;    loading=&#34;lazy&#34;&#xA;    decoding=&#34;async&#34;&#xA;    fetchpriority=&#34;low&#34;&#xA;    alt=&#34;Angular XSS Featured Image&#34;&#xA;    src=&#34;https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk&#34;&#xA;    &gt;&lt;/figure&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Hello Security Researchers and Hackers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;h2 class=&#34;relative group&#34;&gt;Tools Used&#xA;    &lt;div id=&#34;tools-used&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#tools-used&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://findomain.app/&#34;  target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;Findomain&lt;/a&gt; for subdomain monitoring&lt;/li&gt;&#xA;&lt;li&gt;Wappalyzer for technology detection&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&#xA;&lt;h2 class=&#34;relative group&#34;&gt;Discovery Process&#xA;    &lt;div id=&#34;discovery-process&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#discovery-process&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Received Telegram alert for new subdomains&lt;/p&gt;</description>
-      
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bug Bounty Writeups on Sicksec</title><link>https://blog.sicks3c.io/posts/</link><description>Recent content in Bug Bounty Writeups on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Wed, 26 Feb 2025 07:32:53 +0800</lastBuildDate><atom:link href="https://blog.sicks3c.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>How I Scored $2K via an Easy IDOR</title><link>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/posts/how-i-scored-2k-bounty-via-an-idor/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will talk how I was able to find an IDOR in one of the largest Russian Company nothing other than Mail.ru
+So approaching targets with huge scope can be frustrating sometimes since you don’t know where to start, For me I started looking in the main scope of &lt;code>Mail.ru Games&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>I fired up Burp&lt;/li>
+&lt;li>Created an account&lt;/li>
+&lt;li>Adding things in my cart&lt;/li>
+&lt;li>Viewing the &lt;code>blog&lt;/code>&lt;/li>
+&lt;li>Creating a support ticket&lt;/li>
+&lt;/ol>
+&lt;p>Before testing anything the ticket link looked kind of suspicious since it had &lt;code>/ticket/INTEGER&lt;/code>&lt;/p></description></item><item><title>How I RCE'd the Largest RU Company</title><link>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</link><pubDate>Thu, 19 Aug 2021 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/posts/how-i-got-rce-in-the-world-largest-russian-company/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I will explain how I was able to find RCE in &lt;code>Mail.ru&lt;/code> which is considered the world largest internet company,
+Before starting to hack I was wondering on how I should approach the target and what most people would miss in the program, they have a huge scope which means it should be something out there sitting for me to find&lt;/p>
+&lt;p>I started looking with the Favicon using this &lt;a href="https://gist.github.com/yehgdotnet/b9dfc618108d2f05845c4d8e28c5fc6a" target="_blank" rel="noreferrer">script&lt;/a>
+Where I replace the link with the Mail.ru favicon, once generate I go to shodan.io and search for it&lt;/p></description></item><item><title>How I Scored 1K Bounty Using Waybackurls</title><link>https://blog.sicks3c.io/posts/how-i-scored-1k-bounty-using-waybackurls/</link><pubDate>Tue, 03 Aug 2021 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/posts/how-i-scored-1k-bounty-using-waybackurls/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>In this write-up, I want to share with you a finding that I discovered in a public bug bounty program that ended up paying me 1K just using a single command on the terminal&lt;/p>
+&lt;p>I won’t be able to disclose the name of the program since the leak was huge and they are still merging all the previous algorithm they used before to a new one and the deprecated API is still reachable&lt;/p></description></item><item><title>Tale of XSS in Angular</title><link>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</link><pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate><guid>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</guid><description>&lt;p>&lt;figure class="article-figure">
+ &lt;img src="https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk" alt="Angular XSS Featured Image" loading="lazy" decoding="async">
+ &lt;figcaption>Angular XSS Featured Image&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>Hello Security Researchers and Hackers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p>
+&lt;hr>
+&lt;h2 id="tools-used">Tools Used&lt;a class="heading-anchor" href="#tools-used" aria-label="Link to Tools Used">#&lt;/a>&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://findomain.app/" target="_blank" rel="noreferrer">Findomain&lt;/a> for subdomain monitoring&lt;/li>
+&lt;li>Wappalyzer for technology detection&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="discovery-process">Discovery Process&lt;a class="heading-anchor" href="#discovery-process" aria-label="Link to Discovery Process">#&lt;/a>&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Received Telegram alert for new subdomains&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Identified Angular 1.6 using Wappalyzer&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Found reflected error parameter:&lt;/p>
+&lt;p>&lt;code>https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="exploitation">Exploitation&lt;a class="heading-anchor" href="#exploitation" aria-label="Link to Exploitation">#&lt;/a>&lt;/h2>
+&lt;p>Used payload from &lt;a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" rel="noreferrer">PayloadsAllTheThings&lt;/a>:&lt;/p></description></item></channel></rss>

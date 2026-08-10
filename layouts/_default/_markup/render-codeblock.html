@@ -1,0 +1,5 @@
+{{ $lang := .Type | default "text" }}
+<div class="code-block">
+  <div class="code-header"><span>{{ $lang }}</span><button type="button" data-copy-code>Copy</button></div>
+  {{ transform.Highlight .Inner $lang .Options }}
+</div>

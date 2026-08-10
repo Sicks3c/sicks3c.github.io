@@ -1,43 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Sicksec</title>
-    <link>https://blog.sicks3c.io/categories/research/</link>
-    <description>Recent content on Sicksec</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2026 Sicksec</copyright>
-    <lastBuildDate>Sat, 24 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.sicks3c.io/categories/research/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Hunting Account Takeovers in the Wild West of MCP OAuth Servers</title>
-      <link>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</link>
-      <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</guid>
-      <description>&lt;h1 class=&#34;relative group&#34;&gt;Hunting Account Takeovers in the Wild West of MCP OAuth Servers&#xA;    &lt;div id=&#34;hunting-account-takeovers-in-the-wild-west-of-mcp-oauth-servers&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#hunting-account-takeovers-in-the-wild-west-of-mcp-oauth-servers&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; We discovered that many MCP (Model Context Protocol) servers powering AI integrations like ChatGPT and Claude have critically misconfigured OAuth implementations. Open Dynamic Client Registration (DCR) combined with missing redirect URI validation and optional PKCE enforcement creates a perfect storm for one-click account takeover attacks.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Abusing Url Shortners for Fun and Profit</title>
-      <link>https://blog.sicks3c.io/research/abusing-url-shortners-for-fun-and-profit/</link>
-      <pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/research/abusing-url-shortners-for-fun-and-profit/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Hello Security Researchers&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?&#xA;Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p&gt;&#xA;&lt;p&gt;Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>ATO via Facebook OAuth Due Unsanitized Schema Allows to Steal OAuth Token</title>
-      <link>https://blog.sicks3c.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link>
-      <pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate>
-      
-      <guid>https://blog.sicks3c.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid>
-      <description>&lt;h1 class=&#34;relative group&#34;&gt;Deep Dive into an OAuth Exploit: A 0-Day Case Study&#xA;    &lt;div id=&#34;deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#deep-dive-into-an-oauth-exploit-a-0-day-case-study&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;Hello Everyone,&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;In our continuous hunt for novel attack vectors and security challenges, &lt;a href=&#34;https://x.com/wld_basha&#34;  target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&gt;&lt;strong&gt;mainteemoforfun&lt;/strong&gt;&lt;/a&gt; and I embarked on an in-depth exploration of &lt;strong&gt;mobile authentication mechanisms&lt;/strong&gt;. Our efforts culminated in the discovery of a striking &lt;strong&gt;0-day vulnerability&lt;/strong&gt; back in &lt;strong&gt;2023&lt;/strong&gt; that has since been patched.&lt;/p&gt;&#xA;&lt;p&gt;This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong&gt;Facebook’s “Login With Facebook”&lt;/strong&gt; feature. By manipulating the &lt;strong&gt;&lt;code&gt;redirect_uri&lt;/code&gt;&lt;/strong&gt; parameter in the &lt;strong&gt;OAuth&lt;/strong&gt; flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p&gt;</description>
-      
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sicksec</title><link>https://blog.sicks3c.io/categories/research/</link><description>Recent content on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Sat, 24 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.sicks3c.io/categories/research/index.xml" rel="self" type="application/rss+xml"/><item><title>Hunting Account Takeovers in the Wild West of MCP OAuth Servers</title><link>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</link><pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate><guid>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</guid><description>&lt;p>&lt;strong>TL;DR:&lt;/strong> We discovered that many MCP (Model Context Protocol) servers powering AI integrations like ChatGPT and Claude have critically misconfigured OAuth implementations. Open Dynamic Client Registration (DCR) combined with missing redirect URI validation and optional PKCE enforcement creates a perfect storm for one-click account takeover attacks.&lt;/p>
+&lt;hr>
+&lt;h2 id="whats-an-mcp-server-anyway">What&amp;rsquo;s an MCP Server Anyway?&lt;a class="heading-anchor" href="#whats-an-mcp-server-anyway" aria-label="Link to What’s an MCP Server Anyway?">#&lt;/a>&lt;/h2>
+&lt;p>If you&amp;rsquo;ve been following the AI ecosystem lately, you&amp;rsquo;ve probably noticed something interesting: AI assistants are getting &lt;em>connected&lt;/em>. They can now deploy your code, manage your cloud infrastructure, send emails—basically act as your digital butler.&lt;/p></description></item><item><title>Abusing URL Shorteners for Fun and Profit</title><link>https://blog.sicks3c.io/research/abusing-url-shortners-for-fun-and-profit/</link><pubDate>Wed, 26 Feb 2025 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/research/abusing-url-shortners-for-fun-and-profit/</guid><description>&lt;p>&lt;strong>Hello Security Researchers&lt;/strong>&lt;/p>
+&lt;p>Have you ever encountered a bug where it’s hard to show impact due to the lack of enumeration of a certain value of a parameter ?
+Well if yes, In this writeup I will talk about how you can find and abuse URL shortners to ATO or Information disclosure&lt;/p>
+&lt;p>Many companies use URL shortners to send private invite and passwordless logins and things along those lines and it’s really difficult to guess or to brute these but there’s always a way to do things by thinking outside the box 📦&lt;/p></description></item><item><title>Account Takeover via an Unsanitized Facebook OAuth Redirect Scheme</title><link>https://blog.sicks3c.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</link><pubDate>Fri, 01 Sep 2023 07:32:53 +0800</pubDate><guid>https://blog.sicks3c.io/research/ato-via-facebook-oauth-due-unsanitized-schema-allows-to-steal-oauth-token/</guid><description>&lt;h1 id="deep-dive-into-an-oauth-exploit-a-0-day-case-study">Deep Dive into an OAuth Exploit: A 0-Day Case Study&lt;a class="heading-anchor" href="#deep-dive-into-an-oauth-exploit-a-0-day-case-study" aria-label="Link to Deep Dive into an OAuth Exploit: A 0-Day Case Study">#&lt;/a>&lt;/h1>
+&lt;p>&lt;strong>Hello Everyone,&lt;/strong>&lt;/p>
+&lt;p>In our continuous hunt for novel attack vectors and security challenges, &lt;a href="https://x.com/wld_basha" target="_blank" rel="noreferrer">&lt;strong>mainteemoforfun&lt;/strong>&lt;/a> and I embarked on an in-depth exploration of &lt;strong>mobile authentication mechanisms&lt;/strong>. Our efforts culminated in the discovery of a striking &lt;strong>0-day vulnerability&lt;/strong> back in &lt;strong>2023&lt;/strong> that has since been patched.&lt;/p>
+&lt;p>This vulnerability enabled us to potentially hijack user sessions on websites utilizing &lt;strong>Facebook’s “Login With Facebook”&lt;/strong> feature. By manipulating the &lt;strong>&lt;code>redirect_uri&lt;/code>&lt;/strong> parameter in the &lt;strong>OAuth&lt;/strong> flow, an attacker could redirect authentication tokens to a host under their control.&lt;/p></description></item></channel></rss>

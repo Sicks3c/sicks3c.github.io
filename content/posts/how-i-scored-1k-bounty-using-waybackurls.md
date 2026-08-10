@@ -4,9 +4,11 @@ date: "2021-08-03T07:32:53+08:00"
 author: "sicks3c"
 authorTwitter: "OriginalSicksec" #do not include @
 cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*LAhS-F4FRQKXUOnj"
-tags: ["bugbounty"]
-description: "waybackurl Finding"
+tags: ["recon", "waybackurls", "token-leak", "bugbounty"]
+description: "How archived URLs exposed valid user tokens and turned one reconnaissance command into a $1K bounty."
 categories: ["finding"]
+caseId: "CASE_002"
+severity: "high"
 showFullContent: true
 readingTime: true
 hideComments: false
@@ -43,5 +45,3 @@ I tested in my own env and sent the report right away, It got paid under few day
 
 * Never say that this program has a lot of know hackers and I won’t find a thing
 * everyone has it’s unique approach to a target and you may see something that other didn’t
-
-

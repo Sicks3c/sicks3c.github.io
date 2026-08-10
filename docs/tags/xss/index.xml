@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Xss on Sicksec</title><link>https://blog.sicks3c.io/tags/xss/</link><description>Recent content in Xss on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Sun, 01 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/xss/index.xml" rel="self" type="application/rss+xml"/><item><title>Tale of XSS in Angular</title><link>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</link><pubDate>Sun, 01 Aug 2021 00:00:00 +0000</pubDate><guid>https://blog.sicks3c.io/posts/tale-of-xss-in-angular/</guid><description>&lt;p>&lt;figure class="article-figure">
+ &lt;img src="https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk" alt="Angular XSS Featured Image" loading="lazy" decoding="async">
+ &lt;figcaption>Angular XSS Featured Image&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>Hello Security Researchers and Hackers&lt;/strong>&lt;/p>
+&lt;p>In this writeup I explain how I found 2 rXSS vulnerabilities in Angular using automation.&lt;/p>
+&lt;hr>
+&lt;h2 id="tools-used">Tools Used&lt;a class="heading-anchor" href="#tools-used" aria-label="Link to Tools Used">#&lt;/a>&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://findomain.app/" target="_blank" rel="noreferrer">Findomain&lt;/a> for subdomain monitoring&lt;/li>
+&lt;li>Wappalyzer for technology detection&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="discovery-process">Discovery Process&lt;a class="heading-anchor" href="#discovery-process" aria-label="Link to Discovery Process">#&lt;/a>&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>Received Telegram alert for new subdomains&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Identified Angular 1.6 using Wappalyzer&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Found reflected error parameter:&lt;/p>
+&lt;p>&lt;code>https://redacted.com/Home/Error?error=USER_NOT_AUTHORIZED&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h2 id="exploitation">Exploitation&lt;a class="heading-anchor" href="#exploitation" aria-label="Link to Exploitation">#&lt;/a>&lt;/h2>
+&lt;p>Used payload from &lt;a href="https://github.com/swisskyrepo/PayloadsAllTheThings" target="_blank" rel="noreferrer">PayloadsAllTheThings&lt;/a>:&lt;/p></description></item></channel></rss>

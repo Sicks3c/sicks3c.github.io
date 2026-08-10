@@ -2,7 +2,13 @@
 title: "Tale of XSS in Angular"
 date: 2021-08-01T00:00:00Z
 draft: false
+author: "sicks3c"
+authorTwitter: "OriginalSicksec"
+description: "Finding two reflected XSS vulnerabilities in an Angular application through automated subdomain monitoring and framework-aware testing."
+tags: ["xss", "angular", "automation"]
 categories: ["finding"]
+caseId: "CASE_001"
+severity: "medium"
 ---
 
 ![Angular XSS Featured Image](https://cdn-images-1.medium.com/max/800/0*67LG7dce-XrL1Pdk)

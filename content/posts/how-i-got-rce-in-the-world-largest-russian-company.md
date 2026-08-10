@@ -4,9 +4,11 @@ date: "2021-08-19T07:32:53+08:00"
 author: "sicks3c"
 authorTwitter: "OriginalSicksec" #do not include @
 cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*6I1qONtwJ1kgELMI"
-tags: ["bugbounty", "rce"]
-description: ""
+tags: ["rce", "jdwp", "recon", "bugbounty"]
+description: "How favicon reconnaissance and an exposed Java Debug Wire Protocol service led to remote code execution."
 categories: ["finding"]
+caseId: "CASE_003"
+severity: "high"
 showFullContent: true
 readingTime: true
 hideComments: false

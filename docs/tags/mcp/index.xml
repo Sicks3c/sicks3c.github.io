@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Mcp on Sicksec</title>
-    <link>https://blog.sicks3c.io/tags/mcp/</link>
-    <description>Recent content in Mcp on Sicksec</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <copyright>© 2026 Sicksec</copyright>
-    <lastBuildDate>Sat, 24 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/mcp/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Hunting Account Takeovers in the Wild West of MCP OAuth Servers</title>
-      <link>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</link>
-      <pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</guid>
-      <description>&lt;h1 class=&#34;relative group&#34;&gt;Hunting Account Takeovers in the Wild West of MCP OAuth Servers&#xA;    &lt;div id=&#34;hunting-account-takeovers-in-the-wild-west-of-mcp-oauth-servers&#34; class=&#34;anchor&#34;&gt;&lt;/div&gt;&#xA;    &#xA;    &lt;span&#xA;        class=&#34;absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none&#34;&gt;&#xA;        &lt;a class=&#34;text-primary-300 dark:text-neutral-700 !no-underline&#34; href=&#34;#hunting-account-takeovers-in-the-wild-west-of-mcp-oauth-servers&#34; aria-label=&#34;Anchor&#34;&gt;#&lt;/a&gt;&#xA;    &lt;/span&gt;&#xA;    &#xA;&lt;/h1&gt;&#xA;&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; We discovered that many MCP (Model Context Protocol) servers powering AI integrations like ChatGPT and Claude have critically misconfigured OAuth implementations. Open Dynamic Client Registration (DCR) combined with missing redirect URI validation and optional PKCE enforcement creates a perfect storm for one-click account takeover attacks.&lt;/p&gt;</description>
-      
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mcp on Sicksec</title><link>https://blog.sicks3c.io/tags/mcp/</link><description>Recent content in Mcp on Sicksec</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>© 2026 Sicksec</copyright><lastBuildDate>Sat, 24 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.sicks3c.io/tags/mcp/index.xml" rel="self" type="application/rss+xml"/><item><title>Hunting Account Takeovers in the Wild West of MCP OAuth Servers</title><link>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</link><pubDate>Sat, 24 Jan 2026 00:00:00 +0000</pubDate><guid>https://blog.sicks3c.io/research/ato-via-open-mcp-dcr/</guid><description>&lt;p>&lt;strong>TL;DR:&lt;/strong> We discovered that many MCP (Model Context Protocol) servers powering AI integrations like ChatGPT and Claude have critically misconfigured OAuth implementations. Open Dynamic Client Registration (DCR) combined with missing redirect URI validation and optional PKCE enforcement creates a perfect storm for one-click account takeover attacks.&lt;/p>
+&lt;hr>
+&lt;h2 id="whats-an-mcp-server-anyway">What&amp;rsquo;s an MCP Server Anyway?&lt;a class="heading-anchor" href="#whats-an-mcp-server-anyway" aria-label="Link to What’s an MCP Server Anyway?">#&lt;/a>&lt;/h2>
+&lt;p>If you&amp;rsquo;ve been following the AI ecosystem lately, you&amp;rsquo;ve probably noticed something interesting: AI assistants are getting &lt;em>connected&lt;/em>. They can now deploy your code, manage your cloud infrastructure, send emails—basically act as your digital butler.&lt;/p></description></item></channel></rss>

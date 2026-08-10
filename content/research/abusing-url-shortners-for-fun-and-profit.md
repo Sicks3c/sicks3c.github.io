@@ -1,12 +1,14 @@
 ---
-title: "Abusing Url Shortners for Fun and Profit"
+title: "Abusing URL Shorteners for Fun and Profit"
 date: "2025-02-26T07:32:53+08:00"
 author: "sicks3c"
 authorTwitter: "OriginalSicksec" #do not include @
 cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/0*EfOdlUz3Y7H7EHn6"
-tags: ["bugbounty"]
-description: ""
+tags: ["recon", "ato", "token-leak", "bugbounty"]
+description: "Mining archived short links to recover private invitations, tokens, and forgotten application flows."
 categories: ["research"]
+caseId: "CASE_005"
+severity: "high"
 showFullContent: true
 readingTime: true
 hideComments: false

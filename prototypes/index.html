@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Four design directions for the next SickSec security research blog.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23dcff36'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18'%3ES3%3C/text%3E%3C/svg%3E">
+  <title>SickSec — Redesign Direction Lab</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root { color-scheme: dark; --ink: #f4f4ec; --muted: #999b98; --acid: #dcff36; --line: rgba(255,255,255,.12); }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #090a0b; font-family: Manrope, sans-serif; }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .32; background-image: linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.026) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+    .shell { width: min(1440px, calc(100% - 48px)); margin: auto; }
+    header { display: flex; justify-content: space-between; align-items: center; height: 90px; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -.04em; }
+    .mark { display: grid; place-items: center; width: 34px; height: 34px; color: #090a0b; background: var(--acid); border-radius: 50%; font: 500 12px DM Mono, monospace; }
+    .status { display: flex; gap: 10px; align-items: center; color: var(--muted); font: 500 11px DM Mono, monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--acid); box-shadow: 0 0 14px var(--acid); }
+    .intro { display: grid; grid-template-columns: 1.25fr .75fr; gap: 8vw; align-items: end; padding: 100px 0 76px; }
+    .eyebrow { color: var(--acid); font: 500 11px DM Mono, monospace; letter-spacing: .15em; text-transform: uppercase; }
+    h1 { max-width: 900px; margin: 20px 0 0; font-size: clamp(54px, 8.2vw, 132px); font-weight: 600; line-height: .86; letter-spacing: -.075em; }
+    h1 em { color: var(--muted); font-style: normal; }
+    .intro p { max-width: 470px; margin: 0; color: #b8bab5; font-size: 17px; line-height: 1.65; }
+    .instructions { margin-top: 28px; color: #777a75; font: 12px DM Mono, monospace; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 70px; }
+    .card { position: relative; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: #111315; text-decoration: none; transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: border-color .25s, transform .15s; }
+    .card:hover { border-color: rgba(255,255,255,.35); }
+    .card::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.14), transparent 35%); transition: opacity .3s; }
+    .card:hover::after { opacity: 1; }
+    .preview { position: relative; height: 340px; margin: 10px; overflow: hidden; border-radius: 2px; }
+    .p1 { background: #080c10; }
+    .p1::before { content:"SICKSEC\A FIELD INTELLIGENCE"; white-space: pre; position:absolute; inset:30px 0 auto 35px; color:#f3f0e9; font: 700 36px/.9 Manrope; letter-spacing:-.06em; }
+    .p1 i { position:absolute; width:190px; height:190px; right:7%; top:45px; border:1px solid #c8ff35; border-radius:50%; box-shadow:0 0 80px rgba(200,255,53,.2); }
+    .p1 i::after { content:"01"; position:absolute; inset:50% auto auto 50%; color:#c8ff35; font:12px DM Mono; transform:translate(-50%,-50%); }
+    .p1 span { position:absolute; left:35px; right:35px; bottom:26px; height:92px; border-top:1px solid #3c4449; border-bottom:1px solid #3c4449; }
+    .p2 { color:#1a1c19; background:#efeee7; }
+    .p2::before { content:"THE\A OFFENSIVE\A JOURNAL"; white-space:pre; position:absolute; inset:32px auto auto 35px; font: 500 52px/.78 Georgia; letter-spacing:-.06em; }
+    .p2::after { content:"ISSUE 07 / OAUTH / MCP / IDOR"; position:absolute; left:35px; bottom:28px; font:500 10px DM Mono; letter-spacing:.12em; }
+    .p2 i { position:absolute; right:6%; bottom:24px; width:42%; height:72%; background:linear-gradient(145deg,#ff4d24,#7d160d); clip-path:polygon(20% 0,100% 10%,82% 100%,0 79%); }
+    .p3 { background:#050706; }
+    .p3::before { content:"root@sicksec:~ $ ./research --live"; position:absolute; top:31px; left:32px; color:#9eff86; font:14px DM Mono; }
+    .p3::after { content:"TARGET INTEL\A\A 07  ACTIVE CASES\A 04  CRITICAL CHAINS\A 31  PUBLISHED NOTES"; white-space:pre; position:absolute; top:89px; left:32px; color:#d7e0d3; font:500 18px/1.7 DM Mono; }
+    .p3 i { position:absolute; inset:auto 28px 28px auto; width:180px; height:180px; border:1px solid #315339; background:repeating-radial-gradient(circle,#9eff86 0 1px,transparent 1px 20px); border-radius:50%; }
+    .p4 { background: radial-gradient(circle at 60% 45%, #342088, #0b0c1b 43%, #060711 75%); }
+    .p4::before { content:"EXPLORE THE\A ATTACK SURFACE"; white-space:pre; position:absolute; left:34px; bottom:28px; z-index:2; color:white; font:600 38px/.95 Manrope; letter-spacing:-.06em; }
+    .p4 i, .p4 i::before, .p4 i::after { position:absolute; border:1px solid rgba(167,187,255,.5); border-radius:50%; content:""; }
+    .p4 i { width:220px; height:220px; right:10%; top:35px; }
+    .p4 i::before { inset:28px; border-color:#b8ff5d; transform:rotate(25deg); }
+    .p4 i::after { inset:68px; background:#ffffff; box-shadow:0 0 70px #855dff; }
+    .meta { position: absolute; inset: auto 0 0; height:160px; display:flex; justify-content:space-between; align-items:flex-end; gap:20px; padding:25px 28px; background:#111315; border-top:1px solid var(--line); }
+    .number { color:#747772; font:11px DM Mono, monospace; }
+    h2 { margin:7px 0 0; font-size:25px; line-height:1; letter-spacing:-.045em; }
+    .meta p { max-width:280px; margin:0; color:#8e918c; font-size:13px; line-height:1.5; }
+    .arrow { display:grid; flex:0 0 42px; height:42px; place-items:center; border:1px solid var(--line); border-radius:50%; font-size:19px; }
+    footer { display:flex; justify-content:space-between; padding:30px 0 50px; color:#747772; border-top:1px solid var(--line); font:11px DM Mono, monospace; text-transform:uppercase; letter-spacing:.1em; }
+    @media(max-width:900px) { .intro{grid-template-columns:1fr; padding-top:70px}.grid{grid-template-columns:1fr}.card{min-height:480px}.intro p{margin-top:10px} }
+    @media(max-width:560px) { .shell{width:min(100% - 24px,1440px)}header{height:70px}.status{font-size:9px}.intro{padding:60px 0 45px}h1{font-size:54px}.card{min-height:450px}.preview{height:285px}.meta{height:155px;padding:22px}.meta p{display:none}footer{gap:20px;line-height:1.5} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header><div class="brand"><span class="mark">S3</span> SickSec / Design Lab</div><div class="status">Four live directions</div></header>
+    <main>
+      <section class="intro">
+        <div><span class="eyebrow">Redesign study / 2026</span><h1>Less blog.<br><em>More signal.</em></h1></div>
+        <div><p>Four distinct futures for SickSec: each designed around real research, field notes, bug bounty writeups, and the personality behind the work.</p><div class="instructions">Open a direction · use keys 1—4 to switch</div></div>
+      </section>
+      <section class="grid">
+        <a class="card" data-tilt href="01-signal/"><div class="preview p1"><i></i><span></span></div><div class="meta"><div><span class="number">DIRECTION 01</span><h2>Signal / Intelligence brief</h2></div><p>Cinematic, sharp, evidence-first. A security publication with confidence.</p><span class="arrow">↗</span></div></a>
+        <a class="card" data-tilt href="02-editorial/"><div class="preview p2"><i></i></div><div class="meta"><div><span class="number">DIRECTION 02</span><h2>Offensive / Editorial journal</h2></div><p>Warm, timeless, and unexpectedly premium. Long-form reading wins.</p><span class="arrow">↗</span></div></a>
+        <a class="card" data-tilt href="03-console/"><div class="preview p3"><i></i></div><div class="meta"><div><span class="number">DIRECTION 03</span><h2>Console / Research operations</h2></div><p>Dense, functional, and alive. Built for practitioners who want the details.</p><span class="arrow">↗</span></div></a>
+        <a class="card" data-tilt href="04-atlas/"><div class="preview p4"><i></i></div><div class="meta"><div><span class="number">DIRECTION 04</span><h2>Atlas / Immersive discovery</h2></div><p>Atmospheric, spatial, and memorable. Research becomes an explorable world.</p><span class="arrow">↗</span></div></a>
+      </section>
+    </main>
+    <footer><span>SickSec design exploration</span><span>Built around real articles · Desktop + mobile</span></footer>
+  </div>
+  <script src="shared.js"></script>
+</body>
+</html>

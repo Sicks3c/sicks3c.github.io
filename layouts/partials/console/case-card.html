@@ -1,0 +1,41 @@
+{{ $page := .page }}
+{{ $featured := .featured | default false }}
+{{ $caseID := $page.Params.caseId | default "CASE_FILE" }}
+{{ $severity := $page.Params.severity | default "research" }}
+{{ $description := $page.Description | default $page.Summary | plainify | truncate 170 }}
+{{ if $featured }}
+<a class="featured-case reveal" href="{{ $page.RelPermalink }}" data-tilt>
+  <div class="case-terminal" aria-hidden="true">
+    <div class="code-lines">
+      <span><i>01</i><b>GET</b> {{ $page.RelPermalink }} HTTP/2</span>
+      <span><i>02</i>Host: blog.sicks3c.io</span>
+      <span><i>03</i>X-Research-Type: {{ upper $page.Section }}</span>
+      <span><i>04</i>X-Case-ID: {{ $caseID }}</span>
+      <span><i>05</i></span>
+      <span class="hot"><i>06</i>finding = "{{ $page.Title | truncate 48 }}"</span>
+      <span><i>07</i>severity = "{{ $severity }}"</span>
+      <span class="response"><i>08</i>HTTP/2 200 RESEARCH_READY ✓</span>
+    </div>
+    <div class="exploit-map"><span>OBSERVE</span><i>→</i><span>VALIDATE</span><i>→</i><span class="danger">IMPACT</span></div>
+  </div>
+  <div class="case-copy">
+    <div class="severity"><span>{{ upper $severity }} {{ upper $page.Section }}</span><b>{{ $caseID }}</b></div>
+    <span class="path">{{ $caseID }} / {{ upper $page.Section }} / {{ with $page.Params.tags }}{{ upper (index . 0) }}{{ else }}FIELD NOTE{{ end }}</span>
+    <h3>{{ $page.Title }}</h3>
+    <p>{{ $description }}</p>
+    <div class="case-footer"><span>{{ $page.Date.Format "2006-01-02" }} · {{ $page.ReadingTime }} MIN READ</span><b>OPEN CASE FILE ↗</b></div>
+  </div>
+</a>
+{{ else }}
+<a class="case-card reveal" href="{{ $page.RelPermalink }}" data-category="{{ $page.Section }}">
+  <div class="case-top"><span>{{ $caseID }}</span><b class="severity-{{ lower $severity }}">{{ upper $severity }}</b></div>
+  <div class="case-visual" aria-hidden="true">
+    <span class="visual-command">./trace --case {{ $caseID }}</span>
+    <strong>{{ with index $page.Params.tags 0 }}{{ upper . }}{{ else }}{{ upper $page.Section }}{{ end }}</strong>
+    <div><i></i><i></i><i></i><i></i><i></i></div>
+    <small>████████░░ SIGNAL ACQUIRED</small>
+  </div>
+  <div class="case-info"><span>{{ upper $page.Section }}{{ with $page.Params.tags }} / {{ upper (index . 0) }}{{ end }}</span><h3>{{ $page.Title }}</h3><p>{{ $description }}</p></div>
+  <div class="case-bottom"><span>{{ $page.Date.Format "2006-01-02" }} · {{ $page.ReadingTime }} MIN</span><b>READ_REPORT() ↗</b></div>
+</a>
+{{ end }}

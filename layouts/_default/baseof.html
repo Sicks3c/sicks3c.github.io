@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default `en` }}" class="no-js">
+  <head>
+    {{ partial "console/head.html" . }}
+  </head>
+  <body id="top" class="site-body kind-{{ .Kind }} section-{{ .Section | default `home` }}">
+    <script>document.documentElement.classList.remove('no-js');</script>
+    <div class="scanlines" aria-hidden="true"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {{ partial "console/header.html" . }}
+    <main id="main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "console/footer.html" . }}
+    {{ partial "console/search.html" . }}
+    {{ $script := resources.Get "js/console-site.js" | minify | fingerprint }}
+    <script defer src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  </body>
+</html>

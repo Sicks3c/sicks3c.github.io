@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{ $caseID := .Params.caseId | default "CASE_FILE" }}
+{{ $severity := .Params.severity | default "research" }}
+{{ $profile := resources.Get "images/profile.jpg" }}
+<div class="reading-progress" aria-hidden="true"><span></span></div>
+<article class="article-page">
+  <header class="article-hero">
+    <div class="hero-radar" aria-hidden="true"><span></span><i></i><b></b></div>
+    <nav class="article-breadcrumb" aria-label="Breadcrumb"><a href="{{ site.Home.RelPermalink }}">~</a><span>/</span><a href="{{ printf `/%s/` .Section | relURL }}">{{ .Section }}</a><span>/</span><span>{{ $caseID }}</span></nav>
+    <div class="article-heading">
+      <div class="article-classification"><span>{{ upper $severity }} {{ upper .Section }}</span><i></i><time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "02 January 2006" }}</time></div>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Description | default .Summary | plainify }}</p>
+      <div class="article-tags">{{ range .Params.tags }}<a href="{{ printf `/tags/%s/` (. | urlize) | relURL }}">{{ . }}</a>{{ end }}</div>
+    </div>
+    <div class="hero-data"><div><small>Reading time</small><b>{{ .ReadingTime }} min</b></div><div><small>Word count</small><b>{{ .WordCount }}</b></div><div><small>Case file</small><b>{{ $caseID }}</b></div></div>
+  </header>
+
+  <div class="article-layout">
+    <aside class="article-rail">
+      <div class="rail-sticky"><span>Filed under</span><b>{{ humanize .Section }}</b><span>Published</span><b>{{ .Date.Format "02 Jan 2006" }}</b>{{ if ne .Lastmod .Date }}<span>Updated</span><b>{{ .Lastmod.Format "02 Jan 2006" }}</b>{{ end }}<span>Share case</span><div class="share-links"><a href="https://twitter.com/intent/tweet?url={{ .Permalink | urlquery }}&amp;text={{ .Title | urlquery }}" aria-label="Share on X">X</a><a href="https://www.linkedin.com/sharing/share-offsite/?url={{ .Permalink | urlquery }}" aria-label="Share on LinkedIn">in</a><button type="button" data-copy-url aria-label="Copy article URL">⌁</button></div><a class="back-to-index" href="{{ printf `/%s/` .Section | relURL }}">← {{ .Section }} index</a></div>
+    </aside>
+    <div class="article-content">{{ .Content }}</div>
+    <aside class="toc-rail">
+      <div class="toc-sticky"><span>On this page</span>{{ if .TableOfContents }}{{ .TableOfContents }}{{ else }}<p>No indexed sections.</p>{{ end }}<a href="#top" class="to-top">Back to top ↑</a></div>
+    </aside>
+  </div>
+
+  <section class="author-card shell-narrow">
+    <div class="author-image"><img src="{{ $profile.RelPermalink }}" alt="SickSec" width="{{ $profile.Width }}" height="{{ $profile.Height }}"><span>S3</span></div>
+    <div><span>ABOUT_THE_RESEARCHER()</span><h2>SickSec</h2><p>Security researcher and bug hunter focused on web security, APIs, GraphQL, OAuth, mobile flows, and the trust assumptions connecting them.</p><nav><a href="https://github.com/Sicks3c">GitHub ↗</a><a href="https://twitter.com/OriginalSicksec">X / Twitter ↗</a><a href="mailto:sicksec@wearehackerone.com">Email ↗</a></nav></div>
+  </section>
+
+  {{ $related := site.RegularPages.Related . | first 3 }}
+  {{ if lt (len $related) 3 }}{{ $related = where site.RegularPages "RelPermalink" "ne" .RelPermalink | first 3 }}{{ end }}
+  <section class="related-section">
+    <div class="related-head"><span>CONTINUE_EXECUTION()</span><h2>Related signals</h2></div>
+    <div class="related-grid">{{ range $related }}<a href="{{ .RelPermalink }}"><span>{{ .Params.caseId | default (upper .Section) }} / {{ upper .Section }}</span><h3>{{ .Title }}</h3><p>{{ .Description | default .Summary | plainify | truncate 120 }}</p><b>READ CASE ↗</b></a>{{ end }}</div>
+  </section>
+</article>
+{{ end }}

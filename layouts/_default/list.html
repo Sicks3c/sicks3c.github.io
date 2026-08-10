@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="listing-hero">
+  <div class="listing-path"><a href="{{ site.Home.RelPermalink }}">~</a><span>/</span><span>{{ .Section | default .Title | lower }}</span></div>
+  <div><span class="eyebrow">DIRECTORY_INDEX()</span><h1>{{ .Title }}</h1><p>{{ .Description | default "Browse published security research and field notes from the SickSec archive." }}</p></div>
+  <div class="listing-stat"><span>OBJECTS</span><b>{{ printf "%03d" (len .Pages) }}</b><small>SORTED BY DATE ↓</small></div>
+</section>
+<div class="command-bar listing-command" data-filter-scope><span>FILTER:</span><button class="active" type="button" data-filter="all">all</button><button type="button" data-filter="research">research</button><button type="button" data-filter="posts">writeups</button><button type="button" data-open-search>search</button><span class="result">{{ len .Pages }} MATCHES</span></div>
+<section class="listing-content shell">
+  <div class="section-head"><div><span>/{{ upper (.Section | default "INDEX") }}</span><h2>Published files</h2></div><p>Real findings, reproducible techniques, and lessons from production systems.</p></div>
+  <div class="case-grid listing-grid">
+    {{ range .Pages.ByDate.Reverse }}{{ partial "console/case-card.html" (dict "page" .) }}{{ end }}
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,58 @@
+{{ define "main" }}
+{{ $allPages := where site.RegularPages "Section" "in" (slice "posts" "research") }}
+{{ $ordered := $allPages.ByDate.Reverse }}
+{{ $featured := index $ordered 0 }}
+{{ $profile := resources.Get "images/profile.jpg" }}
+<section class="home-hero">
+  <div class="terminal-window reveal">
+    <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><b>research.sh — zsh — 132×42</b><span>PID 31337</span></div>
+    <div class="terminal-copy">
+      <div class="prompt"><span>❯</span> ./sicksec --profile offensive --output public</div>
+      <h1>Finding the bugs<br><em>between the specs.</em><span class="cursor">_</span></h1>
+      <p><span>INFO</span> Independent security research on APIs, authentication, OAuth, GraphQL, and the strange behavior nobody documented.</p>
+      <div class="commands"><a href="#cases"><span>01</span> cat latest-research.md <b>↵</b></a><a href="#operator"><span>02</span> whoami <b>↵</b></a></div>
+    </div>
+  </div>
+  <aside class="telemetry reveal">
+    <div class="telemetry-head"><span>LIVE TELEMETRY</span><i>● RECORDING</i></div>
+    <div class="radar" aria-hidden="true"><span class="radar-sweep"></span><i class="radar-dot d1"></i><i class="radar-dot d2"></i><i class="radar-dot d3"></i><b>ATTACK<br>SURFACE</b></div>
+    <div class="metrics"><div><span>CASES</span><b>{{ printf "%03d" (len $allPages) }}</b><small>ARCHIVED</small></div><div><span>FOCUS</span><b>API</b><small>PRIMARY</small></div><div><span>STATUS</span><b>LIVE</b><small>NO SLEEP</small></div><div><span>SIGNAL</span><b>98%</b><small>HIGH</small></div></div>
+  </aside>
+  <div class="hero-log"><span>[{{ now.Format "2006-01-02 15:04:05" }}] Research node initialized</span><span>Scroll for case files ↓</span></div>
+</section>
+
+<div class="command-bar" data-filter-scope><span>QUICK_FILTER:</span><button class="active" type="button" data-filter="all">all</button><button type="button" data-filter="research">research</button><button type="button" data-filter="posts">writeups</button><a href="{{ `/tags/` | relURL }}">tags</a><span class="result">{{ len $allPages }} OBJECTS FOUND</span></div>
+
+<section id="cases" class="cases shell">
+  <div class="section-head reveal"><div><span>/VAR/LOG/SICKSEC</span><h2>Case files</h2></div><div class="view-controls"><button class="active" type="button" data-view="grid">▦ GRID</button><button type="button" data-view="list">☷ LIST</button></div></div>
+  {{ partial "console/case-card.html" (dict "page" $featured "featured" true) }}
+  <div class="case-grid" id="case-grid">
+    {{ range after 1 $ordered }}
+      {{ partial "console/case-card.html" (dict "page" .) }}
+    {{ end }}
+  </div>
+  <div class="archive-actions"><a href="{{ `/research/` | relURL }}">Browse research <span>→</span></a><a href="{{ `/posts/` | relURL }}">Browse writeups <span>→</span></a></div>
+</section>
+
+<section class="intel-section">
+  <div class="shell">
+    <div class="section-head reveal"><div><span>/PROC/METHODOLOGY</span><h2>Attack surface</h2></div><p>A living map of technologies, failure modes, and trust boundaries under active research.</p></div>
+    <div class="matrix reveal">
+      <div class="matrix-labels"><span>AUTHENTICATION</span><span>AUTHORIZATION</span><span>INPUT</span><span>INFRASTRUCTURE</span></div>
+      <div class="matrix-cells">
+        {{ range (slice (dict "name" "OAUTH" "score" 95) (dict "name" "IDOR" "score" 87) (dict "name" "GRAPHQL" "score" 64) (dict "name" "RCE" "score" 58) (dict "name" "API" "score" 76) (dict "name" "ATO" "score" 69) (dict "name" "XSS" "score" 48) (dict "name" "RECON" "score" 53) (dict "name" "MCP" "score" 82) (dict "name" "MOBILE" "score" 52) (dict "name" "LOGIC" "score" 45) (dict "name" "TOKENS" "score" 71)) }}
+        <a href="{{ `/tags/` | relURL }}" style="--score:{{ .score }}%"><span>{{ .name }}</span><b>{{ .score }}</b></a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="operator" class="operator-section shell">
+  <div class="profile-console reveal">
+    <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><b>whoami.txt</b><span>RW-R--R--</span></div>
+    <div class="profile-inner"><div class="profile-image"><img src="{{ $profile.RelPermalink }}" alt="SickSec" width="{{ $profile.Width }}" height="{{ $profile.Height }}"><div class="face-scan" aria-hidden="true"></div></div><div class="profile-data"><span class="prompt">❯ whoami</span><h2>SICKSEC</h2><p><b>ROLE:</b> Security Researcher &amp; Bug Hunter<br><b>FOCUS:</b> Web / API / GraphQL / OAuth<br><b>MODE:</b> Stay curious</p><p class="bio">Finding bugs in production, breaking APIs for fun, and publishing the path that turns odd behavior into real impact.</p><div class="profile-links"><a href="https://github.com/Sicks3c">github --open ↗</a><a href="https://twitter.com/OriginalSicksec">twitter --follow ↗</a><a href="mailto:sicksec@wearehackerone.com">mail --compose ↗</a></div></div></div>
+  </div>
+  <div class="newsletter reveal"><span>SUBSCRIBE_TO_FEED()</span><h2>New research.<br>No noise.</h2><p>Follow the RSS feed or connect directly for the next case file.</p><div class="newsletter-actions"><a href="{{ `/index.xml` | relURL }}">OPEN RSS FEED ↵</a><a href="https://twitter.com/OriginalSicksec">FOLLOW UPDATES ↗</a></div><small>Frequency: low · Signal: high · Tracking: none</small></div>
+</section>
+{{ end }}

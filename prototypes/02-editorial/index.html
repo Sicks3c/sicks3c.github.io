@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="The Offensive Journal by SickSec — independent security stories and research.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23f04b2d'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='serif' font-weight='700' font-size='18'%3ES3%3C/text%3E%3C/svg%3E">
+  <title>The Offensive Journal — SickSec</title>
+  <link rel="stylesheet" href="../shared.css"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="edition-bar"><span>THE OFFENSIVE JOURNAL</span><span>ISSUE NO. 07</span><span>DUBAI · 10 AUGUST 2026</span></div>
+  <header>
+    <button class="menu-toggle" data-target="#editorial-nav" aria-expanded="false">Menu</button>
+    <a class="masthead" href="#top">Sick<span>Sec</span></a>
+    <nav id="editorial-nav" class="mobile-nav"><a href="#stories">Stories</a><a href="#research">Research</a><a href="#archive">Archive</a><a href="#about">About</a></nav>
+    <a class="subscribe-link" href="#subscribe">Subscribe <i>↗</i></a>
+  </header>
+
+  <main>
+    <section class="cover">
+      <div class="cover-kicker"><span>Security, systems & the people who break them</span><span>Independent since 2021</span></div>
+      <div class="cover-grid">
+        <div class="cover-copy reveal"><span class="rubric">Cover story / AI Security</span><h1>The wild<br>west of<br><em>MCP.</em></h1><p>Inside the OAuth configuration mistakes turning AI integrations into one-click account takeover machines.</p><a href="../article.html?theme=editorial&amp;slug=mcp">Read the cover story <span>→</span></a></div>
+        <div class="cover-art reveal" aria-label="Abstract red sculptural illustration"><span class="disc d1"></span><span class="disc d2"></span><span class="disc d3"></span><span class="disc d4"></span><span class="glint"></span><div class="art-caption">Fig. 01<br>Trust boundary under pressure</div></div>
+        <aside class="cover-notes reveal"><div><span>Also in this issue</span><h2>The one-character OAuth flaw</h2><a href="../article.html?theme=editorial&amp;slug=facebook-oauth">Read story →</a></div><div><span>Field note</span><h2>How a support ticket became a $2K IDOR</h2><a href="../article.html?theme=editorial&amp;slug=idor-2k">Read story →</a></div><blockquote>“The best recon tool is still a good question.”</blockquote></aside>
+      </div>
+    </section>
+
+    <section class="marquee"><div><span>OAUTH</span><i>◆</i><span>WEB SECURITY</span><i>◆</i><span>API RESEARCH</span><i>◆</i><span>BUG BOUNTY</span><i>◆</i><span>OAUTH</span><i>◆</i><span>WEB SECURITY</span></div></section>
+
+    <section id="stories" class="stories page-shell">
+      <div class="section-title reveal"><span>01</span><h2>Stories worth<br><em>staying curious for.</em></h2><p>Practical security research, told with enough context to teach—not just impress.</p></div>
+      <article class="feature-row reveal">
+        <div class="feature-figure"><span class="giant-type">ATO</span><div class="figure-line"></div><small>Attack / Token / Ownership</small></div>
+        <div class="feature-copy"><div class="article-meta"><span>Research</span><span>8 minute read</span></div><h3>Facebook OAuth and the unsanitized scheme</h3><p>By appending a single character to a mobile redirect scheme, we rerouted authentication tokens to an app under our control—and opened a repeatable path to account takeover.</p><a href="../article.html?theme=editorial&amp;slug=facebook-oauth">Continue reading <i>↗</i></a></div>
+        <div class="feature-number">08</div>
+      </article>
+
+      <div class="article-grid">
+        <article class="article-card reveal"><div class="card-art orange"><span>/12345</span><span>/A2B4C</span><span>/TOKEN</span></div><div class="article-meta"><span>Research</span><span>6 min</span></div><h3>Abusing URL shorteners for fun and profit</h3><p>The “unguessable” link is only private until someone archives it.</p><a href="../article.html?theme=editorial&amp;slug=url-shorteners">Read story →</a></article>
+        <article class="article-card reveal"><div class="card-art black"><span>$2K</span><small>ONE INTEGER<br>ZERO AUTHORIZATION</small></div><div class="article-meta"><span>Field note</span><span>5 min</span></div><h3>The easiest IDOR I almost overlooked</h3><p>A suspicious support ticket URL, one missing signature, and a very fast triage.</p><a href="../article.html?theme=editorial&amp;slug=idor-2k">Read story →</a></article>
+        <article class="article-card reveal"><div class="card-art blue"><span>JDWP</span><i></i><small>PORT 8080<br>REMOTE EXECUTION</small></div><div class="article-meta"><span>Archive</span><span>7 min</span></div><h3>RCE in the largest Russian internet company</h3><p>From a favicon hash to an exposed Java debug protocol.</p><a href="../article.html?theme=editorial&amp;slug=rce-mailru">Read story →</a></article>
+      </div>
+    </section>
+
+    <section id="research" class="interlude">
+      <div class="interlude-number">07</div><div class="interlude-copy reveal"><span>The SickSec principle</span><blockquote>Don’t stop at the unexpected response. Ask which <em>assumption</em> made it possible.</blockquote></div><div class="interlude-mark">S/S</div>
+    </section>
+
+    <section id="archive" class="archive page-shell">
+      <div class="archive-head reveal"><div><span class="eyebrow">The index</span><h2>All dispatches</h2></div><div data-filter-scope class="filters"><button class="active" data-filter="all">All</button><button data-filter="research">Research</button><button data-filter="writeup">Writeups</button></div></div>
+      <div class="archive-list">
+        <a href="../article.html?theme=editorial&amp;slug=mcp" data-category="research" class="archive-item reveal"><span>07</span><div><small>24.01.2026 / RESEARCH</small><h3>Hunting Account Takeovers in MCP OAuth Servers</h3></div><b>OAuth · MCP · ATO</b><i>↗</i></a>
+        <a href="../article.html?theme=editorial&amp;slug=idor-2k" data-category="writeup" class="archive-item reveal"><span>06</span><div><small>26.02.2025 / WRITEUP</small><h3>How I Scored $2K via an Easy IDOR</h3></div><b>IDOR · Bug bounty</b><i>↗</i></a>
+        <a href="../article.html?theme=editorial&amp;slug=url-shorteners" data-category="research" class="archive-item reveal"><span>05</span><div><small>26.02.2025 / RESEARCH</small><h3>Abusing URL Shorteners for Fun and Profit</h3></div><b>Recon · ATO</b><i>↗</i></a>
+        <a href="../article.html?theme=editorial&amp;slug=facebook-oauth" data-category="research" class="archive-item reveal"><span>04</span><div><small>01.09.2023 / RESEARCH</small><h3>ATO via Facebook OAuth and an Unsanitized Scheme</h3></div><b>OAuth · Mobile</b><i>↗</i></a>
+        <a href="../article.html?theme=editorial&amp;slug=rce-mailru" data-category="writeup" class="archive-item reveal"><span>03</span><div><small>19.08.2021 / WRITEUP</small><h3>How I RCE'd the Largest Russian Internet Company</h3></div><b>RCE · Recon</b><i>↗</i></a>
+      </div>
+    </section>
+
+    <section id="about" class="about page-shell reveal"><div class="about-image"><img src="../../assets/images/profile.jpg" alt="SickSec"><span>S3 / PORTRAIT STUDY</span></div><div class="about-copy"><span class="eyebrow">Behind the byline</span><h2>Hi, I’m SickSec.</h2><p class="large">Security researcher, bug hunter, and stubborn believer that technical writing doesn’t have to feel technical.</p><p>I break APIs, question authentication flows, map trust boundaries, and write down the useful parts. The work here comes from real production systems and responsible disclosure.</p><div class="signature">Sicksec</div><nav><a href="https://github.com/Sicks3c">GitHub ↗</a><a href="https://twitter.com/OriginalSicksec">Twitter ↗</a><a href="mailto:sicksec@wearehackerone.com">Email ↗</a></nav></div></section>
+
+    <section id="subscribe" class="subscribe"><span>Private circulation / Free forever</span><h2>Good stories.<br>Bad assumptions.</h2><p>Get new research and field notes, occasionally.</p><form onsubmit="event.preventDefault();this.classList.add('submitted')"><input type="email" placeholder="Your email address" aria-label="Your email address" required><button>Join the journal →</button></form></section>
+  </main>
+  <footer><a class="masthead" href="#top">Sick<span>Sec</span></a><div><span>The Offensive Journal</span><span>Independent security research</span></div><div><span>Dubai / Internet</span><span>© 2026</span></div></footer>
+  <aside class="prototype-switcher"><span>Direction</span><a href="../01-signal/">1</a><a class="active" href="../02-editorial/">2</a><a href="../03-console/">3</a><a href="../04-atlas/">4</a></aside>
+  <script src="../shared.js"></script>
+</body>
+</html>

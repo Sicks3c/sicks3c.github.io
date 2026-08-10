@@ -1,0 +1,8 @@
+{{ define "main" }}
+<section class="listing-hero compact-listing">
+  <div class="listing-path"><a href="{{ site.Home.RelPermalink }}">~</a><span>/</span><a href="{{ `tags/` | relURL }}">tags</a><span>/</span><span>{{ .Title | lower }}</span></div>
+  <div><span class="eyebrow">TAG_QUERY()</span><h1>#{{ .Title }}</h1><p>{{ len .Pages }} case {{ cond (eq (len .Pages) 1) "file" "files" }} connected to this signal.</p></div>
+  <div class="listing-stat"><span>MATCHES</span><b>{{ printf "%03d" (len .Pages) }}</b><small>QUERY COMPLETE</small></div>
+</section>
+<section class="listing-content shell"><div class="case-grid listing-grid">{{ range .Pages.ByDate.Reverse }}{{ partial "console/case-card.html" (dict "page" .) }}{{ end }}</div></section>
+{{ end }}
