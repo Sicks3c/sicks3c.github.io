@@ -18,7 +18,7 @@
     <div class="radar" aria-hidden="true"><span class="radar-sweep"></span><i class="radar-dot d1"></i><i class="radar-dot d2"></i><i class="radar-dot d3"></i><b>ATTACK<br>SURFACE</b></div>
     <div class="metrics"><div><span>CASES</span><b>{{ printf "%03d" (len $allPages) }}</b><small>ARCHIVED</small></div><div><span>FOCUS</span><b>API</b><small>PRIMARY</small></div><div><span>STATUS</span><b>LIVE</b><small>NO SLEEP</small></div><div><span>SIGNAL</span><b>98%</b><small>HIGH</small></div></div>
   </aside>
-  <div class="hero-log"><span>[{{ now.Format "2006-01-02 15:04:05" }}] Research node initialized</span><span>Scroll for case files ↓</span></div>
+  <div class="hero-log"><span>[{{ $featured.Date.Format "2006-01-02 15:04:05" }}] Latest research node synchronized</span><span>Scroll for case files ↓</span></div>
 </section>
 
 <div class="command-bar" data-filter-scope><span>QUICK_FILTER:</span><button class="active" type="button" data-filter="all">all</button><button type="button" data-filter="research">research</button><button type="button" data-filter="posts">writeups</button><a href="{{ `/tags/` | relURL }}">tags</a><span class="result">{{ len $allPages }} OBJECTS FOUND</span></div>

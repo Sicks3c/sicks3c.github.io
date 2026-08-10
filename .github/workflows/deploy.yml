@@ -1,4 +1,4 @@
-name: Deploy Hugo Site
+name: Validate Hugo Site
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.125.7'  # Match your local version
+          hugo-version: '0.144.2'
           extended: true
 
       - name: Build
@@ -25,13 +25,5 @@ jobs:
           hugo \
             --minify \
             --gc \
-            --verbose \
+            --panicOnWarning \
             -e production
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./docs
-          keep_files: false    # Clean previous builds
-
